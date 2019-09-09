@@ -84,6 +84,12 @@
   	<description></description>
   	<servlet-class>com.revature.ers.servlets.Logout</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>RegisterEmployee</servlet-name>
+  	<display-name>RegisterEmployee</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.servlets.manager.RegisterEmployee</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Index</servlet-name>
   	<url-pattern>/Index</url-pattern>
@@ -91,5 +97,9 @@
   <servlet-mapping>
   	<servlet-name>Logout</servlet-name>
   	<url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RegisterEmployee</servlet-name>
+  	<url-pattern>/RegisterEmployee</url-pattern>
   </servlet-mapping>
 </web-app>
