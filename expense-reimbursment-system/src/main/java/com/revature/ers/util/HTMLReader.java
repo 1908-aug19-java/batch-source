@@ -8,64 +8,61 @@ import javax.servlet.http.HttpServletRequest;
 
 public class HTMLReader {
 
-	private static final HTMLReader htmlReader = new HTMLReader();
 	private static String applicationHTML;
-	private static String headInjection;
-	private static String bodyInjection;
-	private static String scriptInjection;
-	private static int headInjectionIndex;
-	private static int bodyInjectionIndex;
-	private static int scriptInjectionIndex;
+	private static InjectionData headInjection;
+	private static InjectionData bodyInjection;
+	private static InjectionData scriptInjection;
+	private String headInjectionStart = "<!-- Start: Insert head elements here -->";
+	private String headInjectionEnd = "<!-- End: Insert head elements here -->";
+	private String bodyInjectionStart = "<!-- Start: Insert Body here -->";
+	private String bodyInjectionEnd = "<!-- End: Insert Body here -->";
+	private String scriptInjectionStart = "<!-- Start: Insert external JavaScript here -->";
+	private String scriptInjectionEnd = "<!-- End: Insert external JavaScript here -->";
 
-	private HTMLReader() {
-		String filePath = "C:\\Users\\Samuel\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\expense-reimbursment-system\\html\\login.html";
+	public HTMLReader(HttpServletRequest request, String filePath) {
+		filePath = request.getServletContext().getRealPath(filePath);
 		try {
 			applicationHTML = new String(Files.readAllBytes(Paths.get(filePath)));
-			headInjection = "<!-- Insert head elements here -->";
-			bodyInjection = "<!-- Insert Body here -->";
-			scriptInjection = "<!-- Insert external JavaScript here -->";
-			headInjectionIndex = applicationHTML.indexOf(headInjection);
-			bodyInjectionIndex = applicationHTML.indexOf(headInjectionIndex);
-			scriptInjectionIndex = applicationHTML.indexOf(bodyInjectionIndex);
+			headInjection = new InjectionData(applicationHTML.indexOf(headInjectionStart), headInjectionStart.length(),
+					applicationHTML.indexOf(headInjectionEnd), headInjectionStart.length());
+			bodyInjection = new InjectionData(applicationHTML.indexOf(bodyInjectionStart), bodyInjectionStart.length(),
+					applicationHTML.indexOf(bodyInjectionEnd), bodyInjectionEnd.length());
+			scriptInjection = new InjectionData(applicationHTML.indexOf(scriptInjectionStart), scriptInjectionStart.length(),
+					applicationHTML.indexOf(scriptInjectionEnd), scriptInjectionEnd.length());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public static HTMLReader getHtmlreader() {
-		return htmlReader;
-	}
-
 	public String getApplicationHTML() {
 		return applicationHTML;
 	}
 
-	public String setHeadElements(String[] headElements) {
-		int injectionIndex = headInjectionIndex + headInjection.length();
+	public StringBuffer setHeadElements(StringBuffer html, String[] headElements) {
 		String elements = "";
 		for (String s : headElements) {
 			elements += s + "\n";
 		}
-		return applicationHTML.substring(0, injectionIndex) + elements + applicationHTML.substring(injectionIndex);
+		headInjection = new InjectionData(html.indexOf(headInjectionStart), headInjectionStart.length(),
+				html.indexOf(headInjectionEnd), headInjectionStart.length());
+		return html.insert(headInjection.getStartIndex() + headInjection.getStartLength(), elements);
 	}
 
-	public String setBodyElement(String[] bodyElements) {
-		int bodyIndex = bodyInjectionIndex + bodyInjection.length();
-		String elements = "";
-		for (String s : bodyElements) {
-			elements += s + "\n";
-		}
-		return applicationHTML.substring(0, bodyIndex) + elements + applicationHTML.substring(bodyIndex);
+	public StringBuffer setBodyElement(StringBuffer html, String bodyElements) {		
+		bodyInjection = new InjectionData(html.indexOf(bodyInjectionStart), bodyInjectionStart.length(),
+				html.indexOf(bodyInjectionEnd), bodyInjectionEnd.length());
+		return html.insert(bodyInjection.getStartIndex() + bodyInjection.getStartLength(), bodyElements);
 	}
 
-	public String setScriptElements(String[] scriptElements) {
-		int scriptIndex = scriptInjectionIndex + scriptInjection.length();
+	public StringBuffer setScriptElements(StringBuffer html, String[] scriptElements) {
 		String elements = "";
 		for (String s : scriptElements) {
 			elements += s + "\n";
 		}
-		return applicationHTML.substring(0, scriptIndex) + elements + applicationHTML.substring(scriptIndex);
+		scriptInjection = new InjectionData(html.indexOf(scriptInjectionStart), scriptInjectionStart.length(),
+				html.indexOf(scriptInjectionEnd), scriptInjectionEnd.length());
+		return html.insert(scriptInjection.getStartIndex() + scriptInjection.getStartLength(), elements);
 	}
 
 	public String getNewHTMLResource(HttpServletRequest request, String filePath) {
@@ -78,4 +75,58 @@ public class HTMLReader {
 		}
 		return resource;
 	}
+}
+
+class InjectionData {
+	private int startIndex;
+	private int startLength;
+	private int endIndex;
+	private int endLength;
+
+	public InjectionData(int startIndex, int startLength, int endIndex, int endLength) {
+		super();
+		this.startIndex = startIndex;
+		this.startLength = startLength;
+		this.endIndex = endIndex;
+		this.endLength = endLength;
+	}
+
+	@Override
+	public String toString() {
+		return "Indexes [startIndex=" + startIndex + ", startLength=" + startLength + ", endIndex=" + endIndex
+				+ ", endLength=" + endLength + "]";
+	}
+
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+
+	public int getStartLength() {
+		return startLength;
+	}
+
+	public void setStartLength(int startLength) {
+		this.startLength = startLength;
+	}
+
+	public int getEndIndex() {
+		return endIndex;
+	}
+
+	public void setEndIndex(int endIndex) {
+		this.endIndex = endIndex;
+	}
+
+	public int getEndLength() {
+		return endLength;
+	}
+
+	public void setEndLength(int endLength) {
+		this.endLength = endLength;
+	}
+
 }
