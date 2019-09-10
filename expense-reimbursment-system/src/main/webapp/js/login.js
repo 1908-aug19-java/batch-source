@@ -1,3 +1,2 @@
-window.onload = function(){
-    document.head.insertAdjacentHTML("beforeend", new Util().getheaderLinks());     
+window.onload = function(e){
 }

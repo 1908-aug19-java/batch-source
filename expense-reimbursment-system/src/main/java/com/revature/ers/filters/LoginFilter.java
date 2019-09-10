@@ -13,18 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.revature.ers.dao.AuthorityDAO;
-import com.revature.ers.dao.AuthorityDAOImpl;
 import com.revature.ers.models.UserAccount;
 import com.revature.ers.util.Authorities;
 
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("/login")
+@WebFilter({"/login", "/html/login.html"})
 public class LoginFilter implements Filter {
-
-	private AuthorityDAO authorityDAO = new AuthorityDAOImpl();
 
 	/**
 	 * Default constructor.
@@ -55,7 +51,7 @@ public class LoginFilter implements Filter {
 		if (isLoggedIn && (isLoginRequest || isLoginPage)) {
 			//if logged in already requesting login page then send to home page
 			UserAccount userAccount = (UserAccount) session.getAttribute("userAccount");
-			String authorityName = authorityDAO.findById(userAccount.getAuthorityId()).get().getName();
+			String authorityName = userAccount.getAuthority().getName();
 			if (authorityName.equals(Authorities.EMPLOYEE.getName())) {
 				((HttpServletResponse) response).sendRedirect(httpRequest.getContextPath() +"/employee");
 			} else if (authorityName.equals(Authorities.MANAGER.getName())) {

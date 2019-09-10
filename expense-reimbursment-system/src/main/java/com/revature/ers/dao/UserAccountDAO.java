@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.revature.ers.models.UserAccount;
+import com.revature.ers.util.Pair;
 
 public interface UserAccountDAO {
 
@@ -11,6 +12,8 @@ public interface UserAccountDAO {
 
 	Optional<UserAccount> findByEmail(String emailAddress);
 
+	List<UserAccount> findByParams(Pair[] args);
+	
 	List<UserAccount> findAll();
 
 	Long save(UserAccount userAccount);

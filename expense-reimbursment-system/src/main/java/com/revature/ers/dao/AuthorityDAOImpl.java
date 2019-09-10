@@ -22,7 +22,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 	
 	public Optional<Authority> findById(long id) {
 		Optional<Authority> authorityOptional = Optional.empty();
-		String query = "SELECT * FROM authorities WHERE id=?";
+		String query = "SELECT * FROM authorities WHERE a_id=?";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
 			stmt.setLong(1, id);
@@ -39,6 +39,26 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 		return authorityOptional;
 	}
 
+	@Override
+	public Optional<Authority> findByName(String name) {
+		Optional<Authority> authorityOptional = Optional.empty();
+		String query = "SELECT * FROM authorities WHERE name=?";
+		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
+				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
+			stmt.setString(1, name);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Long id = rs.getLong("a_id");
+				Authority authority = new Authority(id, name);
+				authorityOptional = Optional.of(authority);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			logger.error(e);
+		}
+		return authorityOptional;
+	}
+	
 	public List<Authority> findAll() {
 		List<Authority> authorities = new ArrayList<Authority>();
 		String query = "SELECT * FROM authorities";
@@ -47,7 +67,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
 				ResultSet rs = stmt.executeQuery(query);) {
 			while (rs.next()) {
-				Long id = rs.getLong("id");
+				Long id = rs.getLong("a_id");
 				String name = rs.getString("name");
 				Authority authority = new Authority(id, name);
 				authorities.add(authority);
@@ -69,7 +89,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 				if (generatedKeys.next()) {
-					authority.setId(generatedKeys.getLong("id"));
+					authority.setId(generatedKeys.getLong("a_id"));
 					logger.info(i + " records inserted");
 				} else {
 					throw new SQLException("Creating UserAccount failed, no ID obtained.");
@@ -84,12 +104,12 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 	}
 
 	public void update(Authority authority) {
-		String query = "UPDATE authorities SET name=? WHERE id=?";
+		String query = "UPDATE authorities SET name=? WHERE a_id=?";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
 
 			stmt.setString(1, authority.getName());
-			stmt.setLong(10, authority.getId());
+			stmt.setLong(2, authority.getId());
 			int i = stmt.executeUpdate();
 			logger.info(i + " records updated");
 		} catch (SQLException e) {
@@ -98,7 +118,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 	}
 
 	public void delete(Authority authority) {
-		String query  = "DELETE FROM authorities WHERE id=?";
+		String query  = "DELETE FROM authorities WHERE a_id=?";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());PreparedStatement stmt = conn.prepareStatement(query);) {
 			stmt.setLong(1, authority.getId());

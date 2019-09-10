@@ -9,6 +9,8 @@ public interface AuthorityDAO {
 
 	Optional<Authority> findById(long id);
 
+	Optional<Authority> findByName(String name);
+
 	List<Authority> findAll();
 
 	Long save(Authority authority);

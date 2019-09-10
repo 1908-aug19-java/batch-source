@@ -12,21 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.revature.ers.models.UserAccount;
-import com.revature.ers.util.Authorities;
 
 /**
- * Servlet Filter implementation class ManagerFilter
+ * Servlet Filter implementation class ModelsFilter
  */
-@WebFilter({"/manager/*", "/html/manager/*", "/js/manager/*", "/css/manager/*" })
-public class ManagerFilter implements Filter {
+@WebFilter({"/user-accounts", "/reimbursements", "/authorities" })
+public class ModelsFilter implements Filter {
 
-	/**
-	 * Default constructor.
-	 */
-	public ManagerFilter() {
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * Default constructor. 
+     */
+    public ModelsFilter() {
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see Filter#destroy()
@@ -38,26 +36,13 @@ public class ManagerFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession(false);
 		boolean isLoggedIn = (session != null && session.getAttribute("userAccount") != null);
 		String loginURI = httpRequest.getContextPath() + "/login";
-
-		response = LoginFilter.setCachingHeaders(((HttpServletResponse) response));
-		
 		if (isLoggedIn) {
-			// If they are logged, if they are an manager than process request, otherwise
-			// redirect to /login filter for further handling
-			UserAccount userAccount = (UserAccount) session.getAttribute("userAccount");
-			String authorityName = userAccount.getAuthority().getName();
-			if (authorityName.equals(Authorities.MANAGER.getName())) {
 				chain.doFilter(request, response);
-			}else {
-				((HttpServletResponse) response).sendRedirect(loginURI);
-			}
-
 		} else {
 			((HttpServletResponse) response).sendRedirect(loginURI);
 		}

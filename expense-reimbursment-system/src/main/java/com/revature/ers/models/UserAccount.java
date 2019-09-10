@@ -13,15 +13,20 @@ public class UserAccount {
 	private boolean isActive;
 	private boolean blocked;
 	private Long failedLogins;
-	private Long authorityId;
+	private Authority authority;
+	//private Long authorityId;
 
 	public UserAccount() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 	public UserAccount(Long id, String firstName, String lastName, String email, String password, Timestamp lastLogin,
-			boolean isActive, boolean blocked, Long failedLogins, Long authorityId) {
+			boolean isActive, boolean blocked, Long failedLogins, Authority authority) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -32,27 +37,28 @@ public class UserAccount {
 		this.isActive = isActive;
 		this.blocked = blocked;
 		this.failedLogins = failedLogins;
-		this.authorityId = authorityId;
+		this.authority = authority;
 	}
 
-	public UserAccount(String firstName, String lastName, String email, String password, Long authorityId) {
+	public UserAccount(String firstName, String lastName, String email, String password, Timestamp lastLogin,
+			boolean isActive, boolean blocked, Long failedLogins, Authority authority) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.authorityId = authorityId;
+		this.lastLogin = lastLogin;
+		this.isActive = isActive;
+		this.blocked = blocked;
+		this.failedLogins = failedLogins;
+		this.authority = authority;
 	}
 
 	@Override
 	public String toString() {
 		return "UserAccount [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", lastLogin=" + lastLogin + ", isActive=" + isActive + ", blocked="
-				+ blocked + ", failedLogins=" + failedLogins + ", authorityId=" + authorityId + "]";
-	}
-
-	public Long getId() {
-		return id;
+				+ blocked + ", failedLogins=" + failedLogins + ", authority=" + authority + "]";
 	}
 
 	public void setId(Long id) {
@@ -123,12 +129,19 @@ public class UserAccount {
 		this.failedLogins = failedLogins;
 	}
 
-	public Long getAuthorityId() {
-		return authorityId;
+//	public Long getAuthorityId() {
+//		return authorityId;
+//	}
+//
+//	public void setAuthorityId(Long authorityId) {
+//		this.authorityId = authorityId;
+//	}
+	public Authority getAuthority() {
+		return authority;
 	}
 
-	public void setAuthorityId(Long authorityId) {
-		this.authorityId = authorityId;
+	public void setAuthority(Authority authority) {
+		this.authority = authority;
 	}
 
 	@Override

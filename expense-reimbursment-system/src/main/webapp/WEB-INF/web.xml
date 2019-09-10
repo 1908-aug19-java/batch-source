@@ -22,6 +22,12 @@
   	<description></description>
   	<filter-class>com.revature.ers.filters.ManagerFilter</filter-class>
   </filter>
+  <filter>
+  	<filter-name>ModelsFilter</filter-name>
+  	<display-name>ModelsFilter</display-name>
+  	<description></description>
+  	<filter-class>com.revature.ers.filters.ModelsFilter</filter-class>
+  </filter>
   <filter-mapping>
   	<filter-name>EmployeeFilter</filter-name>
   	<url-pattern>/EmployeeFilter</url-pattern>
@@ -29,6 +35,10 @@
   <filter-mapping>
   	<filter-name>ManagerFilter</filter-name>
   	<url-pattern>/ManagerFilter</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>ModelsFilter</filter-name>
+  	<url-pattern>/ModelsFilter</url-pattern>
   </filter-mapping>
   <servlet>
   	<servlet-name>LoginServlet</servlet-name>
@@ -90,6 +100,30 @@
   	<description></description>
   	<servlet-class>com.revature.ers.servlets.manager.RegisterEmployee</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UserAccount</servlet-name>
+  	<display-name>UserAccount</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.servlets.models.UserAccount</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ReimbursementServlet</servlet-name>
+  	<display-name>ReimbursementServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.servlets.models.ReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AuthorityServlet</servlet-name>
+  	<display-name>AuthorityServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.servlets.models.AuthorityServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>PasswordResetServlet</servlet-name>
+  	<display-name>PasswordResetServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.servlets.PasswordResetServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Index</servlet-name>
   	<url-pattern>/Index</url-pattern>
@@ -101,5 +135,21 @@
   <servlet-mapping>
   	<servlet-name>RegisterEmployee</servlet-name>
   	<url-pattern>/RegisterEmployee</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserAccount</servlet-name>
+  	<url-pattern>/UserAccount</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReimbursementServlet</servlet-name>
+  	<url-pattern>/ReimbursementServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AuthorityServlet</servlet-name>
+  	<url-pattern>/AuthorityServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>PasswordResetServlet</servlet-name>
+  	<url-pattern>/PasswordResetServlet</url-pattern>
   </servlet-mapping>
 </web-app>

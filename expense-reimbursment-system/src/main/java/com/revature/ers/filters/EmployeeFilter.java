@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.revature.ers.dao.AuthorityDAO;
-import com.revature.ers.dao.AuthorityDAOImpl;
 import com.revature.ers.models.UserAccount;
 import com.revature.ers.util.Authorities;
 
@@ -22,7 +20,6 @@ import com.revature.ers.util.Authorities;
  */
 @WebFilter({ "/employee/*", "/html/employee/*", "/js/employee/*", "/css/employee/*" })
 public class EmployeeFilter implements Filter {
-	private AuthorityDAO authorityDAO = new AuthorityDAOImpl();
 
 	/**
 	 * Default constructor.
@@ -53,7 +50,7 @@ public class EmployeeFilter implements Filter {
 			// If they are logged, if they are an employee than process request, otherwise
 			// redirect to /login filter for further handling
 			UserAccount userAccount = (UserAccount) session.getAttribute("userAccount");
-			String authorityName = authorityDAO.findById(userAccount.getAuthorityId()).get().getName();
+			String authorityName = userAccount.getAuthority().getName();
 			if (authorityName.equals(Authorities.EMPLOYEE.getName())) {
 				chain.doFilter(request, response);
 			} else {
