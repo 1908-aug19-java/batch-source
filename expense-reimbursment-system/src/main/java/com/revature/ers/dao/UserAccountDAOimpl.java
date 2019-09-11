@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import com.revature.ers.util.Pair;
 import com.revature.ers.models.Authority;
 import com.revature.ers.models.UserAccount;
@@ -23,7 +21,6 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 
 	private final String[] databaseColumns = { "ua_id", "first_name", "last_name", "email", "password", "last_login",
 			"isactive", "blocked", "failed_logins", "authority_id" };
-	private static Logger logger = LogManager.getLogger();
 
 	public Optional<UserAccount> findById(long id) {
 		Optional<UserAccount> userAccountOptional = Optional.empty();
@@ -50,7 +47,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return userAccountOptional;
 	}
@@ -80,7 +77,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 			e.printStackTrace();
 		}
 		return userAccountOptional;
@@ -119,7 +116,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				userAccounts.add(userAccount);
 			}
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return userAccounts;
 	}
@@ -149,7 +146,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				userAccounts.add(userAccount);
 			}
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return userAccounts;
 	}
@@ -174,14 +171,14 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 				if (generatedKeys.next()) {
 					userAccount.setId(generatedKeys.getLong("ua_id"));
-					logger.info(i + " records inserted");
+					System.out.println(i + " records inserted");
 				} else {
 					throw new SQLException("Creating UserAccount failed, no ID obtained.");
 				}
 			}
 
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 
 		return userAccount.getId();
@@ -206,9 +203,9 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			stmt.setLong(9, userAccount.getAuthority().getId());
 			stmt.setLong(10, userAccount.getId());
 			int i = stmt.executeUpdate();
-			logger.info(i + " records updated");
+			System.out.println(i + " records updated");
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 	}
 
@@ -218,9 +215,9 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
 			stmt.setLong(1, userAccount.getId());
 			int i = stmt.executeUpdate();
-			logger.info(i + " records deleted");
+			System.out.println(i + " records deleted");
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 	}
 

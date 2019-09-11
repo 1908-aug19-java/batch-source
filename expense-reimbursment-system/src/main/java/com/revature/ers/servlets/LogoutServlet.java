@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * Servlet implementation class Logout
@@ -17,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Logger logger = LogManager.getLogger();   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,9 +37,9 @@ public class LogoutServlet extends HttpServlet {
 		try {
 			request.getSession(false).invalidate();
 		} catch (IllegalStateException e) {
-			logger.error(e);
+			System.out.println(e);
 		}catch (NullPointerException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		response.sendRedirect(request.getContextPath() + "/login");
 	}

@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.revature.ers.models.Reimbursement;
 import com.revature.ers.security.DBCredentials;
 import com.revature.ers.util.Pair;
@@ -22,8 +19,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 
 	private final String[] databaseColumns = { "r_id", "amount", "status", "date_submitted", "user_accounts_id",
 			"manager_accounts_id" };
-	private static Logger logger = LogManager.getLogger();
-
+	
 	public Optional<Reimbursement> findById(long id) {
 		Optional<Reimbursement> reimbursementOptional = Optional.empty();
 		String query = "SELECT * FROM reimbursements WHERE r_id=?";
@@ -43,7 +39,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return reimbursementOptional;
 	}
@@ -74,7 +70,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 				reimbursements.add(reimbursement);
 			}
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return reimbursements;
 	}
@@ -98,7 +94,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 				reimbursements.add(reimbursement);
 			}
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return reimbursements;
 	}
@@ -119,14 +115,14 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 				if (generatedKeys.next()) {
 					reimbursement.setId(generatedKeys.getLong("r_id"));
-					logger.info(i + " records inserted");
+					System.out.println(i + " records inserted");
 				} else {
 					throw new SQLException("Creating UserAccount failed, no ID obtained.");
 				}
 			}
 
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 
 		return reimbursement.getId();
@@ -145,9 +141,9 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 			stmt.setLong(5, reimbursement.getManagerAccountId());
 			stmt.setLong(6, reimbursement.getId());
 			int i = stmt.executeUpdate();
-			logger.info(i + " records updated");
+			System.out.println(i + " records updated");
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 	}
 
@@ -157,9 +153,9 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
 			stmt.setLong(1, reimbursement.getId());
 			int i = stmt.executeUpdate();
-			logger.info(i + " records deleted");
+			System.out.println(i + " records deleted");
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 	}
 

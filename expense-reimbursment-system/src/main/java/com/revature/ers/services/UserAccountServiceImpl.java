@@ -2,8 +2,6 @@ package com.revature.ers.services;
 
 import java.util.NoSuchElementException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import com.revature.ers.dao.UserAccountDAO;
 import com.revature.ers.dao.UserAccountDAOimpl;
@@ -13,7 +11,6 @@ import com.revature.ers.security.CustomPasswordEncoder;
 public class UserAccountServiceImpl implements UserAccountService {
 
 	UserAccountDAO userAccountDAO = new UserAccountDAOimpl();
-	private static Logger logger = LogManager.getLogger();
 	
 	@Override
 	public boolean areValidCredentials(String email, String password) {
@@ -24,7 +21,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 				return false;
 			}
 		} catch (NoSuchElementException e) {
-			logger.error(e);
+			System.out.println(e);
 			return false;
 		}
 		return true;

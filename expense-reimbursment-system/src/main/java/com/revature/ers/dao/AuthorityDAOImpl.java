@@ -10,15 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.revature.ers.models.Authority;
 import com.revature.ers.security.DBCredentials;
 
 public class AuthorityDAOImpl implements AuthorityDAO{
-
-	private static Logger logger = LogManager.getLogger();
 	
 	public Optional<Authority> findById(long id) {
 		Optional<Authority> authorityOptional = Optional.empty();
@@ -34,7 +29,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 			}
 			rs.close();
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return authorityOptional;
 	}
@@ -54,7 +49,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 			}
 			rs.close();
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return authorityOptional;
 	}
@@ -73,7 +68,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 				authorities.add(authority);
 			}
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 		return authorities;
 	}
@@ -90,14 +85,14 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 				if (generatedKeys.next()) {
 					authority.setId(generatedKeys.getLong("a_id"));
-					logger.info(i + " records inserted");
+					System.out.println(i + " records inserted");
 				} else {
 					throw new SQLException("Creating UserAccount failed, no ID obtained.");
 				}
 			}
 
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 
 		return authority.getId();
@@ -111,9 +106,9 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 			stmt.setString(1, authority.getName());
 			stmt.setLong(2, authority.getId());
 			int i = stmt.executeUpdate();
-			logger.info(i + " records updated");
+			System.out.println(i + " records updated");
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 	}
 
@@ -123,9 +118,9 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 				DBCredentials.getPass());PreparedStatement stmt = conn.prepareStatement(query);) {
 			stmt.setLong(1, authority.getId());
 			int i = stmt.executeUpdate();
-			logger.info(i + " records deleted");
+			System.out.println(i + " records deleted");
 		} catch (SQLException e) {
-			logger.error(e);
+			System.out.println(e);
 		}
 	}
 

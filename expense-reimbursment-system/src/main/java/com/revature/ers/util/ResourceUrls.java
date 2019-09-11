@@ -17,7 +17,6 @@ public class ResourceUrls {
 	public static Map<String, String> getHTMLURLS() {
 		Map<String, String> shallowCopy = new HashMap<>();
 		shallowCopy.putAll(HTMLURLS);
-		System.out.println(shallowCopy);
 		return shallowCopy;
 	}
 
@@ -37,8 +36,8 @@ public class ResourceUrls {
 		// Main html resources
 		HTMLURLS.put("login", "/html/login.html");
 		HTMLURLS.put("application", "/html/application.html");
-		HTMLURLS.put("applicationFooter", "/html/mainFooter.html");
-		HTMLURLS.put("applicationHeader", "/html/mainHeader.html");
+		HTMLURLS.put("applicationFooter", "/html/applicationFooter.html");
+		HTMLURLS.put("applicationHeader", "/html/applicationHeader.html");
 
 		// Employee html resources
 		HTMLURLS.put("employeeHeader", "/html/employee/employeeHeader.html");
