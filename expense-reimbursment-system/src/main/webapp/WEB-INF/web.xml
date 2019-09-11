@@ -4,12 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <filter>
-  	<filter-name>LoginFilter</filter-name>
-  	<display-name>LoginFilter</display-name>
-  	<description></description>
-  	<filter-class>com.revature.ers.filters.LoginFilter</filter-class>
-  </filter>
+
   <filter>
   	<filter-name>EmployeeFilter</filter-name>
   	<display-name>EmployeeFilter</display-name>
@@ -50,12 +45,6 @@
   	<filter-name>AllowedResources</filter-name>
   	<url-pattern>/AllowedResources</url-pattern>
   </filter-mapping>
-  <servlet>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<display-name>LoginServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.revature.ers.servlets.LoginServlet</servlet-class>
-  </servlet>
   <servlet>
   	<servlet-name>ManagerHomeServlet</servlet-name>
   	<display-name>ManagerHomeServlet</display-name>
@@ -134,6 +123,12 @@
   	<description></description>
   	<servlet-class>com.revature.ers.servlets.PasswordResetServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>FrontControllerServlet</servlet-name>
+  	<display-name>FrontControllerServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.servlets.FrontControllerServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Index</servlet-name>
   	<url-pattern>/Index</url-pattern>
@@ -162,4 +157,12 @@
   	<servlet-name>PasswordResetServlet</servlet-name>
   	<url-pattern>/PasswordResetServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FrontControllerServlet</servlet-name>
+  	<url-pattern>/FrontControllerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+       <servlet-name>default</servlet-name>
+       <url-pattern>/static/*</url-pattern>
+   </servlet-mapping>
 </web-app>

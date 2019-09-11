@@ -18,7 +18,7 @@ import com.revature.ers.util.Authorities;
 /**
  * Servlet Filter implementation class EmployeeFilter
  */
-@WebFilter({ "/employee/*", "/html/employee/*", "/js/employee/*", "/css/employee/*" })
+//@WebFilter({ "/employee/*", "/html/employee/*", "/js/employee/*", "/css/employee/*" })
 public class EmployeeFilter implements Filter {
 
 	/**

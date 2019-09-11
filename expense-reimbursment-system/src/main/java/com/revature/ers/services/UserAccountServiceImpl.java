@@ -1,7 +1,7 @@
 package com.revature.ers.services;
 
+import java.util.List;
 import java.util.NoSuchElementException;
-
 
 import com.revature.ers.dao.UserAccountDAO;
 import com.revature.ers.dao.UserAccountDAOimpl;
@@ -10,8 +10,8 @@ import com.revature.ers.security.CustomPasswordEncoder;
 
 public class UserAccountServiceImpl implements UserAccountService {
 
-	UserAccountDAO userAccountDAO = new UserAccountDAOimpl();
-	
+	private UserAccountDAO userAccountDAO = new UserAccountDAOimpl();
+
 	@Override
 	public boolean areValidCredentials(String email, String password) {
 		try {
@@ -28,49 +28,44 @@ public class UserAccountServiceImpl implements UserAccountService {
 	}
 
 	@Override
-	public boolean isValidfirstName(String firstName) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isValidName(String name) {
+		String regex = "[A-Za-z-']{1,20}";
+		if (!name.matches(regex)) {
+			return false;
+		}
+		return true;
 	}
-
-
-
-	@Override
-	public boolean isValidlastName(String lastName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 
 	@Override
 	public boolean isValidEmail(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+		if (!email.matches(regex)) {
+			return false;
+		}
+		return true;
 	}
-
-
 
 	@Override
 	public boolean emailExists(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		List<UserAccount> userAccounts = userAccountDAO.findAll();
+		for (UserAccount userAccount : userAccounts) {
+			if (userAccount.getEmail().equals(userAccount.getEmail())) {
+				return false;
+			}
+		}
+		return true;
 	}
-
-
 
 	@Override
 	public boolean isValidPassword(String password) {
-		// TODO Auto-generated method stub
-		return false;
+		String regex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])\\w{6,}";
+		if (!password.matches(regex)) {
+			return false;
+		}
+		return true;
 	}
 
-
-
-	@Override
-	public boolean passwordsAreEqual(String password, String psw_repeat) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isSamePassword(String password, String confirm_password) {
+		return password.equals(confirm_password);
 	}
-
 }

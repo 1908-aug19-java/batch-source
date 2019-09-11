@@ -23,7 +23,7 @@ import com.revature.ers.util.Authorities;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter({"/login", "/html/login.html"})
+//@WebFilter({"/login", "/html/login.html"})
 public class LoginFilter implements Filter {
 
 	private static final Logger LOGGER = Logger.getLogger(LoginFilter.class);

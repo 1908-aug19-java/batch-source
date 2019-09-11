@@ -7,37 +7,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.ers.util.Dispatcher;
+
 /**
- * Servlet implementation class Index
+ * Servlet implementation class FrontControllerServlet
  */
-//@WebServlet("")
-public class Index extends HttpServlet {
+@WebServlet("/*")
+public class FrontControllerServlet extends DefaultServlet{
 	private static final long serialVersionUID = 1L;
-       
+	private Dispatcher dispatcher = new Dispatcher();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public FrontControllerServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("jkj");
-		response.sendRedirect(request.getContextPath() + "/login");
+		String path = request.getRequestURI().substring(request.getContextPath().length());
+		if(path.startsWith("/static/")) {
+			super.doGet(request, response);
+		}else {
+			dispatcher.dispatch(request, response);
+		}	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		dispatcher.dispatch(request, response);
 	}
 
 }

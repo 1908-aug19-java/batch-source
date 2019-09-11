@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class AllowedResources
  */
-@WebFilter("/allowed")
+//@WebFilter("/allowed")
 public class AllowedResources implements Filter {
 
     /**

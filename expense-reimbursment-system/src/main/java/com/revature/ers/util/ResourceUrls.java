@@ -34,38 +34,39 @@ public class ResourceUrls {
 
 	private ResourceUrls() {
 		// Main html resources
-		HTMLURLS.put("login", "/html/login.html");
-		HTMLURLS.put("application", "/html/application.html");
-		HTMLURLS.put("applicationFooter", "/html/applicationFooter.html");
-		HTMLURLS.put("applicationHeader", "/html/applicationHeader.html");
+		HTMLURLS.put("login", "static/html/login.html");
+		HTMLURLS.put("application", "static/html/application.html");
+		HTMLURLS.put("applicationFooter", "static/html/applicationFooter.html");
+		HTMLURLS.put("applicationHeader", "static/html/applicationHeader.html");
 
 		// Employee html resources
-		HTMLURLS.put("employeeHeader", "/html/employee/employeeHeader.html");
-		HTMLURLS.put("employeeHome", "/html/employee/employeeHome.html");
-		HTMLURLS.put("employeeProfile", "/html/employee/employeeProfile.html");
-		HTMLURLS.put("employeeReimbursement", "/html/employee/employeeReimbursement.html");
+		HTMLURLS.put("employeeHeader", "static/html/employee/employeeHeader.html");
+		HTMLURLS.put("employeeHome", "static/html/employee/employeeHome.html");
+		HTMLURLS.put("employeeProfile", "static/html/employee/employeeProfile.html");
+		HTMLURLS.put("employeeReimbursement", "static/html/employee/employeeReimbursement.html");
 
 		// Manager html Resources
-		HTMLURLS.put("allEmployees", "/html/manager/allEmployees.html");
-		HTMLURLS.put("managerEmployee", "/html/manager/managerEmployee.html");
-		HTMLURLS.put("managerHeader", "/html/manager/managerHeader.html");
-		HTMLURLS.put("managerHome", "/html/manager/managerHome.html");
-		HTMLURLS.put("registerEmployee", "/html/manager/registerEmployee.html");
+		HTMLURLS.put("allEmployees", "static/html/manager/allEmployees.html");
+		HTMLURLS.put("managerEmployee", "static/html/manager/managerEmployee.html");
+		HTMLURLS.put("managerHeader", "static/html/manager/managerHeader.html");
+		HTMLURLS.put("managerHome", "static/html/manager/managerHome.html");
+		HTMLURLS.put("registerEmployee", "static/html/manager/registerEmployee.html");
 
 		// Main js resources
-		JSURLS.put("login", "/ers/js/login.js");
-		JSURLS.put("application", "/ers/js/application.js");
+		JSURLS.put("login", "static/js/login.js");
+		JSURLS.put("application", "static/js/application.js");
 
 		// Employee js resources
-		JSURLS.put("employeeHome", "/ers/js/employee/employeeHome.js");
-		JSURLS.put("employeeProfile", "/ers/js/employee/employeeProfile.js");
-		JSURLS.put("employeeReimbursement", "/ers/js/employee/employeeReimbursement.js");
+		JSURLS.put("employeeHome", "static/js/employee/employeeHome.js");
+		JSURLS.put("employeeProfile", "static/js/employee/employeeProfile.js");
+		JSURLS.put("employeeReimbursement", "static/js/employee/employeeReimbursement.js");
 
 		// Manager js Resources
-		JSURLS.put("allEmployees", "/ers/js/manager/allEmployees.js");
-		JSURLS.put("managerEmployee", "/ers/js/manager/managerEmployee.js");
-		JSURLS.put("managerHome", "/ers/js/manager/managerHome.js");
-		JSURLS.put("registerEmployee", "/ers/js/manager/registerEmployee.js");
+		JSURLS.put("allEmployees", "static/js/manager/allEmployees.js");
+		JSURLS.put("managerEmployee", "static/js/manager/managerEmployee.js");
+		JSURLS.put("managerHeader", "static/js/manager/managerHeader.js");
+		JSURLS.put("managerHome", "static/js/manager/managerHome.js");
+		JSURLS.put("registerEmployee", "static/js/manager/registerEmployee.js");
 	}
 
 }

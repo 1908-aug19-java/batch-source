@@ -19,7 +19,7 @@ import com.revature.ers.util.ResourceUrls;
 /**
  * Servlet implementation class ManagerHomeServlet
  */
-@WebServlet("/manager")
+//@WebServlet("/manager")
 public class ManagerHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(ManagerHomeServlet.class);

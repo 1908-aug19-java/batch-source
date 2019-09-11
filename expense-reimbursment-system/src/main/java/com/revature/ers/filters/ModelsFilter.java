@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class ModelsFilter
  */
-@WebFilter({"/user-accounts", "/reimbursements", "/authorities" })
+//@WebFilter({"/user-accounts", "/reimbursements", "/authorities" })
 public class ModelsFilter implements Filter {
 
     /**

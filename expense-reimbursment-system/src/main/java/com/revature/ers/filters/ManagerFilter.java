@@ -25,7 +25,7 @@ import com.revature.ers.util.Authorities;
 /**
  * Servlet Filter implementation class ManagerFilter
  */
-@WebFilter({ "/manager/*", "/html/manager/*", "/js/manager/*", "/css/manager/*" })
+//@WebFilter({ "/manager/*", "/html/manager/*", "/js/manager/*", "/css/manager/*" })
 public class ManagerFilter implements Filter {
 	private static final Logger LOGGER = Logger.getLogger(LoginServlet.class);
 	/**
