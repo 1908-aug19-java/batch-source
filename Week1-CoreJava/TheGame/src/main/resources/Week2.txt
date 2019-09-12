@@ -1,0 +1,40 @@
+
+What is RDS?
+What is RDBMS?
+What is SQL?
+What are the sublanguages of SQL? What are each of their roles?
+What are the important keywords associated with DDL?
+What are the important keywords associated with DML?
+What are the important keywords associated with DQL?
+What are the important keywords associated with DCL?
+What are the important keywords associated with TCL?
+What is a transaction?
+What are the properties of a transaction?
+What are the different isolation levels? What do they prevent? Which are available in a Postgres DB?
+What is a subquery?
+Be able to explain simple DML syntax.
+What is the difference between an aggregate and scalar function?
+What are the different types of multiplicity? How is each one represented in a relational db?
+What is the difference between group by and order by? Where and having?
+What is the difference between a union and a join?
+What are the different set operators? Explain how they are used.
+What are the different kinds of joins?
+What is normalization?
+Explain what conditions are required for a db to be in first normal form.
+Explain what conditions are required for a db to be in second normal form.
+Explain what conditions are required for a db to be in third normal form.
+Under what circumstances might I want to de-normalize my db?
+What is plpgsql?
+How can I create a function in a Postgres db?
+What is a trigger? How can I create one?
+What is a view? How is it different than a materialized view?
+What is an index? Explain an appropriate use case.
+What is JDBC?
+Explain the DAO design pattern.
+Explain the important interfaces associated with JDBC?
+What is the difference between a Statement, PreparedStatement, and CallableStatement.
+How can I execute a join using JDBC?
+How can I manage transactions using JDBC?
+What is Mockito? Why would we use mocking?
+What is an H2 db? How would it help us with testing?
+What are SonarLint, SonarCloud, and SonarQube?

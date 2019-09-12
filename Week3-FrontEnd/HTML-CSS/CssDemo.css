@@ -1,0 +1,64 @@
+form {
+    background-color: blueviolet !important
+}
+
+img {
+    border: solid black 10px;
+    padding: 30px;
+    margin: 50px;
+    background-color: white;
+}
+
+figcaption {
+    padding-left: 30px;
+    margin-left: 50px;
+    margin-top: -50px;
+}
+
+h3, h4 {
+    text-decoration: underline;
+    text-decoration-color: blue;
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
+
+.formatted-par{
+    color: blue;
+}
+
+#submit-btn{
+    border-radius: 5px;
+    background-color: indigo;
+    border-color: white;
+    color: white;
+    font-weight: 800;
+}
+
+form{
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+img:hover{
+    background-color: brown;
+}
+
+img:hover{
+    background-color: green;
+}
+
+th, td {
+    padding: 5px;
+    border: solid 2px;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    margin-left: 30px;
+}

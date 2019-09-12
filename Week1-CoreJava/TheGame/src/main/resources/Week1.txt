@@ -1,0 +1,40 @@
+Under what conditions are we provided with a default constructor? What is that constructor going to include? Why is it important?
+What is the difference between the JVM, JRE, and JDK?
+What is version control? Why is it important? How have you used it? 
+What are some git commands you've used?
+What is a Collection? What are some characteristics of them? How are they different from arrays?
+What is the difference between a HashSet and a TreeSet?
+What is the difference between a Vector and a LinkedList?
+What is the difference between a HashSet and a HashMap?
+What is the difference between a HashMap and a HashTable?
+What is a LinkedHashSet? Explain how it's implemented.
+What is the difference between a checked and an unchecked exception? Give examples of each. 
+What is the difference between an exception and an error? What is a Throwable?
+What are the ways we can handle exceptions? 
+What is Maven? Explain the role it has in our development project. What are the benefits of using it?
+What is the entry point of a Java application? Explain it in detail.
+What are the access modifiers in Java?
+What are the scopes of a variable in Java?
+How do we provide Maven configuration?
+What is the Maven centralized repository and how is it relevant to us? 
+Explain the concept of the string pool. What are the benefits and drawbacks of the string pool? 
+Compare and contrast the benefits and methods available to Strings, StringBuffers, and StringBuilders. 
+How is memory management handled in Java? Is it pass by value or pass by reference? Explain.
+In what two ways can we determine ordering of Java objects? Explain specifically how we would implement and use each one.
+What is JUnit? What is considered a "unit"? 
+Explain assert methods and the available annotations in JUnit.
+What is the difference between the Collection Framework, Collection, and Collections?
+What is the difference between final, finalize, and finally?
+What is try with resources?
+What is polymorphism?
+What is abstraction?
+What is inheritance?
+What is encapsulation?
+What is Reflection?
+What is the difference between interpreting and compiling a language?
+What is a thread in Java?
+What is a marker interface? Give some examples.
+What is a functional interface? How are they related to lambdas?
+What are design patterns? What are some design patterns that you've used?
+Explain how to implement the Singleton design pattern.
+What is varargs? Explain how to use it?

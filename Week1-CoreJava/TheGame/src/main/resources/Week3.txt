@@ -1,0 +1,15 @@
+What is HTML?
+What are semantic elements in HTML?
+What is CSS? What are the different ways we can include CSS in our HTML files?
+What is the CSS box model?
+What are some common CSS selectors? How are they prioritized?
+What is Bootstrap? What are the benefits of using it? What is a CDN?
+What must be taken into consideration to create a responsive web page?
+What is JavaScript? How can we include it into our web pages?
+Explain the idea of a closure in JavaScript?
+What is prototypal inheritance?
+Explain the AJAX workflow.
+What is the difference between using the different declaration keywords in JavaScript?
+Describe the implication of JavaScript being a loosely typed language?
+How can we tie events to HTML elements with JavaScript?
+What is the DOM? How do we interact with it?
