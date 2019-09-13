@@ -9,75 +9,49 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.revature.ers.handlers.LoginHandler;
-import com.revature.ers.handlers.manager.ManagerHandler;
-import com.revature.ers.handlers.manager.ManagerHome;
-import com.revature.ers.handlers.manager.RegisterEmployee;
 import com.revature.ers.security.SecurityHandler;
-import com.revature.ers.servlets.LoginServlet;
 
 public class Dispatcher {
-	private static final Logger LOGGER = Logger.getLogger(Dispatcher.class);
-	private LoginHandler loginHandler;
-	private ManagerHandler managerHandler;
+	static final Logger LOGGER = Logger.getLogger(Dispatcher.class);
 
-	public Dispatcher() {
-		loginHandler = new LoginHandler();
-	}
-
-	public void dispatch(HttpServletRequest request, HttpServletResponse response) {
-		SecurityHandler securityHandler = new SecurityHandler();
-		String credentials = response.getHeader("Authorization");
-		boolean isAuthenticated = securityHandler.isAuthenticated(credentials);
-		boolean isAuthorizedManager = securityHandler.isAuthorized(credentials, "MANAGER");
-		boolean isAuthorizedEmployee = securityHandler.isAuthorized(credentials, "EMPLOYEE");
-		LOGGER.info(" isAuthenticated: " + isAuthenticated + " isAuthorizedManager: " + isAuthorizedManager
-				+ " credentials" + credentials);
+	public void dispatch(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String path = request.getRequestURI().substring(request.getContextPath().length());
-		LOGGER.error("Test");
-		LOGGER.error(response.getHeader("Authorization"));
-		LOGGER.error(path);
+		if (path.isEmpty() || "/".equals(path)) {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/");
+			requestDispatcher.forward(request, response);
+		} else if (path.equals("/login")) {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login");
+			requestDispatcher.forward(request, response);
+		}
 		if (path.startsWith("/api")) {
-
-		} else {
-			try {
-				if (path.isEmpty() || "/".equals(path)) {
-					response.sendRedirect(request.getContextPath() + "/login");
-				} else
-					if (path.startsWith("/login")) {
-					loginHandler.process(request, response);
-				} else if (path.startsWith("/manager") && isAuthenticated && isAuthorizedManager) {
+			RequestDispatcher requestDispatcher;
+			if (path.equals("/api/resources")) {
+				requestDispatcher = request.getRequestDispatcher("/resources");
+				requestDispatcher.forward(request, response);
+			} else {
+				SecurityHandler securityHandler = new SecurityHandler();
+				String jwt = request.getHeader("Authorization");
+				if (securityHandler.isAuthenticatedJWT(jwt, request)) {
 					switch (path) {
-					case "/manager":
-						managerHandler = new ManagerHome();
-						managerHandler.process(request, response);
+					case "/api/user-accounts":
+						requestDispatcher = request.getRequestDispatcher("/api/user-accounts");
+						requestDispatcher.forward(request, response);
 						break;
-					case "/manager/employee":
+					case "/api/authorities":
+						requestDispatcher = request.getRequestDispatcher("/api/authorities");
+						requestDispatcher.forward(request, response);
 						break;
-					case "/manager/register-employee":
-						managerHandler = new RegisterEmployee();
-						managerHandler.process(request, response);
-						break;
-					case "/manager/all-employees":
-						break;
-					}
-				} else if (path.startsWith("/employee") && isAuthenticated && isAuthorizedEmployee) {
-					switch (path) {
-					case "/employee":
-						break;
-					case "/employee/profile":
-						break;
-					case "/employee/reimbursement":
+					case "/api/reimbursements":
+						requestDispatcher = request.getRequestDispatcher("/api/reimbursements");
+						requestDispatcher.forward(request, response);
 						break;
 					}
 				} else {
-					response.setHeader("Authorization", "");
-					response.sendRedirect(request.getContextPath() + "/login");
+					response.sendError(400, "Authentication required");
 				}
-
-			} catch (ServletException | IOException e) {
-				e.printStackTrace();
 			}
+
 		}
 
 	}

@@ -1,10 +1,17 @@
-console.log(this.XMLHttpRequest.HEADERS_RECEIVED)
-function goToPage(page) {
-    let userAccounts;
-    let url = `http://localhost:8080/ers/${page}`;
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Authorization");
-    xhr.send();
+(function () {
+
+  document.querySelector("#home").addEventListener("click", () => { goToPage("managerHome", "managerHeader", "applicationFooter"); });
+  document.querySelector("#all-employees").addEventListener("click", () => { goToPage("allEmployees", "managerHeader", "applicationFooter"); });
+  document.querySelector("#register-employee").addEventListener("click", () => { goToPage("registerEmployee", "managerHeader", "applicationFooter"); });
+  document.querySelector("#logout").addEventListener("click", logout);
+
+  function logout() {
+    const resources = JSON.parse(window.localStorage.getItem("Resources"));
+    sessionStorage.removeItem('authorization');
+    loadResources(resources.login);
   }
+
+})();
+
+
 

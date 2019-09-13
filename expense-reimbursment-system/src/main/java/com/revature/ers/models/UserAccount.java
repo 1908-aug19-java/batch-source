@@ -1,6 +1,7 @@
 package com.revature.ers.models;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 public class UserAccount {
 
@@ -14,35 +15,46 @@ public class UserAccount {
 	private boolean blocked;
 	private Long failedLogins;
 	private Authority authority;
-	//private Long authorityId;
 
 	public UserAccount() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public UserAccount(Long id, String firstName, String lastName, String email, String password, Timestamp lastLogin,
-			boolean isActive, boolean blocked, Long failedLogins, Authority authority) {
+	public UserAccount(Long id, String firstName, String lastName, String email, String password, Authority authority) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.lastLogin = lastLogin;
-		this.isActive = isActive;
-		this.blocked = blocked;
-		this.failedLogins = failedLogins;
+		this.lastLogin = Timestamp.from(Instant.now());
+		this.isActive = true;
+		this.blocked = false;
+		this.failedLogins = 0L;
 		this.authority = authority;
 	}
 
-	public UserAccount(String firstName, String lastName, String email, String password, Timestamp lastLogin,
+	public UserAccount(String firstName, String lastName, String email, String password, Authority authority) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.lastLogin = Timestamp.from(Instant.now());
+		this.isActive = true;
+		this.blocked = false;
+		this.failedLogins = 0L;
+		this.authority = authority;
+	}
+
+	public UserAccount(Long id, String firstName, String lastName, String email, String password, Timestamp lastLogin,
 			boolean isActive, boolean blocked, Long failedLogins, Authority authority) {
 		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -129,13 +141,6 @@ public class UserAccount {
 		this.failedLogins = failedLogins;
 	}
 
-//	public Long getAuthorityId() {
-//		return authorityId;
-//	}
-//
-//	public void setAuthorityId(Long authorityId) {
-//		this.authorityId = authorityId;
-//	}
 	public Authority getAuthority() {
 		return authority;
 	}
@@ -164,8 +169,9 @@ public class UserAccount {
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id.equals(other.id)) {
 			return false;
+		}
 		return true;
 	}
 

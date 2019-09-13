@@ -12,15 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.revature.ers.util.Pair;
+import org.apache.log4j.Logger;
+
 import com.revature.ers.models.Authority;
 import com.revature.ers.models.UserAccount;
 import com.revature.ers.security.DBCredentials;
+import com.revature.ers.util.FilterPair;
 
 public class UserAccountDAOimpl implements UserAccountDAO {
 
-	private final String[] databaseColumns = { "ua_id", "first_name", "last_name", "email", "password", "last_login",
-			"isactive", "blocked", "failed_logins", "authority_id" };
+	private static final Logger LOGGER = Logger.getLogger(ReimbursementDAOimpl.class);
+	public static final String[] databaseColumns = { "ua_id", "first_name", "last_name", "email", "password",
+			"last_login", "isactive", "blocked", "failed_logins", "authority_id" };
 
 	public Optional<UserAccount> findById(long id) {
 		Optional<UserAccount> userAccountOptional = Optional.empty();
@@ -47,7 +50,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 		return userAccountOptional;
 	}
@@ -77,16 +80,14 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		return userAccountOptional;
 	}
 
-	public List<UserAccount> findByParams(Pair[] pairs) {
+	public List<UserAccount> findAllByParams(FilterPair[] pairs) {
 		List<UserAccount> userAccounts = new ArrayList<UserAccount>();
 		String query = "SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id";
-		// Pairs<String, String> myPair = new Pairs<>("", "Seven");
 		for (int i = 0; i < pairs.length; i++) {
 			if (i == 0) {
 				query += " WHERE " + pairs[i].getKey() + "=" + pairs[i].getValue();
@@ -116,11 +117,35 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				userAccounts.add(userAccount);
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 		return userAccounts;
 	}
 
+	@Override
+	public List<String> findUserAccountEmails(FilterPair[] pairs) {
+		List<String> emails = new ArrayList<String>();
+		String query = "SELECT email FROM user_accounts";
+		for (int i = 0; i < pairs.length; i++) {
+			if (i == 0) {
+				query += " WHERE " + pairs[i].getKey() + "=" + pairs[i].getValue();
+			} else {
+				query += " AND " + pairs[i].getKey() + "=" + pairs[i].getValue();
+			}
+		}
+		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
+				DBCredentials.getPass());
+				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
+				ResultSet rs = stmt.executeQuery(query);) {
+			while (rs.next()) {
+				emails.add(rs.getString(databaseColumns[3]));
+			}
+		} catch (SQLException e) {
+			LOGGER.error(e);
+		}
+		return emails;
+	}
+	
 	public List<UserAccount> findAll() {
 		List<UserAccount> userAccounts = new ArrayList<UserAccount>();
 		String query = "SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id";
@@ -146,13 +171,13 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				userAccounts.add(userAccount);
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 		return userAccounts;
 	}
 
 	public Long save(UserAccount userAccount) {
-		String query = "INSERT INTO user_accounts values(default,?,?,?)";
+		String query = "INSERT INTO user_accounts values(default,?,?,?,?,?,?,?,?,?)";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
 				PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
@@ -171,14 +196,14 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 				if (generatedKeys.next()) {
 					userAccount.setId(generatedKeys.getLong("ua_id"));
-					System.out.println(i + " records inserted");
+					LOGGER.info(i + " records inserted");
 				} else {
 					throw new SQLException("Creating UserAccount failed, no ID obtained.");
 				}
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 
 		return userAccount.getId();
@@ -203,9 +228,9 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			stmt.setLong(9, userAccount.getAuthority().getId());
 			stmt.setLong(10, userAccount.getId());
 			int i = stmt.executeUpdate();
-			System.out.println(i + " records updated");
+			LOGGER.info(i + " records updated");
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -215,10 +240,14 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
 			stmt.setLong(1, userAccount.getId());
 			int i = stmt.executeUpdate();
-			System.out.println(i + " records deleted");
+			LOGGER.info(i + " records deleted");
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 	}
 
+}
+
+interface TriConsumer<F, S, T> {
+	void accept(F first, S second, T third);
 }

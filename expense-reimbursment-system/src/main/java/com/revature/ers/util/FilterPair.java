@@ -1,17 +1,22 @@
 package com.revature.ers.util;
 
-public class Pair
+public class FilterPair
 {
     private String key;
     private String value;
 
-    public Pair(String key, String value)
+    public FilterPair(String key, String value)
     {
         this.key = key;
         this.value = value;
     }
 
-    public String getKey()
+    @Override
+	public String toString() {
+		return "Pair [key=" + key + ", value=" + value + "]";
+	}
+
+	public String getKey()
     {
         return this.key;
     }

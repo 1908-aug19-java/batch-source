@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 import com.revature.ers.models.UserAccount;
-import com.revature.ers.util.Pair;
+import com.revature.ers.util.FilterPair;
 
 public interface UserAccountDAO {
 
 	Optional<UserAccount> findById(long id);
 
 	Optional<UserAccount> findByEmail(String emailAddress);
+	
+	List<String> findUserAccountEmails(FilterPair[] pairs);
 
-	List<UserAccount> findByParams(Pair[] args);
+	List<UserAccount> findAllByParams(FilterPair[] args);
 	
 	List<UserAccount> findAll();
 

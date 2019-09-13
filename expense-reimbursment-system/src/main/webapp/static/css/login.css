@@ -1,4 +1,8 @@
-#test{
+#test {
 	color: green;
 	font-size: 30px;
+}
+
+#warning {
+	color: red;
 }

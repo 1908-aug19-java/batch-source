@@ -11,13 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ers.models.Reimbursement;
 import com.revature.ers.security.DBCredentials;
-import com.revature.ers.util.Pair;
+import com.revature.ers.util.FilterPair;
 
 public class ReimbursementDAOimpl implements ReimbursementDAO {
 
-	private final String[] databaseColumns = { "r_id", "amount", "status", "date_submitted", "user_accounts_id",
+	private static final Logger LOGGER = Logger.getLogger(UserAccountDAOimpl.class);
+	private static final String[] databaseColumns = { "r_id", "amount", "status", "date_submitted", "user_accounts_id",
 			"manager_accounts_id" };
 	
 	public Optional<Reimbursement> findById(long id) {
@@ -39,25 +42,25 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 		return reimbursementOptional;
 	}
 
-	public List<Reimbursement> findByParams(Pair[] pairs) {
-		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		String query = "SELECT * FROM reimbursements";
+	public List<Reimbursement> findByParams(FilterPair[] pairs) {
+		List<Reimbursement> reimbursements = new ArrayList<>();
+		StringBuilder query = new StringBuilder("SELECT * FROM reimbursements");
 		for (int i = 0; i < pairs.length; i++) {
 			if(i == 0) {
-				query += " WHERE " + pairs[i].getKey() + "=" + pairs[i].getValue();
+				query.append(" WHERE " + pairs[i].getKey() + "=" + pairs[i].getValue());
 			}else {
-				query += " AND " + pairs[i].getKey() + "=" + pairs[i].getValue();
+				query.append(" AND " + pairs[i].getKey() + "=" + pairs[i].getValue());
 			}
 		}
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
 				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
-				ResultSet rs = stmt.executeQuery(query);) {
+				ResultSet rs = stmt.executeQuery(query.toString());) {
 			while (rs.next()) {
 				Long id = rs.getLong(databaseColumns[0]);
 				Double amount = rs.getDouble(databaseColumns[1]);
@@ -70,13 +73,13 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 				reimbursements.add(reimbursement);
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 		return reimbursements;
 	}
 	
 	public List<Reimbursement> findAll() {
-		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		List<Reimbursement> reimbursements = new ArrayList<>();
 		String query = "SELECT * FROM reimbursements";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
@@ -94,7 +97,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 				reimbursements.add(reimbursement);
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 		return reimbursements;
 	}
@@ -115,14 +118,14 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 				if (generatedKeys.next()) {
 					reimbursement.setId(generatedKeys.getLong("r_id"));
-					System.out.println(i + " records inserted");
+					LOGGER.info(i + " records inserted");
 				} else {
 					throw new SQLException("Creating UserAccount failed, no ID obtained.");
 				}
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 
 		return reimbursement.getId();
@@ -141,9 +144,9 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 			stmt.setLong(5, reimbursement.getManagerAccountId());
 			stmt.setLong(6, reimbursement.getId());
 			int i = stmt.executeUpdate();
-			System.out.println(i + " records updated");
+			LOGGER.info(i + " records updated");
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -153,9 +156,9 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
 			stmt.setLong(1, reimbursement.getId());
 			int i = stmt.executeUpdate();
-			System.out.println(i + " records deleted");
+			LOGGER.info(i + " records deleted");
 		} catch (SQLException e) {
-			System.out.println(e);
+			LOGGER.error(e);
 		}
 	}
 

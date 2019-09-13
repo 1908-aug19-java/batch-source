@@ -4,47 +4,6 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-
-  <filter>
-  	<filter-name>EmployeeFilter</filter-name>
-  	<display-name>EmployeeFilter</display-name>
-  	<description></description>
-  	<filter-class>com.revature.ers.filters.EmployeeFilter</filter-class>
-  </filter>
-  <filter>
-  	<filter-name>ManagerFilter</filter-name>
-  	<display-name>ManagerFilter</display-name>
-  	<description></description>
-  	<filter-class>com.revature.ers.filters.ManagerFilter</filter-class>
-  </filter>
-  <filter>
-  	<filter-name>ModelsFilter</filter-name>
-  	<display-name>ModelsFilter</display-name>
-  	<description></description>
-  	<filter-class>com.revature.ers.filters.ModelsFilter</filter-class>
-  </filter>
-  <filter>
-  	<filter-name>AllowedResources</filter-name>
-  	<display-name>AllowedResources</display-name>
-  	<description></description>
-  	<filter-class>com.revature.ers.filters.AllowedResources</filter-class>
-  </filter>
-  <filter-mapping>
-  	<filter-name>EmployeeFilter</filter-name>
-  	<url-pattern>/EmployeeFilter</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>ManagerFilter</filter-name>
-  	<url-pattern>/ManagerFilter</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>ModelsFilter</filter-name>
-  	<url-pattern>/ModelsFilter</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>AllowedResources</filter-name>
-  	<url-pattern>/AllowedResources</url-pattern>
-  </filter-mapping>
   <servlet>
   	<servlet-name>ManagerHomeServlet</servlet-name>
   	<display-name>ManagerHomeServlet</display-name>
@@ -129,6 +88,12 @@
   	<description></description>
   	<servlet-class>com.revature.ers.servlets.FrontControllerServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ResourcesServlet</servlet-name>
+  	<display-name>ResourcesServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.servlets.ResourcesServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Index</servlet-name>
   	<url-pattern>/Index</url-pattern>
@@ -157,12 +122,8 @@
   	<servlet-name>PasswordResetServlet</servlet-name>
   	<url-pattern>/PasswordResetServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>FrontControllerServlet</servlet-name>
-  	<url-pattern>/FrontControllerServlet</url-pattern>
+    <servlet-mapping>
+  	<servlet-name>ResourcesServlet</servlet-name>
+  	<url-pattern>/ResourcesServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-       <servlet-name>default</servlet-name>
-       <url-pattern>/static/*</url-pattern>
-   </servlet-mapping>
 </web-app>

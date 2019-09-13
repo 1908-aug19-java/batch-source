@@ -13,7 +13,6 @@ public class Reimbursement {
 
 	public Reimbursement() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Reimbursement(Long id, Double amount, String status, Timestamp dateSubmitted, Long userAccountId,
@@ -103,8 +102,9 @@ public class Reimbursement {
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id.equals(other.id)) {
 			return false;
+		}	
 		return true;
 	}
 

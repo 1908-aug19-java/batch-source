@@ -7,14 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.servlets.DefaultServlet;
+import org.apache.log4j.Logger;
+
 import com.revature.ers.util.Dispatcher;
 
 /**
  * Servlet implementation class FrontControllerServlet
  */
-@WebServlet("/*")
+@WebServlet("/")
 public class FrontControllerServlet extends DefaultServlet{
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger(ApplicationServlet.class);
 	private Dispatcher dispatcher = new Dispatcher();
     /**
      * @see HttpServlet#HttpServlet()

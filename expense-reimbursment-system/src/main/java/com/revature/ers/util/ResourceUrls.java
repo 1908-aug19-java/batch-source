@@ -8,6 +8,7 @@ public class ResourceUrls {
 	private static final Map<String, String> HTMLURLS = new HashMap<>();
 	private static final Map<String, String> CSSURLS = new HashMap<>();
 	private static final Map<String, String> JSURLS = new HashMap<>();
+	private static final Map<String, String> DIRECTORYURLS = new HashMap<>();
 	private static ResourceUrls resourceUrls = new ResourceUrls();
 
 	public static ResourceUrls getResourceUrls() {
@@ -32,7 +33,17 @@ public class ResourceUrls {
 		return shallowCopy;
 	}
 
+	public static Map<String, String> getDIRECTORYURLS() {
+		Map<String, String> shallowCopy = new HashMap<>();
+		shallowCopy.putAll(DIRECTORYURLS);
+		return shallowCopy;
+	}
+
 	private ResourceUrls() {
+		DIRECTORYURLS.put("HTML", "static/html");
+		DIRECTORYURLS.put("JS", "static/js");
+		DIRECTORYURLS.put("CSS", "static/css");
+		
 		// Main html resources
 		HTMLURLS.put("login", "static/html/login.html");
 		HTMLURLS.put("application", "static/html/application.html");
