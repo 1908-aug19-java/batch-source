@@ -11,24 +11,20 @@
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
       if (xhr.status == 200) {
-        let authorization = xhr.getResponseHeader("Authorization");
-        let isAuthorized = authorization != null;
-        if (isAuthorized) {
-          var jwt = jwt_decode(authorization);
-          sessionStorage.authorization = JSON.stringify(authorization);
-          const resources = JSON.parse(window.localStorage.getItem("Resources"));
-          let authority = jwt.authority;
-          switch (authority.toUpperCase()) {
-            case "MANAGER":
-              loadResources(resources.managerHome, resources.managerHeader, resources.applicationFooter)
-              break;
-            case "EMPLOYEE":
-              loadResources(resources.employeeHome, resources.employeeHeader, resources.applicationFooter)
-              break;
-          }
+        let ers_auth = xhr.getResponseHeader("Authorization");
+        if (ers_auth) {
+          sessionStorage.ers_auth = JSON.stringify(ers_auth);
+
+          if(history.state != undefined){
+            dispatchBy("HISTORY");
+          }else {
+            dispatchBy("AUTHORITY");
+          }  
         } else {
           document.querySelector("#warning").textContent = "Invalid Credentitals";
         }
+      } else if (xhr.status == 401) {
+        console.log("Recieved status code: " + xhr.status + " : " + "Your session is expired");
       } else {
         console.log("Recieved status code: " + xhr.status);
       }
@@ -36,3 +32,4 @@
     xhr.send(`email=${email}&password=${password}`);
   }
 })();
+

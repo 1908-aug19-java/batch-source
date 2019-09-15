@@ -39,8 +39,10 @@ public class ResourcesServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOGGER.info("ResourcesServlet: running doGet");
 		FileManager fileManager = new FileManager();
-		Map<String, Resource> resources = fileManager.getHTMLCSSJSResources(request);
+		String[] subdirectories = {"html", "css", "js"};
+		Map<String, Resource> resources = fileManager.getHTMLCSSJSResources(request, "static", subdirectories);
 		String resourcesJson = GSON.toJson(resources);
 		try {
 			PrintWriter out = response.getWriter();

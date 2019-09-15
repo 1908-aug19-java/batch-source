@@ -57,6 +57,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 		return authorityOptional;
 	}
 	
+	@Override
 	public List<Authority> findAll() {
 		List<Authority> authorities = new ArrayList<>();
 		String query = "SELECT * FROM authorities";
@@ -76,6 +77,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 		return authorities;
 	}
 
+	@Override
 	public Long save(Authority authority) {
 		String query = "INSERT INTO authorities values(default,?)";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
@@ -101,6 +103,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 		return authority.getId();
 	}
 
+	@Override
 	public void update(Authority authority) {
 		String query = "UPDATE authorities SET name=? WHERE a_id=?";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
@@ -115,6 +118,7 @@ public class AuthorityDAOImpl implements AuthorityDAO{
 		}
 	}
 
+	@Override
 	public void delete(Authority authority) {
 		String query  = "DELETE FROM authorities WHERE a_id=?";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),

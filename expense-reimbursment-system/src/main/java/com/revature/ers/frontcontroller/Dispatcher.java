@@ -1,4 +1,4 @@
-package com.revature.ers.util;
+package com.revature.ers.frontcontroller;
 
 import java.io.IOException;
 
@@ -16,25 +16,28 @@ public class Dispatcher {
 
 	public void dispatch(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOGGER.info("Dispatcher: running dispatch method");
 		String path = request.getRequestURI().substring(request.getContextPath().length());
+		SecurityHandler securityHandler = new SecurityHandler();
+		String jwt = request.getHeader("Authorization");
+		
 		if (path.isEmpty() || "/".equals(path)) {
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/application");
 			requestDispatcher.forward(request, response);
+
 		} else if (path.equals("/login")) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login");
 			requestDispatcher.forward(request, response);
-		}
-		if (path.startsWith("/api")) {
+		} else if (path.startsWith("/api")) {
 			RequestDispatcher requestDispatcher;
 			if (path.equals("/api/resources")) {
-				requestDispatcher = request.getRequestDispatcher("/resources");
+				requestDispatcher = request.getRequestDispatcher("/api/resources");
 				requestDispatcher.forward(request, response);
 			} else {
-				SecurityHandler securityHandler = new SecurityHandler();
-				String jwt = request.getHeader("Authorization");
-				if (securityHandler.isAuthenticatedJWT(jwt, request)) {
+				if (jwt != null && securityHandler.isAuthenticatedJWT(jwt, request)) {
 					switch (path) {
 					case "/api/user-accounts":
+						LOGGER.info("yyy");
 						requestDispatcher = request.getRequestDispatcher("/api/user-accounts");
 						requestDispatcher.forward(request, response);
 						break;
@@ -48,7 +51,7 @@ public class Dispatcher {
 						break;
 					}
 				} else {
-					response.sendError(400, "Authentication required");
+					response.sendError(401, "Authentication required");
 				}
 			}
 

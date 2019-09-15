@@ -1,54 +1,50 @@
-package com.revature.ers.servlets;
+package com.revature.ers.frontcontroller;
 
 import java.io.IOException;
+
+import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.servlets.DefaultServlet;
 import org.apache.log4j.Logger;
 
-import com.revature.ers.util.Dispatcher;
+import com.revature.ers.servlets.ApplicationServlet;
 
 /**
  * Servlet implementation class FrontControllerServlet
  */
-@WebServlet("/")
-public class FrontControllerServlet extends DefaultServlet{
+@WebFilter("/*")
+public class FrontControllerFilter extends HttpFilter {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(ApplicationServlet.class);
 	private Dispatcher dispatcher = new Dispatcher();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FrontControllerServlet() {
+    public FrontControllerFilter() {
         super();
         try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	@Override
+	public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
+		LOGGER.info("FrontControllerFilter: running doFilter");
 		String path = request.getRequestURI().substring(request.getContextPath().length());
 		if(path.startsWith("/static/")) {
-			super.doGet(request, response);
+			filterChain.doFilter(request, response);
 		}else {
 			dispatcher.dispatch(request, response);
 		}	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		dispatcher.dispatch(request, response);
 	}
 
 }

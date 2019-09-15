@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.revature.ers.util.FileManager;
-import com.revature.ers.util.ResourceUrls;
+import com.revature.ers.util.ResourceURIs;
 
 /**
  * Servlet implementation class Index
  */
-@WebServlet("")
+@WebServlet("/application")
 public class ApplicationServlet extends HttpServlet {
 	private static final Logger LOGGER = Logger.getLogger(ApplicationServlet.class);
 	private static final long serialVersionUID = 1L;
@@ -28,16 +28,20 @@ public class ApplicationServlet extends HttpServlet {
      */
     public ApplicationServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		out.write(new FileManager().getFileContent(request, ResourceUrls.getHTMLURLS().get("application")));
-		out.flush();
+		LOGGER.info("ApplicationServlet: running doGet");
+		try {
+			PrintWriter out = response.getWriter();
+			out.write(new FileManager().getFileContent(request, ResourceURIs.getHTMLURIS(request, "static").get("application")));
+			out.flush();
+		} catch (IOException e) {
+			LOGGER.error(e);
+		}
+		
 	}
 }

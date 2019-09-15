@@ -74,10 +74,12 @@ public class UserAccountServiceImpl implements UserAccountService {
 		return true;
 	}
 
+	@Override
 	public boolean isSamePassword(String password, String confirmPassword) {
 		return password.equals(confirmPassword);
 	}
 	
+	@Override
 	public boolean validate(UserAccount userAccount, String confirmPassword) {
 		boolean[] validation = { isValidName(userAccount.getFirstName()),
 				isValidName(userAccount.getLastName()),
@@ -92,6 +94,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 		return isValid;
 	}
 	
+	@Override
 	public UserAccount createUserAccount(HttpServletRequest request) {
 		UserAccount userAccount = null;
 		try {

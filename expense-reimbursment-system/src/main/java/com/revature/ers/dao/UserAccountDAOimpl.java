@@ -21,10 +21,11 @@ import com.revature.ers.util.FilterPair;
 
 public class UserAccountDAOimpl implements UserAccountDAO {
 
-	private static final Logger LOGGER = Logger.getLogger(ReimbursementDAOimpl.class);
+	private static final Logger LOGGER = Logger.getLogger(UserAccountDAOimpl.class);
 	public static final String[] databaseColumns = { "ua_id", "first_name", "last_name", "email", "password",
 			"last_login", "isactive", "blocked", "failed_logins", "authority_id" };
 
+	@Override
 	public Optional<UserAccount> findById(long id) {
 		Optional<UserAccount> userAccountOptional = Optional.empty();
 		String query = "SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id WHERE ua_id=?";
@@ -55,6 +56,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		return userAccountOptional;
 	}
 
+	@Override
 	public Optional<UserAccount> findByEmail(String email) {
 		Optional<UserAccount> userAccountOptional = Optional.empty();
 		String query = "SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id WHERE email=?";
@@ -85,6 +87,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		return userAccountOptional;
 	}
 
+	@Override
 	public List<UserAccount> findAllByParams(FilterPair[] pairs) {
 		List<UserAccount> userAccounts = new ArrayList<UserAccount>();
 		String query = "SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id";
@@ -146,6 +149,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		return emails;
 	}
 	
+	@Override
 	public List<UserAccount> findAll() {
 		List<UserAccount> userAccounts = new ArrayList<UserAccount>();
 		String query = "SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id";
@@ -176,6 +180,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		return userAccounts;
 	}
 
+	@Override
 	public Long save(UserAccount userAccount) {
 		String query = "INSERT INTO user_accounts values(default,?,?,?,?,?,?,?,?,?)";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
@@ -209,6 +214,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		return userAccount.getId();
 	}
 
+	@Override
 	public void update(UserAccount userAccount) {
 		String query = String.format(
 				"UPDATE user_accounts SET s%= ?, s%=?, s%=?, s%=?, s%=?, s%=?, s%=?, s%=?, s%=? WHERE s%=?",
@@ -234,6 +240,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		}
 	}
 
+	@Override
 	public void delete(UserAccount userAccount) {
 		String query = "DELETE FROM user_accounts WHERE ua_id=?";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
@@ -246,8 +253,4 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		}
 	}
 
-}
-
-interface TriConsumer<F, S, T> {
-	void accept(F first, S second, T third);
 }

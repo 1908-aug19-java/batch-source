@@ -1,16 +1,16 @@
 package com.revature.ers.util;
 
-public enum Authorities {
+public enum StatusEnum {
 
-	EMPLOYEE("EMPLOYEE"),
-	MANAGER("MANAGER");
+	PENDING("PENDING"),
+	APPROVED("APPROVED");
 
     private final String name;
 
     /**
      * @param name
      */
-    private Authorities(final String name) {
+    private StatusEnum(final String name) {
         this.name = name;
     }
 

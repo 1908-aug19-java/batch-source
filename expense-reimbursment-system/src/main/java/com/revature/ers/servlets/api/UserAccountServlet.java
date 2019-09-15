@@ -22,6 +22,8 @@ import com.revature.ers.services.UserAccountService;
 import com.revature.ers.services.UserAccountServiceImpl;
 import com.revature.ers.util.FilterPair;
 
+import io.jsonwebtoken.ExpiredJwtException;
+
 /**
  * Servlet implementation class UserAccount
  */
@@ -47,10 +49,9 @@ public class UserAccountServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		LOGGER.info("UA");
+		LOGGER.info("UserAccountServlet: running doGet");
 		String email = request.getParameter("email");
 		FilterPair emailPair = new FilterPair("email", email);
-		LOGGER.info(email);
 		try {
 			if (emailPair.getValue() != null && emailPair.getValue().equalsIgnoreCase("ALL")) {
 				List<String> emails = U_ACCOUNT_DAO.findUserAccountEmails(new FilterPair[] {});
@@ -88,6 +89,7 @@ public class UserAccountServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOGGER.info("UserAccountServlet: running doPost");
 		SecurityHandler securityHandler = new SecurityHandler();
 		String jwt = request.getHeader("Authorization");
 		try {
@@ -106,13 +108,14 @@ public class UserAccountServlet extends HttpServlet {
 			} else {
 				response.sendError(400, "You are not authorized to access this resource");
 			}
+		} catch (ExpiredJwtException e) {
+			LOGGER.info("Session expired");
+			response.setHeader("Authorization", null);
+			response.sendError(402, "Your session is expired");
 		} catch (Exception e) {
-			LOGGER.info(e);
+			LOGGER.error(e);
 		}
 
 	}
 
-	
-
-	
 }

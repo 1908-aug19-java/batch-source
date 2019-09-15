@@ -1,6 +1,7 @@
 package com.revature.ers.models;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 public class Reimbursement {
 
@@ -31,6 +32,7 @@ public class Reimbursement {
 		this.amount = amount;
 		this.status = status;
 		this.userAccountId = userAccountId;
+		this.dateSubmitted = Timestamp.from(Instant.now());
 		this.managerAccountId = managerAccountId;
 	}
 

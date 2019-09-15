@@ -34,11 +34,10 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 	}
 
@@ -46,8 +45,10 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOGGER.info("LoginServlet: running doPost");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		if (userAccountService.areValidCredentials(email, password)) {
@@ -57,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 			String IP = request.getRemoteAddr();
 			String subject = "User Token";
 			Map<String, String> claims = new HashMap<>();
-			claims.put("name", userAccount.getFirstName() + " " + userAccount.getLastName());
+			claims.put("email", userAccount.getEmail());
 			claims.put("authority", authorityName);
 			claims.put("IP", IP);
 			Long amountToAdd = 7L;

@@ -19,10 +19,11 @@ import com.revature.ers.util.FilterPair;
 
 public class ReimbursementDAOimpl implements ReimbursementDAO {
 
-	private static final Logger LOGGER = Logger.getLogger(UserAccountDAOimpl.class);
+	private static final Logger LOGGER = Logger.getLogger(ReimbursementDAOimpl.class);
 	private static final String[] databaseColumns = { "r_id", "amount", "status", "date_submitted", "user_accounts_id",
 			"manager_accounts_id" };
 	
+	@Override
 	public Optional<Reimbursement> findById(long id) {
 		Optional<Reimbursement> reimbursementOptional = Optional.empty();
 		String query = "SELECT * FROM reimbursements WHERE r_id=?";
@@ -47,6 +48,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 		return reimbursementOptional;
 	}
 
+	@Override
 	public List<Reimbursement> findByParams(FilterPair[] pairs) {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		StringBuilder query = new StringBuilder("SELECT * FROM reimbursements");
@@ -78,6 +80,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 		return reimbursements;
 	}
 	
+	@Override
 	public List<Reimbursement> findAll() {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		String query = "SELECT * FROM reimbursements";
@@ -102,6 +105,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 		return reimbursements;
 	}
 
+	@Override
 	public Long save(Reimbursement reimbursement) {
 		String query = "INSERT INTO reimbursements values(default,?,?,?,?,?)";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
@@ -131,6 +135,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 		return reimbursement.getId();
 	}
 
+	@Override
 	public void update(Reimbursement reimbursement) {
 		String query = String.format("UPDATE reimbursements SET s%= ?, s%=?, s%=?, s%=?, s%=? WHERE s%=?", databaseColumns[1],
 				databaseColumns[2], databaseColumns[3], databaseColumns[4], databaseColumns[5], databaseColumns[0]);
@@ -150,6 +155,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 		}
 	}
 
+	@Override
 	public void delete(Reimbursement reimbursement) {
 		String query = "DELETE FROM reimbursements WHERE r_id=?";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),

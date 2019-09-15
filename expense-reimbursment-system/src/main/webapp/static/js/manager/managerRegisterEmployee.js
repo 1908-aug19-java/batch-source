@@ -11,13 +11,17 @@
 		let xhr = new XMLHttpRequest();
 		xhr.open("GET", url);
 		xhr.responseType = "json";
+		xhr.setRequestHeader("Authorization", JSON.parse(sessionStorage.ers_auth));
 		xhr.onload = function () {
 			let status = xhr.status;
 			if (status == 200) {
 				emails = xhr.response;
 				setDependentListeners(emails);
 				return userAccounts;
-			} else {
+			} else if(status == 401){
+				console.log("Authorization required");
+				goToPage("login")
+			} {
 				console.log("Recieved status code: " + xhr.status);
 			}
 		};
@@ -122,14 +126,16 @@
 		let xhr = new XMLHttpRequest();
 		xhr.open("POST", url);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xhr.setRequestHeader("Authorization", JSON.parse(sessionStorage.authorization));
-		console.log(JSON.parse(sessionStorage.authorization))
+		xhr.setRequestHeader("Authorization", JSON.parse(sessionStorage.ers_auth));
 		xhr.onload = function () {
 		  if (xhr.status == 200) {
 			console.log("Registered")
 			goToPage("managerHome", "managerHeader", "applicationFooter");
 		  } else {
 			console.log("Recieved status code: " + xhr.status + " " + xhr.statusText);
+			if(xhr.getResponseHeader("Authorization") == null){
+				goToLogin();
+			}
 		  }
 		};
 		xhr.send(`firstName=${firstName}&lastName=${lastName}&email=${email}&password=${password}&confirm_password=${confirm_password}&authority=${authority}`);
