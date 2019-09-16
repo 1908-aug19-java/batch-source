@@ -2,5 +2,15 @@
 
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
+	<servlet>
+		<servlet-name>Upload</servlet-name>
+		<display-name>Upload</display-name>
+		<description></description>
+		<servlet-class>com.revature.ers.frontcontroller.Upload</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Upload</servlet-name>
+		<url-pattern>/Upload</url-pattern>
+	</servlet-mapping>
 
 </web-app>

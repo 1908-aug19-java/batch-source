@@ -1,7 +1,12 @@
 package com.revature.ers.util;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +15,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.apache.log4j.Logger;
 
@@ -18,7 +27,9 @@ import com.revature.ers.models.Resource;
 
 public class FileManager {
 	private static final Logger LOGGER = Logger.getLogger(FileManager.class);
-
+	public static final String fileSystemStorageSimulation = "C:\\Users\\Samuel\\Documents\\Revature\\batch-source\\expense-reimbursment-system\\src\\main\\webapp\\static\\fileSystemStorageSimulation";
+	public static final String staticPath = "static";
+	
 	public List<File> getFiles(HttpServletRequest request, String root) {
 		root = request.getServletContext().getRealPath(root);
 		List<File> files = null;
@@ -101,5 +112,58 @@ public class FileManager {
 			}
 		}
 		return resources;
+	}
+	
+	public void saveImageFile(HttpServletRequest request, Part filePart, String imageProfileUrl) {
+		try(InputStream fileContent = filePart.getInputStream();){
+			ByteArrayOutputStream result = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			int length;
+			while ((length = fileContent.read(buffer)) != -1) {
+				result.write(buffer, 0, length);
+			}
+			byte[] data = result.toByteArray();
+			try(ByteArrayInputStream bis = new ByteArrayInputStream(data);){
+				BufferedImage bImage2 = ImageIO.read(bis);
+				ImageIO.write(bImage2, "jpg", new File(imageProfileUrl));
+			}
+		}catch(IOException e){
+			LOGGER.error(e);
+		}
+	}
+	
+	public byte [] getImageUriBytes(HttpServletRequest request, HttpServletResponse response, String url) {
+		ServletContext cntx = request.getServletContext();
+		byte [] bytes = null;
+		try {
+			// retrieve mimeType dynamically
+			String mime = cntx.getMimeType(url);
+			if (mime == null) {
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				return bytes;
+			}
+			response.setContentType(mime);
+			File file = new File(url);
+			response.setContentLength((int) file.length());
+
+			FileInputStream in = new FileInputStream(file);
+			
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+			int nRead;
+			byte[] data = new byte[16384];
+
+			while ((nRead = in.read(data, 0, data.length)) != -1) {
+			  buffer.write(data, 0, nRead);
+			}
+			
+
+			buffer.close();
+			in.close();
+			return buffer.toByteArray();
+		} catch (Exception e) {
+			LOGGER.info(e);
+		}
+		return bytes;
 	}
 }

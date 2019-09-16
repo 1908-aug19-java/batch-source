@@ -14,4 +14,5 @@ public interface UserAccountService {
 	boolean validate(UserAccount userAccount, String confirmPassword);
 	boolean areValidCredentials(String email, String password);
 	UserAccount createUserAccount(HttpServletRequest request);
+	int validationCodes(HttpServletRequest request, UserAccount userAccount);
 }

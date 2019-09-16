@@ -1,6 +1,7 @@
 package com.revature.ers.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ import com.revature.ers.models.UserAccount;
 import com.revature.ers.security.SecurityHandler;
 import com.revature.ers.services.UserAccountService;
 import com.revature.ers.services.UserAccountServiceImpl;
+import com.revature.ers.util.FileManager;
 
 /**
  * Servlet implementation class LoginServlet
@@ -65,6 +67,18 @@ public class LoginServlet extends HttpServlet {
 			ChronoUnit unit = ChronoUnit.DAYS;
 			String jwt = securityHandler.createJWT(subject, claims, amountToAdd, unit);
 			response.setHeader("Authorization", jwt);
+			
+			String imageUri = userAccount.getImageUrl();
+			if(imageUri != null) {
+				imageUri = imageUri.substring(imageUri.indexOf(FileManager.staticPath));
+				try {
+					PrintWriter out = response.getWriter();
+					out.print(imageUri);
+					out.flush();
+				} catch (Exception e) {
+					LOGGER.error(e);
+				}
+			}
 		} else {			
 			response.setHeader("Authorization", null);
 		}

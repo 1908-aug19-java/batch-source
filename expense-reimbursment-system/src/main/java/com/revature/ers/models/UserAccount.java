@@ -11,10 +11,11 @@ public class UserAccount {
 	private String email;
 	private String password;
 	private Timestamp lastLogin;
-	private boolean isActive;
-	private boolean blocked;
+	private Boolean isActive;
+	private Boolean blocked;
 	private Long failedLogins;
 	private Authority authority;
+	private String imageUrl;
 
 	public UserAccount() {
 		super();
@@ -52,7 +53,7 @@ public class UserAccount {
 	}
 
 	public UserAccount(Long id, String firstName, String lastName, String email, String password, Timestamp lastLogin,
-			boolean isActive, boolean blocked, Long failedLogins, Authority authority) {
+			Boolean isActive, Boolean blocked, Long failedLogins, Authority authority) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -117,19 +118,19 @@ public class UserAccount {
 		this.lastLogin = lastLogin;
 	}
 
-	public boolean isActive() {
+	public Boolean isActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
-	public boolean isBlocked() {
+	public Boolean isBlocked() {
 		return blocked;
 	}
 
-	public void setBlocked(boolean blocked) {
+	public void setBlocked(Boolean blocked) {
 		this.blocked = blocked;
 	}
 
@@ -147,6 +148,29 @@ public class UserAccount {
 
 	public void setAuthority(Authority authority) {
 		this.authority = authority;
+	}
+
+	public void setFields(UserAccount userAccount) {
+		if(userAccount.firstName != null) {
+			this.firstName = userAccount.firstName;
+		}
+		if(userAccount.lastName != null) {
+			this.lastName = userAccount.lastName;
+		}
+		if(userAccount.email != null) {
+			this.email = userAccount.email;
+		}
+		if(userAccount.password != null) {
+			this.password = userAccount.password;
+		}
+	}
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override

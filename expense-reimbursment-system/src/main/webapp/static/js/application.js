@@ -152,8 +152,45 @@ function logout() {
   window.location.href = `http://localhost:8080/ers/`;
 }
 
+function getUserAccounts(params, callback) {
+  if(params == undefined){params = ""}
+  let url = `http://localhost:8080/ers/api/user-accounts?${params}`;
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", url);
+  xhr.responseType = "json";
+  xhr.setRequestHeader("Authorization", JSON.parse(sessionStorage.ers_auth));
+  xhr.onload = function () {
+    let status = xhr.status;
+    if (status == 200) {
+      console.log("Retrieve Successful")
+      if(callback != undefined){
+        data = xhr.response;
+        callback(data);
+      }
+    } else if(status == 401){
+      console.log("Authorization required");
+      goToPage("login")
+    } {
+      console.log("Recieved status code: " + xhr.status);
+    }
+  };
+  xhr.send();
+}
 
-
+function setProfileImage(){
+  if(sessionStorage.imageUrl != undefined){
+    for (const selector of arguments) {
+      document.querySelector(selector).style.visibility = "visible";
+      document.querySelector(selector).src = sessionStorage.imageUrl;
+    }
+    document.querySelector("#user_circle").style.visibility = "hidden";
+  }else{
+    for (const selector of arguments) {
+      document.querySelector(selector).style.visibility = "hidden";
+    }
+    document.querySelector("#user_circle").style.visibility = "visible";
+  }
+}
 
 // function dispatchByHistory() {
 //   let ers_auth;

@@ -51,6 +51,7 @@ public class Dispatcher {
 						break;
 					}
 				} else {
+					response.setHeader("Authorization", null);
 					response.sendError(401, "Authentication required");
 				}
 			}

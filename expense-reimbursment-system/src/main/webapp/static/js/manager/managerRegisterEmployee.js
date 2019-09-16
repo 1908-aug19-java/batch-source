@@ -1,32 +1,9 @@
 (function () {
-	getUserAccounts();
+	getUserAccounts("email=ALL", setDependentListeners);
 	document.querySelector("#firstName").addEventListener("blur", validateFirstname);
 	document.querySelector("#lastName").addEventListener("blur", validateLastname);
 	document.querySelector("#password").addEventListener("blur", validatePassword);
 	document.querySelector("#confirm_password").addEventListener("blur", validatePasswordEquality);
-
-	function getUserAccounts() {
-		let userAccounts;
-		let url = `http://localhost:8080/ers/api/user-accounts?email=ALL`;
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", url);
-		xhr.responseType = "json";
-		xhr.setRequestHeader("Authorization", JSON.parse(sessionStorage.ers_auth));
-		xhr.onload = function () {
-			let status = xhr.status;
-			if (status == 200) {
-				emails = xhr.response;
-				setDependentListeners(emails);
-				return userAccounts;
-			} else if(status == 401){
-				console.log("Authorization required");
-				goToPage("login")
-			} {
-				console.log("Recieved status code: " + xhr.status);
-			}
-		};
-		xhr.send();
-	}
 
 	function validateFirstname() {
 		let firstname = document.querySelector("#firstName").value;
@@ -134,7 +111,7 @@
 		  } else {
 			console.log("Recieved status code: " + xhr.status + " " + xhr.statusText);
 			if(xhr.getResponseHeader("Authorization") == null){
-				goToLogin();
+				goToPage("login");
 			}
 		  }
 		};

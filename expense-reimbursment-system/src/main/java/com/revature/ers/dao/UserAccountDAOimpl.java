@@ -23,7 +23,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 
 	private static final Logger LOGGER = Logger.getLogger(UserAccountDAOimpl.class);
 	public static final String[] databaseColumns = { "ua_id", "first_name", "last_name", "email", "password",
-			"last_login", "isactive", "blocked", "failed_logins", "authority_id" };
+			"last_login", "isactive", "blocked", "failed_logins", "authority_id", "image_url" };
 
 	@Override
 	public Optional<UserAccount> findById(long id) {
@@ -43,10 +43,12 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				Boolean blocked = rs.getBoolean(databaseColumns[7]);
 				Long failedLogins = rs.getLong(databaseColumns[8]);
 				Long authority_id = rs.getLong(databaseColumns[9]);
+				String imageUrl = rs.getString(databaseColumns[10]);
 				String authorityName = rs.getString("name");
 				Authority authority = new Authority(authority_id, authorityName);
 				UserAccount userAccount = new UserAccount(id, firstName, lastName, email, password, lastLogin, isactive,
 						blocked, failedLogins, authority);
+				userAccount.setImageUrl(imageUrl);
 				userAccountOptional = Optional.of(userAccount);
 			}
 			rs.close();
@@ -74,10 +76,12 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				Boolean blocked = rs.getBoolean(databaseColumns[7]);
 				Long failedLogins = rs.getLong(databaseColumns[8]);
 				Long authority_id = rs.getLong(databaseColumns[9]);
+				String imageUrl = rs.getString(databaseColumns[10]);
 				String authorityName = rs.getString("name");
 				Authority authority = new Authority(authority_id, authorityName);
 				UserAccount userAccount = new UserAccount(id, firstName, lastName, email, password, lastLogin, isactive,
 						blocked, failedLogins, authority);
+				userAccount.setImageUrl(imageUrl);
 				userAccountOptional = Optional.of(userAccount);
 			}
 			rs.close();
@@ -90,18 +94,30 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 	@Override
 	public List<UserAccount> findAllByParams(FilterPair[] pairs) {
 		List<UserAccount> userAccounts = new ArrayList<UserAccount>();
-		String query = "SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id";
+		StringBuilder query = new StringBuilder("SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id");
 		for (int i = 0; i < pairs.length; i++) {
-			if (i == 0) {
-				query += " WHERE " + pairs[i].getKey() + "=" + pairs[i].getValue();
+			if (!"OFFSET".equalsIgnoreCase(pairs[i].getKey()) && !"LIMIT".equalsIgnoreCase(pairs[i].getKey())
+					&& !"ORDER BY".equalsIgnoreCase(pairs[i].getKey())) {
+				if (i == 0) {
+					query.append(" WHERE " + pairs[i].getKey() + "='" + pairs[i].getValue() + "'");
+				} else {
+					query.append(" AND " + pairs[i].getKey() + "='" + pairs[i].getValue() + "'");
+				}
+			} else if (!"OFFSET".equalsIgnoreCase(pairs[i].getKey()) && !"LIMIT".equalsIgnoreCase(pairs[i].getKey())) {
+				query.append(" ORDER BY " + pairs[i].getValue());
+			} else if (!"OFFSET".equalsIgnoreCase(pairs[i].getKey())) {
+				query.append(" LIMIT " + pairs[i].getValue());
 			} else {
-				query += " AND " + pairs[i].getKey() + "=" + pairs[i].getValue();
+				query.append(" OFFSET " + pairs[i].getValue());
 			}
 		}
+		
+		LOGGER.error(query);
+		
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
 				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
-				ResultSet rs = stmt.executeQuery(query);) {
+				ResultSet rs = stmt.executeQuery(query.toString());) {
 			while (rs.next()) {
 				Long id = rs.getLong(databaseColumns[0]);
 				String firstName = rs.getString(databaseColumns[1]);
@@ -113,10 +129,12 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				Boolean blocked = rs.getBoolean(databaseColumns[7]);
 				Long failedLogins = rs.getLong(databaseColumns[8]);
 				Long authority_id = rs.getLong(databaseColumns[9]);
+				String imageUrl = rs.getString(databaseColumns[10]);
 				String authorityName = rs.getString("name");
 				Authority authority = new Authority(authority_id, authorityName);
 				UserAccount userAccount = new UserAccount(id, firstName, lastName, email, password, lastLogin, isactive,
 						blocked, failedLogins, authority);
+				userAccount.setImageUrl(imageUrl);
 				userAccounts.add(userAccount);
 			}
 		} catch (SQLException e) {
@@ -131,9 +149,9 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		String query = "SELECT email FROM user_accounts";
 		for (int i = 0; i < pairs.length; i++) {
 			if (i == 0) {
-				query += " WHERE " + pairs[i].getKey() + "=" + pairs[i].getValue();
+				query += " WHERE " + pairs[i].getKey() + "='" + pairs[i].getValue()  + "'";
 			} else {
-				query += " AND " + pairs[i].getKey() + "=" + pairs[i].getValue();
+				query += " AND " + pairs[i].getKey() + "='" + pairs[i].getValue()  + "'";
 			}
 		}
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
@@ -168,10 +186,12 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				Boolean blocked = rs.getBoolean(databaseColumns[7]);
 				Long failedLogins = rs.getLong(databaseColumns[8]);
 				Long authority_id = rs.getLong(databaseColumns[9]);
+				String imageUrl = rs.getString(databaseColumns[10]);
 				String authorityName = rs.getString("name");
 				Authority authority = new Authority(authority_id, authorityName);
 				UserAccount userAccount = new UserAccount(id, firstName, lastName, email, password, lastLogin, isactive,
 						blocked, failedLogins, authority);
+				userAccount.setImageUrl(imageUrl);
 				userAccounts.add(userAccount);
 			}
 		} catch (SQLException e) {
@@ -182,7 +202,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 
 	@Override
 	public Long save(UserAccount userAccount) {
-		String query = "INSERT INTO user_accounts values(default,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO user_accounts values(default,?,?,?,?,?,?,?,?,?,?)";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
 				PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);) {
@@ -195,7 +215,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			stmt.setBoolean(7, false);
 			stmt.setLong(8, 0L);
 			stmt.setLong(9, userAccount.getAuthority().getId());
-
+			stmt.setString(10, userAccount.getImageUrl());
 			int i = stmt.executeUpdate();
 
 			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
@@ -216,10 +236,17 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 
 	@Override
 	public void update(UserAccount userAccount) {
-		String query = String.format(
-				"UPDATE user_accounts SET s%= ?, s%=?, s%=?, s%=?, s%=?, s%=?, s%=?, s%=?, s%=? WHERE s%=?",
-				databaseColumns[1], databaseColumns[2], databaseColumns[3], databaseColumns[4], databaseColumns[5],
-				databaseColumns[6], databaseColumns[7], databaseColumns[8], databaseColumns[9], databaseColumns[0]);
+		String query = "UPDATE user_accounts SET ";
+		int length = databaseColumns.length;
+		for (int i = 1; i < length; i++) {
+			if(i == length - 1) {
+				query += databaseColumns[i] + " = ? ";
+			}else {
+				query += databaseColumns[i] + " = ?, ";
+			}
+		}
+		query += "WHERE " + databaseColumns[0] + " = ?";
+		LOGGER.info(query);
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
 
@@ -232,7 +259,8 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 			stmt.setBoolean(7, false);
 			stmt.setLong(8, 0L);
 			stmt.setLong(9, userAccount.getAuthority().getId());
-			stmt.setLong(10, userAccount.getId());
+			stmt.setString(10, userAccount.getImageUrl());
+			stmt.setLong(11, userAccount.getId());
 			int i = stmt.executeUpdate();
 			LOGGER.info(i + " records updated");
 		} catch (SQLException e) {

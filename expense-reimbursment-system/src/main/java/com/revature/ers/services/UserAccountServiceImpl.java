@@ -15,6 +15,9 @@ import com.revature.ers.models.Authority;
 import com.revature.ers.models.UserAccount;
 import com.revature.ers.security.SecurityHandler;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+
 public class UserAccountServiceImpl implements UserAccountService {
 
 	private static final Logger LOGGER = Logger.getLogger(UserAccountServiceImpl.class);
@@ -38,7 +41,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 
 	@Override
 	public boolean isValidName(String name) {
-		String regex = "[A-Za-z-']{1,20}";
+		String regex = "[A-Za-z-']{2,20}";
 		if (!name.matches(regex)) {
 			return false;
 		}
@@ -109,5 +112,23 @@ public class UserAccountServiceImpl implements UserAccountService {
 			LOGGER.error(e);
 		}
 		return userAccount;
+	}
+	
+	@Override
+	public int validationCodes(HttpServletRequest request, UserAccount userAccount) {
+	    if(userAccount.getPassword() != null) {
+	    	if(!isValidPassword(userAccount.getPassword())) {return 460;}
+	    	if(!isSamePassword(userAccount.getPassword(), request.getParameter("confirm_password"))) {return 461;}
+	    }
+	    SecurityHandler securityHandler = new SecurityHandler();
+	    Jws<Claims> claims = securityHandler.getJwsClaims(request.getHeader("Authorization"));
+	    if(!claims.getBody().get("email").equals(userAccount.getEmail())) {
+	    	if(!isValidEmail(userAccount.getEmail())) {return 462;}
+	    	if(!emailExists(userAccount.getEmail())) {return 463;}
+	    }
+	    if(!isValidName(userAccount.getFirstName())) {return 464;}
+	    System.out.println(userAccount.getLastName());
+    	if(!isValidName(userAccount.getLastName())) {return 465;}
+    	return 200;
 	}
 }

@@ -1,1 +1,61 @@
-Manager Home
+<div class="container">
+  <table id="pending_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+      <p>Pending Reimbursements</p> 
+    <thead>
+      <tr>
+        <th class="th-sm">Amount
+
+        </th>
+        <th class="th-sm">Status
+
+        </th>
+        <th class="th-sm">Date Submitted
+
+        </th>
+        <th class="th-sm">Employee Name
+
+        </th>
+        <th class="th-sm">Approve
+
+        </th>
+      </tr>
+    </thead>
+    <tbody id="pending_tbody">
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <!-- new SearchHelper().jumpPrevious(request) 
+        new SearchHelper().previous(request) 
+         new SearchHelper().goTo(request)
+         new SearchHelper().next(request) 
+         new SearchHelper().jumpNext(request) -->
+      </ul>
+    </nav>
+  <hr style="visibility: hidden;">
+
+  <table id="approved_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <p>Approved Reimbursements</p>
+    <thead>
+      <tr>
+        <th class="th-sm">Amount
+
+        </th>
+        <th class="th-sm">Status
+
+        </th>
+        <th class="th-sm">Date Submitted
+
+        </th>
+        <th class="th-sm">Employee Name
+
+        </th>
+        <th class="th-sm">Manager Name
+
+        </th>
+      </tr>
+    </thead>
+    <tbody id="approved_tbody">
+    </tbody>
+  </table>
+</div>

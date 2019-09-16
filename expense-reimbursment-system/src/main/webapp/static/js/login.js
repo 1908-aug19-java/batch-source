@@ -14,7 +14,7 @@
         let ers_auth = xhr.getResponseHeader("Authorization");
         if (ers_auth) {
           sessionStorage.ers_auth = JSON.stringify(ers_auth);
-
+          sessionStorage.imageUrl = xhr.response;
           if(history.state != undefined){
             dispatchBy("HISTORY");
           }else {

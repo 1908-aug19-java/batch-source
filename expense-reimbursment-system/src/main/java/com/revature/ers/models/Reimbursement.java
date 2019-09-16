@@ -9,31 +9,37 @@ public class Reimbursement {
 	private Double amount;
 	private String status;
 	private Timestamp dateSubmitted;
-	private Long userAccountId;
-	private Long managerAccountId;
+	private UserAccount employeeAccount;
+	private UserAccount managerAccount;
 
 	public Reimbursement() {
 		super();
 	}
 
-	public Reimbursement(Long id, Double amount, String status, Timestamp dateSubmitted, Long userAccountId,
-			Long managerAccountId) {
+	public Reimbursement(Long id, Double amount, String status, Timestamp dateSubmitted, UserAccount employeeAccount,
+			UserAccount managerAccount) {
 		super();
 		this.id = id;
 		this.amount = amount;
 		this.status = status;
 		this.dateSubmitted = dateSubmitted;
-		this.userAccountId = userAccountId;
-		this.managerAccountId = managerAccountId;
+		this.employeeAccount = employeeAccount;
+		this.managerAccount = managerAccount;
 	}
 
-	public Reimbursement(Double amount, String status, Long userAccountId, Long managerAccountId) {
+	public Reimbursement(Double amount, String status, UserAccount employeeAccount, UserAccount managerAccount) {
 		super();
 		this.amount = amount;
 		this.status = status;
-		this.userAccountId = userAccountId;
+		this.employeeAccount = employeeAccount;
 		this.dateSubmitted = Timestamp.from(Instant.now());
-		this.managerAccountId = managerAccountId;
+		this.managerAccount = managerAccount;
+	}
+
+	@Override
+	public String toString() {
+		return "Reimbursement [id=" + id + ", amount=" + amount + ", status=" + status + ", dateSubmitted="
+				+ dateSubmitted + ", userAccount=" + employeeAccount + ", managerAccount=" + managerAccount + "]";
 	}
 
 	public Long getId() {
@@ -68,20 +74,20 @@ public class Reimbursement {
 		this.dateSubmitted = dateSubmitted;
 	}
 
-	public Long getUserAccountId() {
-		return userAccountId;
+	public UserAccount getEmployeeAccount() {
+		return employeeAccount;
 	}
 
-	public void setUserAccountId(Long userAccountId) {
-		this.userAccountId = userAccountId;
+	public void setEmployeeAccount(UserAccount userAccount) {
+		this.employeeAccount = userAccount;
 	}
 
-	public Long getManagerAccountId() {
-		return managerAccountId;
+	public UserAccount getManagerAccount() {
+		return managerAccount;
 	}
 
-	public void setManagerAccountId(Long managerAccountId) {
-		this.managerAccountId = managerAccountId;
+	public void setManagerAccount(UserAccount managerAccount) {
+		this.managerAccount = managerAccount;
 	}
 
 	@Override
