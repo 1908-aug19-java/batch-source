@@ -191,3 +191,54 @@ password: aZUeMSYVqJCYfgG/ZBD9tg==
 2019-09-09 15:22:37 INFO  ConnectionUtil:33 method: getConnection - Successfully Connected to DB.
 2019-09-09 15:22:37 INFO  ConnectionUtil:31 method: getConnection - Connecting to DB...
 2019-09-09 15:22:37 INFO  ConnectionUtil:33 method: getConnection - Successfully Connected to DB.
+2019-09-16 15:44:27 INFO  MasterServlet:36 method: doGet - GET : /Project1/landing
+2019-09-16 15:44:27 INFO  MasterServlet:37 method: doGet - GET: /Project1/landing - Recieved
+
+2019-09-16 15:44:27 INFO  MasterServlet:36 method: doGet - GET : /Project1/static/views/landing.html
+2019-09-16 15:44:27 INFO  MasterServlet:37 method: doGet - GET: /Project1/static/views/landing.html - Recieved
+
+2019-09-16 15:44:27 INFO  MasterServlet:36 method: doGet - GET : /Project1/static/css/project1.css
+2019-09-16 15:44:27 INFO  MasterServlet:37 method: doGet - GET: /Project1/static/css/project1.css - Recieved
+
+2019-09-16 15:44:27 INFO  MasterServlet:36 method: doGet - GET : /Project1/auth
+2019-09-16 15:44:27 INFO  MasterServlet:37 method: doGet - GET: /Project1/auth - Recieved
+
+2019-09-16 15:44:27 INFO  MasterServlet:36 method: doGet - GET : /Project1/landing
+2019-09-16 15:44:27 INFO  MasterServlet:37 method: doGet - GET: /Project1/landing - Recieved
+
+2019-09-16 15:44:27 INFO  MasterServlet:36 method: doGet - GET : /Project1/static/views/landing.html
+2019-09-16 15:44:27 INFO  MasterServlet:37 method: doGet - GET: /Project1/static/views/landing.html - Recieved
+
+2019-09-16 15:44:28 INFO  MasterServlet:36 method: doGet - GET : /Project1/api/landing/request/employee
+2019-09-16 15:44:28 INFO  MasterServlet:36 method: doGet - GET : /Project1/api/landing/request/authority
+2019-09-16 15:44:28 INFO  MasterServlet:37 method: doGet - GET: /Project1/api/landing/request/employee - Recieved
+
+2019-09-16 15:44:28 INFO  MasterServlet:37 method: doGet - GET: /Project1/api/landing/request/authority - Recieved
+
+2019-09-16 15:44:28 INFO  MasterServlet:36 method: doGet - GET : /Project1/api/landing/employee/authority
+2019-09-16 15:44:28 INFO  MasterServlet:37 method: doGet - GET: /Project1/api/landing/employee/authority - Recieved
+
+2019-09-16 15:44:28 INFO  ConnectionUtil:31 method: getConnection - Connecting to DB...
+2019-09-16 15:44:28 INFO  ConnectionUtil:31 method: getConnection - Connecting to DB...
+2019-09-16 15:44:28 INFO  ConnectionUtil:31 method: getConnection - Connecting to DB...
+2019-09-16 15:44:28 INFO  ConnectionUtil:33 method: getConnection - Successfully Connected to DB.
+2019-09-16 15:44:28 INFO  ConnectionUtil:33 method: getConnection - Successfully Connected to DB.
+2019-09-16 15:44:28 INFO  ConnectionUtil:33 method: getConnection - Successfully Connected to DB.
+2019-09-16 15:45:23 INFO  MasterServlet:36 method: doGet - GET : /Project1//api/login
+2019-09-16 15:45:23 INFO  MasterServlet:37 method: doGet - GET: /Project1//api/login - Recieved
+
+2019-09-16 15:45:23 INFO  ConnectionUtil:31 method: getConnection - Connecting to DB...
+2019-09-16 15:45:24 INFO  ConnectionUtil:33 method: getConnection - Successfully Connected to DB.
+2019-09-16 15:45:24 INFO  EmployeeService:41 method: logInEmployee - Successfully logged in with credentials:
+username: kechen6
+password: gWUhsveTL4XP4YW+lbNGBg==
+
+2019-09-16 15:45:24 INFO  LoginDeligate:40 method: login - rfsqxkxtur.oajpqvxage.thmmnojwcr
+2019-09-16 15:45:24 INFO  MasterServlet:36 method: doGet - GET : /Project1/auth
+2019-09-16 15:45:24 INFO  MasterServlet:37 method: doGet - GET: /Project1/auth - Recieved
+
+2019-09-16 15:45:24 INFO  MasterServlet:36 method: doGet - GET : /Project1/api/landing/request/employee
+2019-09-16 15:45:24 INFO  MasterServlet:37 method: doGet - GET: /Project1/api/landing/request/employee - Recieved
+
+2019-09-16 15:45:24 INFO  ConnectionUtil:31 method: getConnection - Connecting to DB...
+2019-09-16 15:45:24 INFO  ConnectionUtil:33 method: getConnection - Successfully Connected to DB.
