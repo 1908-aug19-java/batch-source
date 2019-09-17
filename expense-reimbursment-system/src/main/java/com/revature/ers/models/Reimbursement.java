@@ -8,6 +8,7 @@ public class Reimbursement {
 	private Long id;
 	private Double amount;
 	private String status;
+	private String state;
 	private Timestamp dateSubmitted;
 	private UserAccount employeeAccount;
 	private UserAccount managerAccount;
@@ -16,21 +17,24 @@ public class Reimbursement {
 		super();
 	}
 
-	public Reimbursement(Long id, Double amount, String status, Timestamp dateSubmitted, UserAccount employeeAccount,
-			UserAccount managerAccount) {
+	public Reimbursement(Long id, Double amount, String status, String state, Timestamp dateSubmitted,
+			UserAccount employeeAccount, UserAccount managerAccount) {
 		super();
 		this.id = id;
 		this.amount = amount;
 		this.status = status;
+		this.state = state;
 		this.dateSubmitted = dateSubmitted;
 		this.employeeAccount = employeeAccount;
 		this.managerAccount = managerAccount;
 	}
 
-	public Reimbursement(Double amount, String status, UserAccount employeeAccount, UserAccount managerAccount) {
+	public Reimbursement(Double amount, String status, String state, UserAccount employeeAccount,
+			UserAccount managerAccount) {
 		super();
 		this.amount = amount;
 		this.status = status;
+		this.state = state;
 		this.employeeAccount = employeeAccount;
 		this.dateSubmitted = Timestamp.from(Instant.now());
 		this.managerAccount = managerAccount;
@@ -38,8 +42,9 @@ public class Reimbursement {
 
 	@Override
 	public String toString() {
-		return "Reimbursement [id=" + id + ", amount=" + amount + ", status=" + status + ", dateSubmitted="
-				+ dateSubmitted + ", userAccount=" + employeeAccount + ", managerAccount=" + managerAccount + "]";
+		return "Reimbursement [id=" + id + ", amount=" + amount + ", status=" + status + ", state=" + state
+				+ ", dateSubmitted=" + dateSubmitted + ", employeeAccount=" + employeeAccount + ", managerAccount="
+				+ managerAccount + "]";
 	}
 
 	public Long getId() {
@@ -64,6 +69,14 @@ public class Reimbursement {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public Timestamp getDateSubmitted() {
@@ -112,7 +125,7 @@ public class Reimbursement {
 				return false;
 		} else if (!id.equals(other.id)) {
 			return false;
-		}	
+		}
 		return true;
 	}
 

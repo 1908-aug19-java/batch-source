@@ -4,7 +4,8 @@ public class DBCredentials {
 
 	static final String driver = "org.postgresql.Driver";
 	static final String db = "postgres";
-	static final String url = "jdbc:postgresql://expense-reimbursement-system.cjus9rioqccl.us-east-2.rds.amazonaws.com:5432/" + db;
+	static final String url = "jdbc:postgresql://localhost:5432/ERS_DB";
+//	static final String url = "jdbc:postgresql://expense-reimbursement-system.cjus9rioqccl.us-east-2.rds.amazonaws.com:5432/" + db;
 	static final String user = "postgres";
 	static final String pass = "password";
 

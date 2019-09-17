@@ -2,6 +2,10 @@
 	color: red;
 }
 
-#display_profile_image {
-  border-radius: 50%;
+#large_profile_image {
+  display: none;
+}
+
+#i_l{
+	font-size: 100px;
 }

@@ -8,10 +8,10 @@ window.onload = function () {
 };
 
 function manageHistory(e) {
-  if(e.state != undefined){
+  if (e.state != undefined) {
     loadResources(e.state.pageResource["main_content"], e.state.pageResource["header"], e.state.pageResource["footer"])
   }
-  
+
 }
 
 function dispatchBy(type) {
@@ -44,7 +44,7 @@ function dispatchByAuthority(authority, resources) {
   }
 }
 
-function dispatchByHistory(authority, resources) {
+function dispatchByHistory(authority) {
   let title = history.state.pageResource["main_content"].title.toUpperCase();
   switch (authority.toUpperCase()) {
     case "MANAGER":
@@ -148,12 +148,13 @@ function bootstrap() {
 }
 
 function logout() {
-  sessionStorage.removeItem('ers_auth');
+  sessionStorage.removeItem("ers_auth");
+  sessionStorage.removeItem("imageUrl")
   window.location.href = `http://localhost:8080/ers/`;
 }
 
 function getUserAccounts(params, callback) {
-  if(params == undefined){params = ""}
+  if (params == undefined) { params = "" }
   let url = `http://localhost:8080/ers/api/user-accounts?${params}`;
   let xhr = new XMLHttpRequest();
   xhr.open("GET", url);
@@ -163,11 +164,11 @@ function getUserAccounts(params, callback) {
     let status = xhr.status;
     if (status == 200) {
       console.log("Retrieve Successful")
-      if(callback != undefined){
+      if (callback != undefined) {
         data = xhr.response;
         callback(data);
       }
-    } else if(status == 401){
+    } else if (status == 401) {
       console.log("Authorization required");
       goToPage("login")
     } {
@@ -177,83 +178,69 @@ function getUserAccounts(params, callback) {
   xhr.send();
 }
 
-function setProfileImage(){
-  if(sessionStorage.imageUrl != undefined){
+function setProfileImage() {
+  if (sessionStorage.imageUrl != undefined && sessionStorage.imageUrl != "") {
+    console.log("jkk")
     for (const selector of arguments) {
-      document.querySelector(selector).style.visibility = "visible";
+      document.querySelector(selector).style.display = "inline";
       document.querySelector(selector).src = sessionStorage.imageUrl;
     }
-    document.querySelector("#user_circle").style.visibility = "hidden";
-  }else{
-    for (const selector of arguments) {
-      document.querySelector(selector).style.visibility = "hidden";
+    let elements = document.getElementsByClassName("user_circle");
+    for (const element of elements) {
+      element.style.display = "none";
     }
-    document.querySelector("#user_circle").style.visibility = "visible";
+
+  } else {
+    console.log("djskjk")
+    for (const selector of arguments) {
+      document.querySelector(selector).style.display = "none";
+    }
+    let elements = document.getElementsByClassName(".user_circle");
+    for (const element of elements) {
+      element.style.display = "inline";
+    }
   }
 }
 
-// function dispatchByHistory() {
-//   let ers_auth;
-//   let jwt;
-//   if ((ers_auth = sessionStorage.ers_auth) != undefined && (jwt = jwt_decode(ers_auth)).EXP > new Date().getTime()) {
-//     const resources = JSON.parse(window.localStorage.getItem("Resources"));
-//     let authority = jwt.authority;
-//     let title = history.state.pageResource["#main-content"].title.toUpperCase();
-//     newFunction(authority, title, resources);
-//   } else {
-//     goToPage("login");
-//   }
-// }
+function populateTable(base_url, columnMap, ORDERBY, LIMIT, OFFSET, tableBodyselector, callback, optionalCallback, loopOptionalCallback) {
+  if (columnMap == undefined) { columnMap = ""; }
+  let url = `${base_url}?${columnMap}ORDERBY=${ORDERBY}&LIMIT=${LIMIT}&OFFSET=${OFFSET}`;
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", url);
+  xhr.responseType = "json";
+  xhr.setRequestHeader("Authorization", JSON.parse(sessionStorage.ers_auth));
+  xhr.onload = function () {
+    let status = xhr.status;
+    if (status == 200) {
+      console.log("Retrieve Successful")
+      console.log(xhr.response)
+      addRows(xhr.response, tableBodyselector, callback, optionalCallback, loopOptionalCallback);
+    } else if (status == 401) {
+      console.log("Authorization required");
+      goToPage("login")
+    } else {
+      console.log("Recieved status code: " + xhr.status);
+    }
+  };
+  xhr.send();
+}
 
-// function dispatchByHistoryAndAuthority() {
-//   const resources = JSON.parse(window.localStorage.getItem("Resources"));
-//   let jwt = jwt_decode(sessionStorage.ers_auth);
-//   let authority = jwt.authority;
-//   switch (authority.toUpperCase()) {
-//     case "MANAGER":
-//       if (history.state.pageResource["#main-content"].title.toUpperCase().startsWith("MANAGER")) {
-//         console.log("kklllaa")
-//         loadResources(history.state.pageResource["#main-content"], history.state.pageResource["#header"], history.state.pageResource["#footer"])
-//       } else {
-//         loadResources(resources.managerHome, resources.managerHeader, resources.applicationFooter);
-//       }
-//       break;
-//     case "EMPLOYEE":
-//       if (history.state.pageResource["#main-content"].title.toUpperCase().startsWith("EMPLOYEE")) {
-//         loadResources(history.state.pageResource["#main-content"], history.state.pageResource["#header"], history.state.pageResource["#footer"])
-//       } else {
-//         loadResources(resources.employeeHome, resources.employeeHeader, resources.applicationFooter);
-//       }
-//       break;
-//   }
-// }
 
-// function dispatchByHistory() {
-//   let ers_auth;
-//   let jwt;
-//   if ((ers_auth = sessionStorage.ers_auth) != undefined && (jwt = jwt_decode(ers_auth)).EXP > new Date().getTime()) {
-//     const resources = JSON.parse(window.localStorage.getItem("Resources"));
-//     let authority = jwt.authority;
-//     switch (authority.toUpperCase()) {
-//       case "MANAGER":
-//         if (history.state.pageResource["#main-content"].title.toUpperCase().startsWith("MANAGER")) {
-//           loadResources(history.state.pageResource["#main-content"], history.state.pageResource["#header"], history.state.pageResource["#footer"])
-//         } else {
-//           loadResources(resources.managerHome, resources.managerHeader, resources.applicationFooter);
-//         }
-//         break;
-//       case "EMPLOYEE":
-//         if (history.state.pageResource.title.toUpperCase().startsWith("EMPLOYEE")) {
-//           loadResources(history.state.pageResource["#main-content"], history.state.pageResource["#header"], history.state.pageResource["#footer"])
-//         } else {
-//           loadResources(resources.employeeHome, resources.employeeHeader, resources.applicationFooter);
-//         }
-//         break;
-//     }
-//   } else {
-//     goToPage("login");
-//   }
-// }
+function addRows(jsonData, tableBodyselector, callback, optionalCallback, loopOptionalCallback) {
+  console.log(tableBodyselector)
+  console.log("in")
+  document.querySelector(tableBodyselector).innerHTML = "";
+  for (let data of jsonData) {
+    if (optionalCallback != undefined) {
+      if (!loopOptionalCallback) {
+        loopOptionalCallback = true; optionalCallback(data, tableBodyselector);
+      } else {
+        optionalCallback(data, tableBodyselector);
+      }
+    }
+    callback(data, tableBodyselector);
+  }
+};
 
 
 

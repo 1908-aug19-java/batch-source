@@ -1,80 +1,43 @@
 (function () {
-	const GLOBAL_LIMIT = 5;
-	let tablePndingPage = 0;
-	let tableApprovedPage = 0;
 
-	populateTable("#pending_tbody", "PENDING", "r_id ASC", GLOBAL_LIMIT, 0);
-	populateTable("#approved_tbody", "APPROVED", "r_id ASC", GLOBAL_LIMIT, 0);
+	populateTables();
 
-	function populateTable(selector, status, ORDERBY, LIMIT, OFFSET, emailMap) {
-		if(emailMap == undefined){emailMap = ""}
-		let url = `http://localhost:8080/ers/api/reimbursements?${emailMap}status=${status}&ORDERBY=${ORDERBY}&LIMIT=${LIMIT}&OFFSET=${OFFSET}`;
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", url);
-		xhr.responseType = "json";
-		xhr.setRequestHeader("Authorization", JSON.parse(sessionStorage.ers_auth));
-		xhr.onload = function () {
-			let status = xhr.status;
-			if (status == 200) {
-				console.log("Retrieve Successful")
-				console.log(xhr.response)
-				addRows(xhr.response, selector);
-			} else if (status == 401) {
-				console.log("Authorization required");
-				goToPage("login")
-			} else {
-				console.log("Recieved status code: " + xhr.status);
-			}
-		};
-		xhr.send();
+	function populateTables() {
+		const url = "http://localhost:8080/ers/api/reimbursements";
+		const columnMapPending = "status=PENDING&";
+		const columnMapResolved = "status=RESOLVED&";
+		const orderBy = "r_id ASC";
+		const limit = 5;
+		const offset = 0;
+		const tbselectorPending = "#pending_tbody";
+		const tbSelctorResolved = "#resolved_tbody";
+		populateTable(url, columnMapPending, orderBy, limit, offset, tbselectorPending, addRowToTable);
+		populateTable(url, columnMapResolved, orderBy, limit, offset, tbSelctorResolved, addRowToTable);
 	}
 
-	function addRows(reimbursements, selector) {
-		let tableBody = document.querySelector(selector);
-		tableBody.innerHTML = "";
-		for (let reimbursement of reimbursements) {
-			let row =
-				`<tr>
-			<td>$${reimbursement.amount}</td>
-			<td>${reimbursement.status}</td>
-			<td>${reimbursement.dateSubmitted}</td>
-			<td>${reimbursement.employeeAccount.firstName + " " + reimbursement.employeeAccount.lastName}</td>`;
-			if (selector == "#pending_tbody") {
-				row += `<td><button id="id_${reimbursement.id}" type="button" class="btn btn-primary btn-center">Approve Reimbursment</button></td></tr>`;
-				tableBody.insertAdjacentHTML("beforeend", row);
-
-				let jwt = jwt_decode(sessionStorage.ers_auth);
-				let currentEmail = jwt.email;
-				document.querySelector(`#id_${reimbursement.id}`).addEventListener("click", () => { approve(reimbursement.id, currentEmail); });
-			} else if (selector == "#approved_tbody") {
-				row += `<td>${reimbursement.managerAccount.firstName + " " + reimbursement.managerAccount.lastName}</td></tr>`;
-				tableBody.innerHTML += row;
-			}
+	function addRowToTable(data, tableBodyselector) {
+		let row =
+			`<tr><td>$${data.amount}</td>
+			<td>${data.status}</td>`;
+		if (tableBodyselector == "#resolved_tbody") {
+			row += `<td>${data.state}</td>`;
 		}
-	};
-
-	function approve(id, email) {
-		let url = `http://localhost:8080/ers/api/reimbursements?id=${id}&email=${email}`;
-		let xhr = new XMLHttpRequest();
-		xhr.open("PUT", url);
-		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xhr.setRequestHeader("Authorization", JSON.parse(sessionStorage.ers_auth));
-		xhr.onload = function () {
-			let status = xhr.status;
-			if (status == 200) {
-				console.log("Reimbursement update Successful");
-				populateTable("#pending_tbody", "PENDING", "r_id ASC", 5, 0);
-				populateTable("#approved_tbody", "APPROVED", "r_id ASC", 5, 0);
-
-			} else if (status == 401) {
-				console.log("Authorization required");
-				goToPage("login")
-			} else {
-				console.log("Recieved status code: " + xhr.status);
-			}
-
-		};
-		xhr.send();
+		row += `<td>${data.dateSubmitted}</td>
+			<td>${data.employeeAccount.firstName + " " + data.employeeAccount.lastName}</td>`;
+		if (tableBodyselector == "#pending_tbody") {
+			row += `<td><button id="approve_${data.id}" type="button" class="btn btn-primary btn-center btn-size">Approve</button></td>
+					<td><button id="deny_${data.id}" type="button" class="btn btn-primary btn-center btn-size">Deny</button></td></tr>`;
+			document.querySelector(tableBodyselector).insertAdjacentHTML("beforeend", row);
+			let jwt = jwt_decode(sessionStorage.ers_auth);
+			let currentEmail = jwt.email;
+			let approvedMap = `id=${data.id}&email=${currentEmail}&state=${"APPROVED"}`;
+			let deniedMap = `id=${data.id}&email=${currentEmail}&state=${"DENIED"}`;
+			document.querySelector(`#approve_${data.id}`).addEventListener("click", () => { approve(approvedMap, populateTables); });
+			document.querySelector(`#deny_${data.id}`).addEventListener("click", () => { approve(deniedMap, populateTables); });
+		} else if (tableBodyselector == "#resolved_tbody") {
+			row += `<td>${data.managerAccount.firstName + " " + data.managerAccount.lastName}</td></tr>`;
+			document.querySelector(tableBodyselector).innerHTML += row;
+		}
 	}
 
 	function updatePendingTable() {

@@ -15,7 +15,7 @@
 		document.querySelector("#firstName").value = userAccount.firstName;
 		document.querySelector("#lastName").value = userAccount.lastName;
 		document.querySelector("#email").value = userAccount.email;
-		setProfileImage("#mini_profile_image", "#display_profile_image");
+		setProfileImage("#mini_profile_image", "#large_profile_image");
 	}
 
 	function saveChanges(e) {

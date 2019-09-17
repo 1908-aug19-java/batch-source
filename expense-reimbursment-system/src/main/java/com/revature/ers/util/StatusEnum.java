@@ -3,7 +3,9 @@ package com.revature.ers.util;
 public enum StatusEnum {
 
 	PENDING("PENDING"),
-	APPROVED("APPROVED");
+	RESOLVED("RESOLVED"),
+	APPROVED("APPROVED"),
+	DENIED("DENIED");
 
     private final String name;
 

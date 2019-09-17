@@ -55,21 +55,25 @@ public class ReimbursementServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOGGER.error("INSIDE RSERVE");
 		SecurityHandler securityHandler = new SecurityHandler();
 		String jwt = request.getHeader("Authorization");
 		try {
 			if (securityHandler.isAuthorizedJWT(jwt, AuthorityEnum.EMPLOYEE.getName())
 					|| securityHandler.isAuthorizedJWT(jwt, AuthorityEnum.MANAGER.getName())) {
+				FilterPair idPair = new FilterPair("e.ua_id", request.getParameter("e_id"));
+				LOGGER.error(idPair);
 				FilterPair emailPair = new FilterPair("e.email", request.getParameter("email"));
 				FilterPair statusPair = new FilterPair("status", request.getParameter("status"));
 				FilterPair orderByPair = new FilterPair("ORDER BY", request.getParameter("ORDERBY"));
 				FilterPair limitPair = new FilterPair("LIMIT", request.getParameter("LIMIT"));
 				FilterPair offsetPair = new FilterPair("OFFSET", request.getParameter("OFFSET"));
 
-				FilterPair[] pairs = { emailPair, statusPair, orderByPair, limitPair, offsetPair };
+				FilterPair[] pairs = { idPair, emailPair, statusPair, orderByPair, limitPair, offsetPair };
 				pairs = Arrays.stream(pairs).filter(p -> p.getValue() != null && !"".equals(p.getValue()))
 						.toArray(FilterPair[]::new);
 
+				LOGGER.error(pairs);
 				List<Reimbursement> reimbursements = ReimbursementDAO.findByParams(pairs);
 				reimbursements.forEach(r->{
 					nullifyNPF( r.getEmployeeAccount());
@@ -79,7 +83,7 @@ public class ReimbursementServlet extends HttpServlet {
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
 				String reimbursemntsJson = GSON.toJson(reimbursements);
-				LOGGER.info(reimbursemntsJson);
+				//LOGGER.info(reimbursemntsJson);
 				out.print(reimbursemntsJson);
 				out.flush();
 			}
@@ -117,7 +121,7 @@ public class ReimbursementServlet extends HttpServlet {
 				UserAccount managerAccount =  new UserAccount();
 				managerAccount.setId(0L);
 				ReimbursementDAO.save(new Reimbursement(Double.parseDouble(request.getParameter("reimbursment_amount")),
-						StatusEnum.PENDING.getName(), employeeAccount, managerAccount));
+						StatusEnum.PENDING.getName(), null, employeeAccount, managerAccount));
 			} else {
 				response.sendError(400);
 			}
@@ -134,10 +138,16 @@ public class ReimbursementServlet extends HttpServlet {
 			try {
 				String stringId = request.getParameter("id");
 				String email = request.getParameter("email");
+				String state = request.getParameter("state");
 				Long id = Long.parseLong(stringId);
 				UserAccount managerAccount = userAccountDAO.findByEmail(email).get();
 					Reimbursement reimbursement = ReimbursementDAO.findById(id).get();
-					reimbursement.setStatus(StatusEnum.APPROVED.getName());
+					if(state != null && state.equalsIgnoreCase(StatusEnum.APPROVED.getName())) {
+						reimbursement.setState(StatusEnum.APPROVED.getName());
+					}else {
+						reimbursement.setState(StatusEnum.DENIED.getName());
+					}
+					reimbursement.setStatus(StatusEnum.RESOLVED.getName());
 					reimbursement.setManagerAccount(managerAccount);
 					ReimbursementDAO.update(reimbursement);
 				

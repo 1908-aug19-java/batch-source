@@ -22,7 +22,7 @@ import com.revature.ers.util.FilterPair;
 public class UserAccountDAOimpl implements UserAccountDAO {
 
 	private static final Logger LOGGER = Logger.getLogger(UserAccountDAOimpl.class);
-	public static final String[] databaseColumns = { "ua_id", "first_name", "last_name", "email", "password",
+	protected static final String[] databaseColumns = { "ua_id", "first_name", "last_name", "email", "password",
 			"last_login", "isactive", "blocked", "failed_logins", "authority_id", "image_url" };
 
 	@Override
@@ -42,10 +42,10 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				Boolean isactive = rs.getBoolean(databaseColumns[6]);
 				Boolean blocked = rs.getBoolean(databaseColumns[7]);
 				Long failedLogins = rs.getLong(databaseColumns[8]);
-				Long authority_id = rs.getLong(databaseColumns[9]);
+				Long authorityId = rs.getLong(databaseColumns[9]);
 				String imageUrl = rs.getString(databaseColumns[10]);
 				String authorityName = rs.getString("name");
-				Authority authority = new Authority(authority_id, authorityName);
+				Authority authority = new Authority(authorityId, authorityName);
 				UserAccount userAccount = new UserAccount(id, firstName, lastName, email, password, lastLogin, isactive,
 						blocked, failedLogins, authority);
 				userAccount.setImageUrl(imageUrl);
@@ -75,10 +75,10 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				Boolean isactive = rs.getBoolean(databaseColumns[6]);
 				Boolean blocked = rs.getBoolean(databaseColumns[7]);
 				Long failedLogins = rs.getLong(databaseColumns[8]);
-				Long authority_id = rs.getLong(databaseColumns[9]);
+				Long authorityId = rs.getLong(databaseColumns[9]);
 				String imageUrl = rs.getString(databaseColumns[10]);
 				String authorityName = rs.getString("name");
-				Authority authority = new Authority(authority_id, authorityName);
+				Authority authority = new Authority(authorityId, authorityName);
 				UserAccount userAccount = new UserAccount(id, firstName, lastName, email, password, lastLogin, isactive,
 						blocked, failedLogins, authority);
 				userAccount.setImageUrl(imageUrl);
@@ -93,27 +93,27 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 
 	@Override
 	public List<UserAccount> findAllByParams(FilterPair[] pairs) {
-		List<UserAccount> userAccounts = new ArrayList<UserAccount>();
+		List<UserAccount> userAccounts = new ArrayList<>();
 		StringBuilder query = new StringBuilder("SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id");
+		final String offset = " OFFSET ";
+		final String limit = " LIMIT ";
 		for (int i = 0; i < pairs.length; i++) {
-			if (!"OFFSET".equalsIgnoreCase(pairs[i].getKey()) && !"LIMIT".equalsIgnoreCase(pairs[i].getKey())
+			if (!offset.trim().equalsIgnoreCase(pairs[i].getKey()) && !limit.trim().equalsIgnoreCase(pairs[i].getKey())
 					&& !"ORDER BY".equalsIgnoreCase(pairs[i].getKey())) {
 				if (i == 0) {
 					query.append(" WHERE " + pairs[i].getKey() + "='" + pairs[i].getValue() + "'");
 				} else {
 					query.append(" AND " + pairs[i].getKey() + "='" + pairs[i].getValue() + "'");
 				}
-			} else if (!"OFFSET".equalsIgnoreCase(pairs[i].getKey()) && !"LIMIT".equalsIgnoreCase(pairs[i].getKey())) {
+			} else if (!offset.trim().equalsIgnoreCase(pairs[i].getKey()) && !limit.trim().equalsIgnoreCase(pairs[i].getKey())) {
 				query.append(" ORDER BY " + pairs[i].getValue());
-			} else if (!"OFFSET".equalsIgnoreCase(pairs[i].getKey())) {
-				query.append(" LIMIT " + pairs[i].getValue());
+			} else if (!offset.trim().equalsIgnoreCase(pairs[i].getKey())) {
+				query.append(limit + pairs[i].getValue());
 			} else {
-				query.append(" OFFSET " + pairs[i].getValue());
+				query.append(offset + pairs[i].getValue());
 			}
 		}
-		
-		LOGGER.error(query);
-		
+		LOGGER.info(query);
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
 				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
@@ -128,10 +128,10 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				Boolean isactive = rs.getBoolean(databaseColumns[6]);
 				Boolean blocked = rs.getBoolean(databaseColumns[7]);
 				Long failedLogins = rs.getLong(databaseColumns[8]);
-				Long authority_id = rs.getLong(databaseColumns[9]);
+				Long authorityId = rs.getLong(databaseColumns[9]);
 				String imageUrl = rs.getString(databaseColumns[10]);
 				String authorityName = rs.getString("name");
-				Authority authority = new Authority(authority_id, authorityName);
+				Authority authority = new Authority(authorityId, authorityName);
 				UserAccount userAccount = new UserAccount(id, firstName, lastName, email, password, lastLogin, isactive,
 						blocked, failedLogins, authority);
 				userAccount.setImageUrl(imageUrl);
@@ -145,19 +145,19 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 
 	@Override
 	public List<String> findUserAccountEmails(FilterPair[] pairs) {
-		List<String> emails = new ArrayList<String>();
-		String query = "SELECT email FROM user_accounts";
+		List<String> emails = new ArrayList<>();
+		StringBuilder query = new StringBuilder("SELECT email FROM user_accounts");
 		for (int i = 0; i < pairs.length; i++) {
 			if (i == 0) {
-				query += " WHERE " + pairs[i].getKey() + "='" + pairs[i].getValue()  + "'";
+				query.append(" WHERE " + pairs[i].getKey() + "='" + pairs[i].getValue()  + "'");
 			} else {
-				query += " AND " + pairs[i].getKey() + "='" + pairs[i].getValue()  + "'";
+				query.append(" AND " + pairs[i].getKey() + "='" + pairs[i].getValue()  + "'");
 			}
 		}
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
 				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
-				ResultSet rs = stmt.executeQuery(query);) {
+				ResultSet rs = stmt.executeQuery(query.toString());) {
 			while (rs.next()) {
 				emails.add(rs.getString(databaseColumns[3]));
 			}
@@ -169,7 +169,7 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 	
 	@Override
 	public List<UserAccount> findAll() {
-		List<UserAccount> userAccounts = new ArrayList<UserAccount>();
+		List<UserAccount> userAccounts = new ArrayList<>();
 		String query = "SELECT * FROM user_accounts JOIN authorities ON authority_id = a_id";
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
@@ -185,10 +185,10 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 				Boolean isactive = rs.getBoolean(databaseColumns[6]);
 				Boolean blocked = rs.getBoolean(databaseColumns[7]);
 				Long failedLogins = rs.getLong(databaseColumns[8]);
-				Long authority_id = rs.getLong(databaseColumns[9]);
+				Long authorityId = rs.getLong(databaseColumns[9]);
 				String imageUrl = rs.getString(databaseColumns[10]);
 				String authorityName = rs.getString("name");
-				Authority authority = new Authority(authority_id, authorityName);
+				Authority authority = new Authority(authorityId, authorityName);
 				UserAccount userAccount = new UserAccount(id, firstName, lastName, email, password, lastLogin, isactive,
 						blocked, failedLogins, authority);
 				userAccount.setImageUrl(imageUrl);
@@ -236,19 +236,18 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 
 	@Override
 	public void update(UserAccount userAccount) {
-		String query = "UPDATE user_accounts SET ";
+		StringBuilder query = new StringBuilder("UPDATE user_accounts SET ");
 		int length = databaseColumns.length;
 		for (int i = 1; i < length; i++) {
 			if(i == length - 1) {
-				query += databaseColumns[i] + " = ? ";
+				query.append(databaseColumns[i] + " = ? ");
 			}else {
-				query += databaseColumns[i] + " = ?, ";
+				query.append(databaseColumns[i] + " = ?, ");
 			}
 		}
-		query += "WHERE " + databaseColumns[0] + " = ?";
-		LOGGER.info(query);
+		query.append("WHERE " + databaseColumns[0] + " = ?");
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
-				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query);) {
+				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query.toString());) {
 
 			stmt.setString(1, userAccount.getFirstName());
 			stmt.setString(2, userAccount.getLastName());

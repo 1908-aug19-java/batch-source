@@ -88,15 +88,20 @@ public class UserAccountServlet extends HttpServlet {
 					FilterPair[] pairs = {authority_id, emailPair, firstNamePair, lastNamePair, orderByPair, limitPair, offsetPair };
 					pairs = Arrays.stream(pairs).filter(p -> p.getValue() != null && !"".equals(p.getValue()))
 							.toArray(FilterPair[]::new);
-
+					LOGGER.info(Arrays.toString(pairs));
 					List<UserAccount> userAccounts = U_ACCOUNT_DAO.findAllByParams(pairs);
-					userAccounts.forEach(ua -> ua.setPassword(null));
 					userAccounts.forEach(ua -> {
+						ua.setPassword(null);
+						ua.setActive(null);
+						ua.setBlocked(null);
+						ua.setLastLogin(null);
+						ua.setFailedLogins(null);
 						String imageUri = ua.getImageUrl();
 						if (imageUri != null) {
 							ua.setImageUrl(imageUri.substring(imageUri.indexOf(FileManager.staticPath)));
 						}
 					});
+					LOGGER.info((userAccounts));
 					String userAccountsJson = GSON.toJson(userAccounts);
 					PrintWriter out = response.getWriter();
 					response.setContentType("application/json");
