@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.revature.daos.EmployeeDao;
 import com.revature.daos.EmployeeDaoImpl;
 
 public class LoginServlet extends HttpServlet {
 
+		public static Logger LOG = Logger.getLogger(LoginServlet.class.getName());
 	/**
 	 * 
 	 */
@@ -57,10 +60,14 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("password", password);
 		
 		if(employee_id != 0 && isManager == false) {
+			
+			LOG.info("User logged in as employee");
 			request.getRequestDispatcher("Views/employee.html").forward(request, response);
 		}else if(employee_id != 0 && isManager == true) {
 			request.getRequestDispatcher("Views/manager.html").forward(request, response);
 		}else {
+			LOG.info("User logged in as manager");
+
 			response.sendRedirect("/Reimbursement/login");
 		}
 	}

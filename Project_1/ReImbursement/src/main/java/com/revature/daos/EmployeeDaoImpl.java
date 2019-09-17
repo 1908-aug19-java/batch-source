@@ -62,7 +62,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			
 			// loop through results
 			while(rs.next()) {
-				Integer employee_id = rs.getInt("user_id");
+				Integer employee_id = rs.getInt("employee_id");
 				String first_name = rs.getString("first_name");
 				String last_name = rs.getString("last_name");
 				String user_name = rs.getString("user_name");

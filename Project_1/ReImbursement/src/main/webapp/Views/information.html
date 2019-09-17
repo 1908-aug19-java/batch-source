@@ -1,7 +1,168 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Personal Information</title>
-</head>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <title>Personal Information</title>
+    </head>
+    <body>
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/Reimbursement/viewreceipts"
+                            >View All Receipts
+                            <span class="sr-only">(current)</span></a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Reimbursement/approved"
+                            >View Approved</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Reimbursement/denied"
+                            >View Denied</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Reimbursement/new"
+                            >Submit New</a
+                        >
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reimbursement/information"
+                            >Personal Info</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/Reimbursement/logout"
+                            id="logout"
+                            >LogOut</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card text-center m-auto " hidden="true" id="emp-card">
+                        <div class="card-header">
+                            Your Information
+                        </div>
+                        <div class="card-body" id="employee-card">
+                            <!-- <h5 class="card-title">Hi</h5> -->
+                            <!-- <p class="card-text">
+                                With supporting text below as a natural lead-in
+                                to additional content.
+                            </p> -->
+                            <h5 class="card-title" id="title">Hi,</h5>
+                            <p class="card-text" id="user-name">Username:</p>
+                            <p class="card-text" id="pass-word">Password:</p>
+                            <a href="#" class="btn btn-primary">Change Password</a>
+                            
+                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            console.log('Hi from employee personal info');
+
+            let requestUrl =
+                'http://localhost:8080/Reimbursement/api/information';
+
+            function sendajaxGet(url, callback) {
+                let xhr = new XMLHttpRequest();
+
+                xhr.open('GET', url);
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        callback(xhr.response);
+                    }
+                };
+                xhr.send();
+            }
+
+            function displayInfo(employee) {
+                let empls = JSON.parse(employee);
+                console.log(empls);
+
+                let card = document.getElementById('emp-card');
+                card.hidden = false;
+
+                let cardBody = document.getElementById('employee-card');
+
+                let cardTitle = document.createElement('h5');
+                cardTitle.className = 'card-title';
+
+                let firstName = empls.first_name;
+                let userName = empls.user_name;
+                let passWord = empls.password;
+
+                // let credenArray = [userName, passWord];
+
+                // for (let i = 0; i < 2; i++) {
+                //     let cardText = document.createElement('p');
+                //     cardText.className = 'card-text';
+                //     cardText.innerText = credenArray[i];
+                //     cardBody.prepend(cardText);
+                // }
+
+                document.getElementById('title').innerText += ' ' + firstName;
+                document.getElementById('user-name').innerText +=
+                    ' ' + userName;
+                document.getElementById('pass-word').innerText +=
+                    ' ' + passWord;
+
+                // cardTitle.innerHTML = `Hi, ${firstName}`;
+                // cardBody.prepend(cardTitle);
+            }
+
+            sendajaxGet(requestUrl, displayInfo);
+        </script>
+
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>

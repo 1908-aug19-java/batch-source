@@ -180,4 +180,24 @@
   </servlet-mapping>
   
   
+  <!-- Employee personal information  api-->
+  
+  <servlet>
+  	<servlet-name>GetEmployeeInfo</servlet-name>
+  	<servlet-class>com.revature.servlets.GetEmployeeInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetEmployeeInfo</servlet-name>
+  	<url-pattern>/api/information</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ViewEmployeeInformation</servlet-name>
+  	<servlet-class>com.revature.servlets.EmployeeViewInformation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ViewEmployeeInformation</servlet-name>
+  	<url-pattern>/information</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
