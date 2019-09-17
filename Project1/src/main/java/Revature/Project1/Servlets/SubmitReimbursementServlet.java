@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import Revature.Project1.DAO.ReimbursementDao;
 import Revature.Project1.DAOImpl.ReimbursementDaoImpl;
 import Revature.Project1.Model.Reimbursement;
 
 public class SubmitReimbursementServlet extends HttpServlet {
+	public static Logger LOG = Logger.getLogger(LoginServlet.class.getName());
 	private static final long serialVersionUID = 1L;
        
 
@@ -41,6 +44,7 @@ public class SubmitReimbursementServlet extends HttpServlet {
 		Reimbursement r = new Reimbursement(reAmount,description,id);
 		rd.createReimbursement(r);
 		
+		LOG.info("Reimbursement Request Submitted");
 		doGet(request,response);
 		
 	}

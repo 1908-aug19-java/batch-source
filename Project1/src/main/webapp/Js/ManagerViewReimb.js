@@ -1,7 +1,5 @@
 let requestUrl = "http://localhost:8081/Project1/manager-view-reimb";
 
-console.log("hello from js");
-
 function sendAjaxGet(url, callback){
 	let xhr = new XMLHttpRequest();
 	
@@ -24,6 +22,11 @@ function showEmployeeReimbursementsWithName(reimbursementJSON){
 		let newRow = document.createElement("tr");
 		newRow.innerHTML = `<td>${reimbursement.empName}</td><td>${reimbursement.reimbId}</td><td>${reimbursement.amount}</td><td>${reimbursement.description}</td>`;
 		table.appendChild(newRow);
+		let option = document.createElement("option");
+		option.setAttribute("value",`${reimbursement.reimbId}`);
+		option.innerHTML = `${reimbursement.reimbId}`;
+		console.log(option);
+		document.getElementById("dropdown").appendChild(option);
 	}
 }
 

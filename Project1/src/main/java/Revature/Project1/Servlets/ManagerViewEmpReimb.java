@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Revature.Project1.DAO.ReimbursementDao;
@@ -16,6 +18,7 @@ import Revature.Project1.DAOImpl.ReimbursementDaoImpl;
 import Revature.Project1.Model.Reimbursement;
 
 public class ManagerViewEmpReimb extends HttpServlet {
+	public static Logger LOG = Logger.getLogger(LoginServlet.class.getName());
 	private static final long serialVersionUID = 1L;
 
     public ManagerViewEmpReimb() {
@@ -34,19 +37,21 @@ public class ManagerViewEmpReimb extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReimbursementDao rd = new ReimbursementDaoImpl();
-		String id = request.getParameter("id");
+		String id = request.getParameter("dropdown");
 		int reid = Integer.parseInt(id);
+		
 		
 		HttpSession session = request.getSession(false);
 		int id2 = (int)session.getAttribute("id");
 		
 		if(request.getParameter("approve")!=null) {
-			System.out.println(5);
 			rd.approveReimbursement(reid,id2);
+			LOG.info("Reimbursement Request Approved");
+			
 		} else if(request.getParameter("deny")!=null) {
-			System.out.println(6);
 			rd.denyReimbursement(reid, id2);
-		}
+			LOG.info("Reimbursment Request Denied");
+		} 
 		doGet(request,response);
 	}
 

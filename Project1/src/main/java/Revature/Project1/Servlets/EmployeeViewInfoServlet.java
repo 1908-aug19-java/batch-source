@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Revature.Project1.DAO.EmployeeDao;
@@ -16,6 +18,7 @@ import Revature.Project1.DAOImpl.EmployeeDaoImpl;
 import Revature.Project1.Model.Employee;
 
 public class EmployeeViewInfoServlet extends HttpServlet {
+	public static Logger LOG = Logger.getLogger(LoginServlet.class.getName());
 	private static final long serialVersionUID = 1L;
 
     public EmployeeViewInfoServlet() {
@@ -43,14 +46,17 @@ public class EmployeeViewInfoServlet extends HttpServlet {
 		int id = (int)session.getAttribute("id");
 		
 		
-		String newUname = request.getParameter("change-uname");
+		String newUname = request.getParameter("change-uname").toLowerCase();
 		String newPass = request.getParameter("change-pass");
 		
 		if(!newUname.equals("") && newPass.equals("")) {
+			LOG.info("Username Updated");
 			ed.changeEmployeeUname(newUname, id);
 		} else if(newUname.contentEquals("") && !newPass.equals("")) {
+			LOG.info("Password Updated");
 			ed.changeEmployeePass(newPass, id);
 		} else if(!newUname.contentEquals("") && !newPass.equals("")) {
+			LOG.info("Username and Password Updated");
 			ed.changeEmployeeCredentials(newUname, newPass, id);
 		}
 		doGet(request,response);
