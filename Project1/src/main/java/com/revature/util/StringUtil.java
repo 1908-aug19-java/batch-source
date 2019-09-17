@@ -5,7 +5,7 @@ import java.util.Random;
 public class StringUtil {
 	
 	private static final String EMAIL_REGEX = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
-	private static final String USERNAME_REGEX = "^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+	private static final String USERNAME_REGEX = "^\\b[a-z]+[0-9]+\\b$";
 	private static final String MONEY_REGEX = "[^.0-9]";
 	private static final String TOKEN_REGEX = "^[A-Za-z0-9-_=]{10}[.]{1}[A-Za-z0-9-_=]{10}[.]{1}[A-Za-z0-9-_.+/=]{10}$";
 	

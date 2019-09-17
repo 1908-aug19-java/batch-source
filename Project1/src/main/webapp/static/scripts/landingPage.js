@@ -49,6 +49,21 @@ $('#management-filter-username').keypress(function(e){
     }
 });
 
+$(document).ready(function(){
+  $("#management-filter-employee").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#employee-table-body tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+$('#management-filter-employee').keypress(function(e){
+    if (e.which == 13){
+        e.preventDefault();
+    }
+});
+
 const url = "http://localhost:8080/Project1";
 let loggedInUser;
 const authEnum = ["Employee", "Manager", "General Manager"];
@@ -207,7 +222,7 @@ function applyRequestTable(list){
         row.insertCell(1).appendChild(document.createTextNode(e.applicant));
         row.insertCell(2).appendChild(document.createTextNode(statEnum[e.status]));
         row.insertCell(3).appendChild(document.createTextNode(authEnum[e.ticketLevel]));
-        row.insertCell(4).appendChild(document.createTextNode("$" + e.amount));
+        row.insertCell(4).appendChild(document.createTextNode("$" + parseInt(e.amount).toFixed(2)));
         row.insertCell(5).appendChild(document.createTextNode(e.submissionDate));
 
         row.insertCell(6).appendChild(document.createTextNode(e.resolutionDate || ""));
@@ -247,7 +262,7 @@ function applyRequestTableWithParam(list, status){
         row.insertCell(1).appendChild(document.createTextNode(e.applicant));
         row.insertCell(2).appendChild(document.createTextNode(statEnum[e.status]));
         row.insertCell(3).appendChild(document.createTextNode(authEnum[e.ticketLevel]));
-        row.insertCell(4).appendChild(document.createTextNode("$" + e.amount));
+        row.insertCell(4).appendChild(document.createTextNode("$" + parseInt(e.amount).toFixed(2)));
         row.insertCell(5).appendChild(document.createTextNode(e.submissionDate));
         row.insertCell(6).appendChild(document.createTextNode(e.resolutionDate || ""));
         row.insertCell(7).appendChild(document.createTextNode(e.resolvedBy || ""));
@@ -828,9 +843,6 @@ function applyManagementRequestsTable(list){
     let table = document.getElementById("management-requests-table-body");
     let row;
     let atag;
-    let ptag;
-
-    let temp
 
     for(let e of list){
 
@@ -840,7 +852,7 @@ function applyManagementRequestsTable(list){
         row.insertCell(1).appendChild(document.createTextNode(e.applicant));
         row.insertCell(2).appendChild(document.createTextNode(statEnum[e.status]));
         row.insertCell(3).appendChild(document.createTextNode(authEnum[e.ticketLevel]));
-        row.insertCell(4).appendChild(document.createTextNode("$" + e.amount));
+        row.insertCell(4).appendChild(document.createTextNode("$" + parseInt(e.amount).toFixed(2)));
         row.insertCell(5).appendChild(document.createTextNode(e.submissionDate));
 
         row.insertCell(6).appendChild(document.createTextNode(e.resolutionDate || ""));
@@ -866,9 +878,6 @@ function applyManagementRequestsTableWithParams(list, status, str){
     let table = document.getElementById("management-requests-table-body");
     let row;
     let atag;
-    let ptag;
-
-    let temp
 
     for(let e of list){
 
@@ -883,7 +892,7 @@ function applyManagementRequestsTableWithParams(list, status, str){
         row.insertCell(1).appendChild(document.createTextNode(e.applicant));
         row.insertCell(2).appendChild(document.createTextNode(statEnum[e.status]));
         row.insertCell(3).appendChild(document.createTextNode(authEnum[e.ticketLevel]));
-        row.insertCell(4).appendChild(document.createTextNode("$" + e.amount));
+        row.insertCell(4).appendChild(document.createTextNode("$" + parseInt(e.amount).toFixed(2)));
         row.insertCell(5).appendChild(document.createTextNode(e.submissionDate));
 
         row.insertCell(6).appendChild(document.createTextNode(e.resolutionDate || ""));
@@ -926,6 +935,7 @@ function filterManagementAllRequests(e){
     }
 
     applyManagementRequestsTable(JSON.parse(window.sessionStorage.getItem("userRequests")));
+    $('#management-filter-username').trigger("keyup");
 }
 
 function filterManagementUnopenedRequests(e){
@@ -936,6 +946,7 @@ function filterManagementUnopenedRequests(e){
     }
 
     applyManagementRequestsTableWithParams(JSON.parse(window.sessionStorage.getItem("userRequests")), 0);
+    $('#management-filter-username').trigger("keyup");
 }
 
 function filterManagementPendingRequests(e){
@@ -946,6 +957,7 @@ function filterManagementPendingRequests(e){
     }
 
     applyManagementRequestsTableWithParams(JSON.parse(window.sessionStorage.getItem("userRequests")), 1);
+    $('#management-filter-username').trigger("keyup");
 }
 
 function filterManagementResolvedRequests(e){
@@ -956,6 +968,7 @@ function filterManagementResolvedRequests(e){
     }
 
     applyManagementRequestsTableWithParams(JSON.parse(window.sessionStorage.getItem("userRequests")), 2);
+    $('#management-filter-username').trigger("keyup");
 }
 
 function onManagementRequestsModalExpand(e){

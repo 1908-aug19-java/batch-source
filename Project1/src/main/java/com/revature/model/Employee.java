@@ -77,8 +77,6 @@ public class Employee {
 	
 	public boolean setUsername(String username) {
 		
-		if(!StringUtil.isValidUsername(username)) return false;
-		
 		this.username = username.toLowerCase();
 		return true;
 	}
