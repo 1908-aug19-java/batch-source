@@ -13,7 +13,7 @@
         <title>All pending receipts</title>
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -21,10 +21,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" href="/Reimbursement/viewreceipts">View Re-imbursements <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/Reimbursement/allpending">Pending Re-imbursements<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Reimbursement/new">Submit</a>
+        <a class="nav-link" href="/Reimbursement/viewemployees">View Employees</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/Reimbursement/approved">View Approved</a>
@@ -33,7 +33,7 @@
         <a class="nav-link" href="#">Edit Info</a>
      </li>
      <li class="nav-item">
-        <a class="nav-link" href="/Reimbursement/login" id="logout">LogOut</a>
+        <a class="nav-link" href="/Reimbursement/logout" id="logout">LogOut</a>
      </li>
       
       
@@ -78,7 +78,7 @@
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState===4 && xhr.status===200){
 				callback(xhr.response);
-				console.log(this.response);
+				//console.log(this.response);
 			}
 			
 			
@@ -88,9 +88,10 @@
     
 		function displayReceipts(receipts){
 		
-		console.log(receipts);
+		//console.log(receipts);
 		
 		let recs = JSON.parse(receipts);
+		console.log(recs);
 		let table = document.getElementById("receipt-table");
 
 		table.hidden = false;
@@ -99,6 +100,7 @@
 			console.log(index);
 			let newRow = document.createElement("tr");
 			document.getElementsByTagName("tr")[index].setAttribute("id", index);
+
 			
 			let receiptId = rec.receipt_id;
 			let amount = rec.amount;
@@ -110,9 +112,10 @@
 			
 			newRow.innerHTML = `<td>${receiptId}</td><td>${amount}</td><td>${note}</td><td>${employeeId}</td>
 			<td id=btn-${receiptId} 
-			onclick = sendPostAjax(this.id)>${approveBtn}</td><td id=btnD-${receiptId}
+			onclick = sendPostAjax(this.id)>${approveBtn}</td><td id=${index+1}-btnD-${receiptId}
 								onclick = sendDenyAjax(this.id)>${denyBtn}</td>`;
 			table.appendChild(newRow);
+
 		}
 	}
 		
@@ -124,7 +127,7 @@
 		
 		//let postUrl = "http://localhost:8080/Reimbursement/approve";
 		
-		function sendPostAjax(args){
+		function sendPostAjax(args, callback){
 			let xhr = new XMLHttpRequest();
 	
 			xhr.open("POST", "http://localhost:8080/Reimbursement/approve");
@@ -141,17 +144,20 @@
 				xhr.send();		
 		}
 		
+		
+		
 		function sendDenyAjax(args) {
             let xhr = new XMLHttpRequest();
 
             xhr.open("POST", "http://localhost:8080/Reimbursement/deny");
 
-            xhr.setRequestHeader("receipt_id", args.substr(5));
+            xhr.setRequestHeader("receipt_id", args.substr(7));
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    callback(xhr.response);
-                    console.log(this.response);
+                    denyCall(args);
+                    //console.log(args);
+                    //console.log(this.response);
                 }
                 
             }
@@ -161,12 +167,19 @@
 		 
 		
 		function randomCall(response){
+			
 			console.log("Ajax sent!")
+			console.log(args);
 		}
 		
-		function denyCall(response){
+		function denyCall(args){
 			console.log("Deny Ajax sent!");
+			console.log(args);
+			//document.getElementById()
+			
+			
 		}
+		
 		
 		
 		//sendPostAjax(randomCall);

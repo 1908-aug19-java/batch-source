@@ -40,23 +40,38 @@ public class GetAllEmployees extends HttpServlet {
 		// TODO Auto-generated method stub
 		EmployeeDao em = new EmployeeDaoImpl();
 		
+		String username = null;
+		String password = null;
+		
+		
+		
 		HttpSession session = request.getSession(false);
-		String username = (String) session.getAttribute("user_name");
-		String password = (String) session.getAttribute("password");
+		
+		
+		if(session.getAttribute("user_name") == null && session.getAttribute("password") == null) {
+			response.sendRedirect("/Reimbursement/login");
+		}else {
+						
+			 username = (String) session.getAttribute("user_name");
+			 password = (String) session.getAttribute("password");
+			 
+			 List<Employee> employees = em.getEmployees();
+				System.out.println(employees);
+				
+				ObjectMapper om = new ObjectMapper();
+				String employeesJSON = om.writeValueAsString(employees);
+				System.out.println(employeesJSON);
+				
+				try(PrintWriter pw = response.getWriter()){
+					
+					pw.write(employeesJSON);
+				}
+			
+		}
 		
 //		int emp_id = em.login(username, password);
 		
-		List<Employee> employees = em.getEmployees();
-		System.out.println(employees);
 		
-		ObjectMapper om = new ObjectMapper();
-		String employeesJSON = om.writeValueAsString(employees);
-		System.out.println(employeesJSON);
-		
-		try(PrintWriter pw = response.getWriter()){
-			
-			pw.write(employeesJSON);
-		}
 		
 		
 		

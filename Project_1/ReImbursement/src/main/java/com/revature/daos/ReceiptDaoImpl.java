@@ -111,19 +111,20 @@ public class ReceiptDaoImpl implements ReceiptsDao {
 	}
 
 	@Override
-	public int approveReceipt(int id) {
+	public int approveReceipt(int rec_id, int emp_id) {
 		// TODO Auto-generated method stub
 		
 		int receiptsUpdated = 0;
 		
-		String sql = "Update receipts set status = ? where receipt_id = ?";
+		String sql = "Update receipts set status = ?, approved_by = ? where receipt_id = ?";
 		
 		try(Connection c = ConnectionUtil.getConnection();
 				PreparedStatement ps = c.prepareStatement(sql)){
 			
 			
 			ps.setString(1, "Approved");
-			ps.setInt(2, id);
+			ps.setInt(2, emp_id);
+			ps.setInt(3, rec_id);
 			
 			receiptsUpdated = ps.executeUpdate();
 			
@@ -298,6 +299,36 @@ public class ReceiptDaoImpl implements ReceiptsDao {
 			e.printStackTrace();
 		}
 		return pendingReceipts;
+	}
+
+	@Override
+	public List<Receipts> getAllApprovedReceiptsForManager() {
+		// TODO Auto-generated method stub
+		
+		String sql = "select receipts.receipt_note, receipts.receipt_amount, employees.first_name from receipts join employees on receipts.approved_by = employees.employee_id";
+		
+		List<Receipts> receipts = new ArrayList<Receipts>();
+
+		
+		try(Connection c = ConnectionUtil.getConnection();
+				Statement s = c.createStatement();
+				ResultSet rs = s.executeQuery(sql);){
+			
+			while(rs.next()) {
+				String receipt_note = rs.getString("receipt_note");
+				Double receipt_amount = rs.getDouble("receipt_amount");
+				String manager_name = rs.getString("first_name");
+				
+				Receipts rm = new Receipts(receipt_note, receipt_amount, manager_name);
+				
+				receipts.add(rm);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		return receipts;
 	}
 
 	

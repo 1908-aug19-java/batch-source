@@ -44,21 +44,28 @@ public class EmployeeViewReceipts extends HttpServlet {
 		
 		
 		
-//		response.setHeader("receiptsJSON", receiptsJSON);	
+		String username = null;
+		String password = null;
 		
-		request.getRequestDispatcher("/Views/employeeViewReceipts.html").forward(request, response);
-
+		HttpSession session = request.getSession();
 		
-		
-		
+		if(session.getAttribute("user_name") == null && session.getAttribute("password")== null) {
+			response.sendRedirect("/Reimbursement/login");
+		}else {
+						
+			 username = (String) session.getAttribute("user_name");
+			 password = (String) session.getAttribute("password");
+			 request.getRequestDispatcher("/Views/employeeViewReceipts.html").forward(request, response);
+		}
+			
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		doGet(request, response);
+//	}
 
 }

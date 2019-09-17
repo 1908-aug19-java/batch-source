@@ -43,24 +43,58 @@ public class GetAllPendingReceipts extends HttpServlet {
 
 		ReceiptsDao rd = new ReceiptDaoImpl();
 		
+		
+		String username = null;
+		String password = null;
+//		
+		
 		HttpSession session = request.getSession();
-		String username = (String) session.getAttribute("user_name");
-		String password = (String) session.getAttribute("password");
 		
-		List<Receipts> receipts = rd.getAllPendingReceipts();
-		
-		System.out.println(receipts);
-		
-		ObjectMapper om = new ObjectMapper();
-		 om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-		    om.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-		String receiptsJSON = om.writeValueAsString(receipts);
-		System.out.println(receiptsJSON);
-		
-		try(PrintWriter pw = response.getWriter()){
-			
-			pw.write(receiptsJSON);
+		if(session.getAttribute("user_name") == null && session.getAttribute("password") == null) {
+			response.sendRedirect("/Reimbursement/login");
+
+		}else {
+			username = (String) session.getAttribute("user_name");
+			 password = (String) session.getAttribute("password");
+			 
+			 System.out.println(username);
+			 
+			 
+			 List<Receipts> receipts = rd.getAllPendingReceipts();
+			 
+			 System.out.println(receipts);
+			 
+			 ObjectMapper om = new ObjectMapper();
+			 
+			 om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+			 om.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+			 
+			 String receiptsJSON = om.writeValueAsString(receipts);
+			 System.out.println(receiptsJSON);
+			 
+			 try(PrintWriter pw = response.getWriter()){
+				 pw.write(receiptsJSON);
+			 }
 		}
+	
+			 
+//				List<Receipts> receipts = rd.getAllPendingReceipts();
+//				
+//				System.out.println(receipts);
+//				
+//				ObjectMapper om = new ObjectMapper();
+//				 om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+//				 om.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+//				String receiptsJSON = om.writeValueAsString(receipts);
+//				System.out.println(receiptsJSON);
+//				
+//				try(PrintWriter pw = response.getWriter()){
+//					
+//					pw.write(receiptsJSON);
+//				}
+		
+		
+	
 		
 
 		

@@ -7,8 +7,21 @@ public class Receipts {
 	private String note;
 	private int employee_id;
 	private String status;
+	private String approving_manager;
 	
 	
+
+
+	public String getApproving_manager() {
+		return approving_manager;
+	}
+
+
+	public void setApproving_manager(String approving_manager) {
+		this.approving_manager = approving_manager;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,6 +86,13 @@ public class Receipts {
 		this.amount = amount;
 		this.note = note;
 		this.employee_id = employee_id;
+	}
+	
+	public Receipts(String note, double amount, String approving_manager) {
+		super();
+		this.note = note;
+		this.amount = amount;
+		this.approving_manager = approving_manager;
 	}
 	
 	

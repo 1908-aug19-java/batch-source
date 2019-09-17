@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class EmployeeViewDeniedReceipts extends HttpServlet {
@@ -23,7 +24,20 @@ public class EmployeeViewDeniedReceipts extends HttpServlet {
 	 
 	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
-			request.getRequestDispatcher("Views/EmployeeViewDenied.html").forward(request, response);
+		 
+			String username = null;
+			String password = null;
+			
+			HttpSession session = request.getSession();
+			
+			if(session.getAttribute("user_name") == null && session.getAttribute("password")== null) {
+				response.sendRedirect("/Reimbursement/login");
+			}else {
+							
+				 username = (String) session.getAttribute("user_name");
+				 password = (String) session.getAttribute("password");
+				 request.getRequestDispatcher("Views/EmployeeViewDenied.html").forward(request, response);
+			}
 	 }
 	 
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

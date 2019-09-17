@@ -45,9 +45,18 @@ public class ApprovedReceipts extends HttpServlet {
 		
 		EmployeeDao e = new EmployeeDaoImpl();
 		
+		String username = "";
+		String password = "";
+		
 		HttpSession session = request.getSession(false);
-		String username = (String) session.getAttribute("user_name");
-		String password = (String) session.getAttribute("password");
+		
+		if(session.getAttribute("user_name") == null && session.getAttribute("password") == null) {
+			response.sendRedirect("/Reimbursement/login");
+		}else {
+						
+			 username = (String) session.getAttribute("user_name");
+			 password = (String) session.getAttribute("password");
+		}
 		
 		int emp_id = e.login(username, password);
 		

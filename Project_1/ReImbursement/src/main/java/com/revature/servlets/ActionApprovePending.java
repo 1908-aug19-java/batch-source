@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.revature.daos.EmployeeDao;
+import com.revature.daos.EmployeeDaoImpl;
 import com.revature.daos.ReceiptDaoImpl;
 import com.revature.daos.ReceiptsDao;
 
@@ -21,7 +23,11 @@ public class ActionApprovePending extends HttpServlet {
        
     /**
      * @see HttpServlet#HttpServlet()
+     * 
      */
+	
+	EmployeeDao ed = new EmployeeDaoImpl();
+	
     public ActionApprovePending() {
         super();
         // TODO Auto-generated constructor stub
@@ -32,7 +38,11 @@ public class ActionApprovePending extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		request.getRequestDispatcher("/Reimbursement/allpending").forward(request, response);
+//		System.out.println("Hitting get request");
+//		request.getRequestDispatcher("/Views/AllPending.html").forward(request, response);
+		
 	}
 
 	/**
@@ -58,9 +68,15 @@ public class ActionApprovePending extends HttpServlet {
 		x++;
 		System.out.println(x + " DEBUG: ");
 		
-		rd.approveReceipt(receipt_id);
+		// login for manager again to get manager emp_id:
 		
-		response.sendRedirect("/Reimbursement/allpending");
+		int emp_id = ed.login(username, password);
+		
+		rd.approveReceipt(receipt_id, emp_id);
+		
+		//response.sendRedirect("/Reimbursement/viewemployees");
+		doGet(request, response);
+		
 	}
 
 }

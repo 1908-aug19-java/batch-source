@@ -43,9 +43,69 @@
     
   </div>
 </nav>
+	<div class = "container">
+	<table class="table table-dark m-5" id="receipt-table" hidden = true>
+	<thead id="rec-table">
+		<tr>
+			<th scope="col">Receipt Note</th>
+			<th scope="col">Amount</th>
+			<th scope="col">Approving Manager</th>
+			
+		</tr>
+	</thead>
+</table>
+</div>
 	
-	
-	
+	<script>
+    console.log('from allapproved manager ')
+    
+        	let requestUrl = "http://localhost:8080/Reimbursement/api/allapproved";
+    
+    function sendAjaxGet(url, callback){
+		let xhr = new XMLHttpRequest();
+		
+		
+		xhr.open("GET", url);
+		
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState===4 && xhr.status===200){
+				callback(xhr.response);
+				//console.log(this.response);
+			}
+			
+			
+		}
+			xhr.send();		
+	}
+    
+    function displayReceipts(receipts){
+    	console.log(receipts);
+    	
+    	let recs = JSON.parse(receipts);
+    	console.log(recs);
+		let table = document.getElementById("receipt-table");
+
+		table.hidden = false;
+
+		for(let rec of recs){
+			let newRow = document.createElement("tr");
+			
+			let receipt_note = rec.note;
+			let receipt_amount = rec.amount;
+			let approving_manager = rec.approving_manager;
+			
+			newRow.innerHTML = `<td>${receipt_note}</td><td>${receipt_amount}</td><td>${approving_manager}</td>`;
+			
+			table.appendChild(newRow);
+		}
+    	
+    }
+    
+    sendAjaxGet(requestUrl, displayReceipts);
+
+
+		
+	</script>
 	
 	
 	 <!--  -->

@@ -60,6 +60,8 @@ public class LoginServlet extends HttpServlet {
 			request.getRequestDispatcher("Views/employee.html").forward(request, response);
 		}else if(employee_id != 0 && isManager == true) {
 			request.getRequestDispatcher("Views/manager.html").forward(request, response);
+		}else {
+			response.sendRedirect("/Reimbursement/login");
 		}
 	}
 	
