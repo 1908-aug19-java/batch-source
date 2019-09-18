@@ -1,0 +1,30 @@
+1568595713520	Move file
+1568595720523	Delete element
+1568597176349	Rename resource 'loginp1.html'
+1568597198519	Rename resource 'logincss.css'
+1568598512859	Rename resource 'Script'
+1568601596208	Move file
+1568604579255	Delete element
+1568604586736	Move file
+1568651672115	Rename type 'SuerveyRequest'
+1568652251676	Rename type 'SuerveyRequestDAOMethods'
+1568710835405	Copy file
+1568746970987	Rename type 'SurveyRequestsDelegate'
+1568747708347	Rename type 'SurveyRequest'
+1568747741151	Rename type 'SurveyRequestDAOMethods'
+1568747764917	Rename type 'SurveyRequestDelegate'
+1568747802403	Rename type 'SurveyRequestService'
+1568747822335	Rename type 'SurveyRequestDAO'
+1568747893562	Rename method 'getSurveyRequestById'
+1568747911923	Rename method 'getSurveyRequests'
+1568747951998	Rename method 'getSurveyResquestsByUserId'
+1568747969102	Rename method 'updateSurveyRequest'
+1568747982583	Rename method 'createSurveyRequest'
+1568747991783	Rename method 'deleteSurveyRequestById'
+1568748031145	Rename type 'SurveyRequestDAOTest'
+1568757490491	Rename resource 'ManagerJS.js'
+1568757547318	Move file
+1568802979113	Move folder
+1568802983196	Move file
+1568802986273	Move file
+1568804326911	Move file

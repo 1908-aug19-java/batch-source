@@ -1,0 +1,18 @@
+package com.revature.model;
+
+public class User {
+	
+	int id;
+	String firstName;
+	String lastName;
+	String email;
+	String userName;
+	String password;
+	int numberRequestsDone;
+	double totalSpends;
+	
+	
+	
+	
+
+}

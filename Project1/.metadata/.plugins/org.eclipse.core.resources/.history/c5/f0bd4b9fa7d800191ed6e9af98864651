@@ -1,0 +1,56 @@
+package com.revature.daos.methods;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+import com.revature.daos.SurveyRequestDAO;
+import com.revature.model.SurveyRequest;
+import com.revature.util.ConnectionDB;
+
+public class SurveyRequestDAOMethods implements SurveyRequestDAO {
+
+	@Override
+	public SurveyRequest getSurveyRequestById(int id) {
+		
+		
+		return null;
+	}
+
+	@Override
+	public List<SurveyRequest> getSurveyRequests() {
+		
+		String sql = "select * from requests";
+		try (Connection c = ConnectionDB.getConnection();
+				Statement s = c.createStatement();
+				ResultSet rs = s.executeQuery(sql);){
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public List<SurveyRequest> getSurveyResquestsByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateSurveyRequest(SurveyRequest sr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int createSurveyRequest(SurveyRequest sr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

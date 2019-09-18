@@ -1,0 +1,94 @@
+package com.revature.daos.tests;
+
+import static org.junit.Assert.assertEquals;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import java.util.StringTokenizer;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.revature.daos.SurveyRequestDAO;
+import com.revature.daos.methods.SurveyRequestDAOMethods;
+import com.revature.model.SurveyRequest;
+
+public class SurveyRequestDAOTest {
+	
+	static SurveyRequestDAO  srdao = new SurveyRequestDAOMethods();
+	
+	@BeforeClass
+	public static void setUp() {
+		
+		System.out.println("Test Start");
+	}
+	@Test 
+	public void testGetSR() {
+		
+		List<SurveyRequest> srs = srdao.getSurveyRequests();
+		for(SurveyRequest sr : srs ) {
+			System.out.println(sr);
+		}
+		
+	}
+	@Test 
+	public void testGetSRByUserId() {
+		System.out.println();
+		List<SurveyRequest> srs = srdao.getSurveyResquestsByUserId(3);
+		for(SurveyRequest sr : srs ) {
+			System.out.println(sr);
+		}
+		
+	}
+	
+	@Test 
+	public void testGetSRById() {
+		
+		
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = format.format(new Date());
+		Date date = null;
+		try {
+			date = format.parse("2019-01-08");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(date);
+		SurveyRequest sr = new SurveyRequest(3,3,1,date,1,0,600,1);
+		
+		assertEquals(sr,srdao.getSurveyRequestById(sr.getId()));
+		
+	}
+	@Test
+	public void testUpdateSurveyRequest() {
+		
+		SurveyRequest  sr = new SurveyRequest();
+		sr = new SurveyRequest(5,4,1,sr.dateReturn("2019-01-26"),1,0,800,3); 
+		
+		
+		assertEquals(1,srdao.updateSurveyRequest(sr));
+
+		
+	}
+	@Test
+	public void testCreateSRequest() {
+		SurveyRequest  sr = new SurveyRequest();
+		sr = new SurveyRequest(5,4,1,sr.dateReturn("2030-01-26"),1,0,800,3);
+		assertEquals(1,srdao.createSurveyRequest(sr));
+		
+	}
+	
+	@AfterClass
+	public static void tearDown() {
+		srdao.deleteSurveyRequestById(12);
+		System.out.println("Test End");
+		
+		
+	}
+}

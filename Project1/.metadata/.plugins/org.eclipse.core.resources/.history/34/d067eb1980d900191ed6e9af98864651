@@ -1,0 +1,23 @@
+package com.revature.services;
+
+import java.util.List;
+
+import com.revature.daos.UserRequestDAO;
+import com.revature.daos.methods.UserRequestDAOMethods;
+import com.revature.model.UserRequest;
+
+public class UserRequestService {
+	
+	UserRequestDAO srdao = new UserRequestDAOMethods();
+	
+	public List<UserRequest> getAllRequests() {
+		return srdao.getUserRequests();
+		
+	}
+	
+	public int createUserRequest(UserRequest sr) {
+		return srdao.createSurveyRequest(sr);
+	}
+	
+
+}

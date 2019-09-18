@@ -1,0 +1,22 @@
+package com.revature.services;
+
+import com.revature.daos.LocationDAO;
+import com.revature.daos.methods.LocationDAOMethods;
+import com.revature.model.Location;
+
+public class LocationService {
+	
+	LocationDAO ldao = new LocationDAOMethods();
+	
+	public Location getLocation(int id) {
+		
+		return ldao.getLocationById(id);		
+	}
+	
+	public List<Location> getAllLocations() {
+		
+		return ldao.getLocations();
+	}
+	
+
+}

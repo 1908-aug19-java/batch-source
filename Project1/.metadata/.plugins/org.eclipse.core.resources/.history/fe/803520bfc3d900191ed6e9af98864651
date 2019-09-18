@@ -1,0 +1,59 @@
+
+
+showRequests(displayRequests);
+
+
+function showRequests(displayRequests){
+	let requestUrl = "http://localhost:8080/RentEventsApp/api/requests";
+	
+	sendAjaxGet(requestUrl,displayRequests);
+}
+
+function sendAjaxGet(url, callback){
+	let xhr = new XMLHttpRequest();
+	
+	xhr.open("GET", url);
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState===4 && xhr.status===200){
+			callback(xhr.response);
+		}
+	}
+	
+	xhr.send();
+}
+var uname;
+var res;
+function displayRequests(requestsJSON){
+	
+	
+	userRequests = JSON.parse(requestsJSON);
+	console.log(userRequests);
+	
+	for(let rst of userRequests){
+		
+		var stringRst = JSON.stringify(rst);
+		res = stringRst.split(/,|"|:"|:/);
+		let dt = res[15];
+		let da =new Date;
+		console.log(res[15]);
+		let d= da.getMiliseconds(da);
+		console.log(d);
+		
+		addTableRowRequests(userNames[res[7]], rst.peopleExpected, rst.locationRequested, d);
+
+	}
+	
+}
+
+		 
+function addTableRowRequests( userName,  peopleExpected,locationName,date){
+	
+	let row = document.createElement("tr");
+	row.innerHTML = `<td>${userName}</td><td>${peopleExpected}</td><td>${locationName}</td><td type="date">${date}</td>`;
+	document.getElementById("historicRequests-table").appendChild(row);
+}
+
+
+
+

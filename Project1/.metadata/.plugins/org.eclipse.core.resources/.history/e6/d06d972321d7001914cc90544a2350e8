@@ -1,0 +1,59 @@
+package com.revature.daos.methods;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.revature.daos.UserDAO;
+import com.revature.model.User;
+import com.revature.util.ConnectionDB;
+
+public class UserDAOMethods implements UserDAO {
+
+	@Override
+	public User getUserById(int id) {
+		
+		String sql = "select * from User where userId = ?";
+		User u = null;
+		
+		try(Connection c = ConnectionDB.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setInt(1,id);			
+			ResultSet rs= ps.executeQuery();
+			
+			while(rs.next()) {
+				
+			
+				
+				id  =rs.getInt("userId");
+				String firstName = rs.getString("userFirstName");
+				String lastName = rs.getString("userLastName");
+				String email = rs.getString("userEmail");
+				String userName = rs.getString("userName");
+				String password = rs.getString("userPassword");
+				int numberRequestsDone = rs.getInt("numberRequestsDone");
+				double totalSpends = rs.getDouble("totalSpends");
+				
+				
+				u= new User(id, firstName, lastName, 
+						 email,  userName, password,
+						 numberRequestsDone, totalSpends);
+			}
+			rs.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public User getUserByUsernameAndPassword(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

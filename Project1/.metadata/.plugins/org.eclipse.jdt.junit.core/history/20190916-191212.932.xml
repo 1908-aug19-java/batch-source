@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SurveyRequestDAOTest" project="RentEventsApp" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.daos.tests.SurveyRequestDAOTest" time="3.239">
+    <testcase name="testGetSR" classname="com.revature.daos.tests.SurveyRequestDAOTest" time="2.165"/>
+    <testcase name="testGetSRByUserId" classname="com.revature.daos.tests.SurveyRequestDAOTest" time="0.27"/>
+    <testcase name="testCreateSRequest" classname="com.revature.daos.tests.SurveyRequestDAOTest" time="0.296"/>
+    <testcase name="testGetSRById" classname="com.revature.daos.tests.SurveyRequestDAOTest" time="0.256"/>
+    <testcase name="testUpdateSurveyRequest" classname="com.revature.daos.tests.SurveyRequestDAOTest" time="0.252"/>
+  </testsuite>
+</testrun>

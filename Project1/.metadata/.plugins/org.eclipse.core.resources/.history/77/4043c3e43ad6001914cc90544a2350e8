@@ -1,0 +1,14 @@
+package com.revature.model;
+
+public class Location {
+	
+	
+	int id;
+	String name;
+	int showType; //(0 conference, 1 concert, 2 festival, )
+	int capacity;
+	boolean avaiability;	
+	double price;
+	
+	
+}

@@ -1,0 +1,68 @@
+package com.revature.daos.methods;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+import java.util.List;
+
+import com.revature.daos.SurveyRequestDAO;
+import com.revature.model.SurveyRequest;
+import com.revature.util.ConnectionDB;
+
+public class SurveyRequestDAOMethods implements SurveyRequestDAO {
+
+	@Override
+	public SurveyRequest getSurveyRequestById(int id) {
+		
+		
+		return null;
+	}
+
+	@Override
+	public List<SurveyRequest> getSurveyRequests() {
+		
+		String sql = "select * from requests";
+		try (Connection c = ConnectionDB.getConnection();
+				Statement s = c.createStatement();
+				ResultSet rs = s.executeQuery(sql);){
+			
+			while(rs.next()) {
+				
+				int requestId = rs.getInt("requestId");
+				int uwmrequest = rs.getInt("uwmrequest");
+				int requestType = rs.getInt("requestType");
+				Date requestDate =  rs.getDate("requestDate");
+				int showType = rs.getInt("showType");
+				int requestState = rs.getInt("requestState");
+				int peopleExpected = rs.getInt("");
+				int requestLocation = rs.getInt("requestLocation"); 
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public List<SurveyRequest> getSurveyResquestsByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateSurveyRequest(SurveyRequest sr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int createSurveyRequest(SurveyRequest sr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,142 @@
+package com.revature.daos.methods;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.daos.ManagerDAO;
+import com.revature.daos.UserDAO;
+import com.revature.model.User;
+import com.revature.util.ConnectionDB;
+
+public class UserDAOMethods implements UserDAO,ManagerDAO {
+	
+	
+	private List<User> users = new ArrayList<>();
+
+	
+	@Override
+	public int updateInfo(User newInfo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int createUser(User u) {
+		
+		float a=4;
+		
+		String sql = "select * from addUser(?,?,?,?,?,?,?)";
+		
+		try(Connection c = ConnectionDB.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setString(1, u.getFirstName());
+			ps.setString(2, u.getLastName());
+			ps.setString(3, u.getEmail());
+			ps.setString(4, u.getUserName());
+			ps.setString(5, u.getPassword());
+			ps.setInt(6, u.getNumberRequestsDone());
+			ps.setFloat(7, a);
+			
+			ResultSet rs = ps.executeQuery();
+//			rs.next();
+//			u.setId(rs.getInt("userId"));
+			rs.close();
+			
+		} catch (SQLException e) {
+					
+					e.printStackTrace();
+					return 0;
+				}
+		
+		return 1;
+	}
+
+	@Override
+	public int deleteUser(int id) {
+		
+		int rowsDeleted = 0;
+		String sql = "delete from users where userId = ?";
+		try(Connection c = ConnectionDB.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setInt(1, id);
+			rowsDeleted = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rowsDeleted;
+	}
+
+	@Override
+	public User getManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> getUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int aprovesRequest() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public User getUserById(int id) {
+		
+		String sql = "select * from User where userId = ?";
+		User u = null;
+		
+		try(Connection c = ConnectionDB.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setInt(1,id);			
+			ResultSet rs= ps.executeQuery();
+			
+			while(rs.next()) {
+				
+			
+				
+				id  =rs.getInt("userId");
+				String firstName = rs.getString("userFirstName");
+				String lastName = rs.getString("userLastName");
+				String email = rs.getString("userEmail");
+				String userName = rs.getString("userName");
+				String password = rs.getString("userPassword");
+				int numberRequestsDone = rs.getInt("numberRequestsDone");
+				double totalSpends = rs.getDouble("totalSpends");
+				
+				
+				u= new User(id, firstName, lastName, 
+						 email,  userName, password,
+						 numberRequestsDone, totalSpends);
+			}
+			rs.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public User getUserByUsernameAndPassword(String usernameOrPassword, String password) {
+		
+		
+		
+		
+		return null;
+	}
+
+	
+
+}

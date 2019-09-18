@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="LocationsDAOTest" project="RentEventsApp" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.daos.tests.LocationsDAOTest" time="1.287">
+    <testcase name="testGetUsers" classname="com.revature.daos.tests.LocationsDAOTest" time="0.889"/>
+    <testcase name="createUser" classname="com.revature.daos.tests.LocationsDAOTest" time="0.215"/>
+    <testcase name="testGetLocaionById" classname="com.revature.daos.tests.LocationsDAOTest" time="0.183"/>
+  </testsuite>
+</testrun>

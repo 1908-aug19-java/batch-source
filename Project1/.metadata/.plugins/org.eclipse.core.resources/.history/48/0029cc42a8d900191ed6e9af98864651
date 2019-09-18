@@ -1,0 +1,52 @@
+
+
+let userRequests;
+document.getElementById("requests-tab").addEventListener("click",showRequests(displayRequests));
+
+function showRequests(displayRequests){
+	let requestUrl = "http://localhost:8080/RentEventsApp/api/requests";
+	
+	sendAjaxGet(requestUrl,displayRequests);
+}
+
+function sendAjaxGet(url, callback){
+	let xhr = new XMLHttpRequest();
+	
+	xhr.open("GET", url);
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState===4 && xhr.status===200){
+			callback(xhr.response);
+		}
+	}
+	
+	xhr.send();
+}
+var uname;
+
+function displayRequests(requestsJSON,usersJSON){
+	console.log(requestsJSON);
+	userRequests = JSON.parse(requestsJSON);
+	console.log(userRequests);
+	
+	for(let rst of userRequests){
+		var a =rst.userName;
+		
+		uname = userNames[1];
+		console.log(uname);
+//		this.addTableRow(rst);
+
+	}
+	
+}
+
+//function addTableRow(firstName,lastName,userName,nrd,tspends){
+//	
+////	let row = document.createElement("tr");
+////	row.innerHTML = `<td>${firstName}</td><td>${lastName}</td><td>${userName}</td><td>${nrd}</td><td>${tspends}</td>`;
+////	document.getElementById("users-table").appendChild(row);
+//}
+
+
+
+

@@ -1,0 +1,106 @@
+package com.revature.daos.methods;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.daos.ManagerDAO;
+import com.revature.daos.UserDAO;
+import com.revature.model.User;
+import com.revature.util.ConnectionDB;
+
+public class UserDAOMethods implements UserDAO,ManagerDAO {
+	
+	
+	private List<User> users = new ArrayList<>();
+
+	
+	@Override
+	public int updateInfo(User newInfo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int createUser() {
+		
+		
+		return 0;
+	}
+
+	@Override
+	public int deleteUser() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public User getManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> getUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int aprovesRequest() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public User getUserById(int id) {
+		
+		String sql = "select * from User where userId = ?";
+		User u = null;
+		
+		try(Connection c = ConnectionDB.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setInt(1,id);			
+			ResultSet rs= ps.executeQuery();
+			
+			while(rs.next()) {
+				
+			
+				
+				id  =rs.getInt("userId");
+				String firstName = rs.getString("userFirstName");
+				String lastName = rs.getString("userLastName");
+				String email = rs.getString("userEmail");
+				String userName = rs.getString("userName");
+				String password = rs.getString("userPassword");
+				int numberRequestsDone = rs.getInt("numberRequestsDone");
+				double totalSpends = rs.getDouble("totalSpends");
+				
+				
+				u= new User(id, firstName, lastName, 
+						 email,  userName, password,
+						 numberRequestsDone, totalSpends);
+			}
+			rs.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public User getUserByUsernameAndPassword(String usernameOrPassword, String password) {
+		
+		
+		
+		
+		return null;
+	}
+
+	
+
+}

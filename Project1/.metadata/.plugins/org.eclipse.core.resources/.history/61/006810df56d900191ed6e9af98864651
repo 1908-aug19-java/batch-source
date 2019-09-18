@@ -1,0 +1,17 @@
+package com.revature.services;
+
+import com.revature.daos.ManagerDAO;
+import com.revature.daos.methods.UserDAOMethods;
+
+public class ManagerService {
+	
+	ManagerDAO mdao = new UserDAOMethods();
+	
+	public int createUser(User u) {
+		
+		return mdao.createUser(u);
+		
+	}
+	
+
+}

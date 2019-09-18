@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="static/Style/ManagerCSS.css" rel="stylesheet" type="text/css">
+<title>ManagerHomePage</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></head>
+<body>
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5>
+                                    Welcome manager
+                                </h5>
+                                <h6>
+                                    Web Developer and Designer
+                                </h6>
+                                <p class="proile-rating">Pending per review : <span></span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Resquests</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="locations-tab" data-toggle="tab" href="#locations" role="tab" aria-controls="Locations" aria-selected="false">Locations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="editp-tab" data-toggle="tab" href="#edit-profile" role="tab" aria-controls="edit-profile" aria-selected="false">Edit Profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Alberto_conversi_profile_pic.jpg" />
+                        <div class="file btn btn-lg btn-primary">
+                            Change Photo
+                            <input type="file" name="file"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                   <button type="button" class="btn btn-primary">Log out</button>
+                </div>
+            </div>
+           
+                
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <table class="table" id="car-table">
+					           <tr>
+					                <th>First Name</th>
+					                <th>Last Name</th>
+					                <th>User Name</th>
+					                <th>Requests Done</th>
+					                <th>Total Spends</th>
+					                
+					           </tr>
+					        </table>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <table class="table" id="car-table">
+					           <tr>
+					                <th>asd</th>
+					                <th>ad</th>
+					                <th>ads</th>
+					                <th>Ysd</th>
+					           </tr>
+					        </table>
+					    </div>     
+                        <div class="tab-pane fade" id="locations" role="tabpanel" aria-labelledby="locations-tab">
+	                         <table class="table" id="car-table">
+						            <tr>
+						                <th>Car ID No.</th>
+						                <th>Make</th>
+						                <th>Model</th>
+						                <th>Year</th>
+						            </tr>
+						     </table> 
+                        
+                        </div>
+                        <div class="tab-pane fade" id="edit-profile" role="tabpanel" aria-labelledby="editp-tab">
+		                        
+							
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="inputFirstName">First Name</label>
+							      <input type="email" class="form-control" id="input-First-Name" placeholder="Email">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="inputPassword4">Last Name</label>
+							      <input type="email" class="form-control" id="input-Last-Name" placeholder="Password">
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="inputEmail4">U</label>
+							      <input type="email" class="form-control" id="inputEmail4" placeholder="Username">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="inputPassword4">email</label>
+							      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="inputCity">City</label>
+							      <input type="text" class="form-control" id="inputCity">
+							    </div>
+							    <div class="form-group col-md-4">
+							      <label for="inputState">State</label>
+							      <select id="inputState" class="form-control">
+							        <option selected>Choose...</option>
+							        <option>...</option>
+							      </select>
+							    </div>
+							    <div class="form-group col-md-2">
+							      <label for="inputZip">Zip</label>
+							      <input type="text" class="form-control" id="inputZip">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <div class="form-check">
+							      <input class="form-check-input" type="checkbox" id="gridCheck">
+							      <label class="form-check-label" for="gridCheck">
+							        Check me out
+							      </label>
+							    </div>
+							  </div>
+							  <button type="button" class="btn btn-primary">Update</button>
+							
+	                         
+	                         
+                        
+                        </div>
+                    </div>
+                </div>
+            
+        </form>           
+    </div>
+</body>
+
+</html>

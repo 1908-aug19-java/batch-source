@@ -1,0 +1,14 @@
+package com.revature.daos;
+
+import java.util.List;
+
+import com.revature.model.User;
+
+public interface ManagerDAO {
+	
+	public int createUser();
+	public int deleteUser();
+	public User getManager();
+	public List<User> getUsers();
+
+}

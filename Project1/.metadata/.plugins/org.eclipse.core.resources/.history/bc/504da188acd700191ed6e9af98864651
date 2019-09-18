@@ -1,0 +1,15 @@
+package com.revature;
+
+
+
+import com.revature.daos.ManagerDAO;
+import com.revature.daos.methods.UserDAOMethods;
+import com.revature.model.User;
+
+public class Driver {
+	public static void main(String[] args) {
+		ManagerDAO udao = new UserDAOMethods();
+		User u=new User(4,"User","User","user","user","456",10,300);
+		udao.createUser(u);
+	}
+}

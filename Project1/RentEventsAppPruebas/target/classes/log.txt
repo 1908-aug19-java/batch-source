@@ -1,0 +1,7 @@
+2019-08-30 14:20:23 WARN  Driver:13 method: main - warn
+2019-08-30 14:20:23 ERROR Driver:14 method: main - error
+2019-08-30 14:20:23 FATAL Driver:15 method: main - fatal
+2019-08-30 14:21:48 WARN  Driver:13 method: main - warn
+2019-08-30 14:21:48 ERROR Driver:14 method: main - error
+2019-09-16 19:12:15 ERROR SurveyRequestDAOMethods:221 method: createSurveyRequest - the request wasn't generated
+2019-09-16 19:12:46 ERROR SurveyRequestDAOMethods:221 method: createSurveyRequest - the request wasn't generated

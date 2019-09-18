@@ -1,0 +1,23 @@
+package com.revature.daos.methods;
+import com.revature.daos.UserDAO;
+import com.revature.model.User;
+
+public class UserDAOMethods implements UserDAO {
+
+	@Override
+	public User getUserById(int id) {
+		
+		String sql = "selec * from User where userId = ?";
+		User u = null;
+		
+		
+		return null;
+	}
+
+	@Override
+	public User getUserByUsernameAndPassword(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

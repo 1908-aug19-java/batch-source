@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="static/Style/ProfileCSS.css" rel="stylesheet" type="text/css">
+<title>ProfileHomePage</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></head>
+<body>
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5>
+                                    Welcome manager
+                                </h5>
+                                <h6>
+                                    Web Developer and Designer
+                                </h6>
+                                <p class="proile-rating">Pending per review : <span></span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">R. State</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="locations-tab" data-toggle="tab" href="#locations" role="tab" aria-controls="Locations" aria-selected="false">!!Schedule!!</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="editp-tab" data-toggle="tab" href="#edit-profile" role="tab" aria-controls="edit-profile" aria-selected="false">Edit Profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="https://image.freepik.com/vector-gratis/lobo-perfil_23-2147640034.jpg" />
+                        <div class="file btn btn-lg btn-primary">
+                            Change Photo
+                            <input type="file" name="file"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                   <button type="button" class="btn btn-primary">Log out</button>
+                </div>
+            </div>
+           
+                
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>First Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Kshiti123</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Last Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Kshiti Ghelani</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>kshitighelani@gmail.com</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>User Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>123 456 7890</p>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <table class="table" id="car-table">
+                                        	<tr>
+                                        		<th>Requests Done:</th><th>5</th>
+                                        	</tr>
+	                                        <tr>
+	                                        	<th>Total Balance:</th><th>$ 45654</th>	
+	                                        </tr>
+                                        </table>
+                                        					        
+
+
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <table class="table" id="car-table">
+					           <tr>
+					                <th>asd</th>
+					                <th>ad</th>
+					                <th>ads</th>
+					                <th>Ysd</th>
+					           </tr>
+					        </table>
+					    </div>     
+                        <div class="tab-pane fade" id="locations" role="tabpanel" aria-labelledby="locations-tab">
+							<div class="container">
+							    <div class="row">
+							        <div class="col-sm-6">
+							            <input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
+							        </div>
+							        <script type="text/javascript">
+							            $(function () {
+							                $('#datetimepicker5').datetimepicker();
+							            });
+							        </script>
+							    </div>
+							</div>
+                        
+                        </div>
+                        <div class="tab-pane fade" id="edit-profile" role="tabpanel" aria-labelledby="editp-tab">
+		                        
+							
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="input-FirstName4">First Name</label>
+							      <input type="text" class="form-control" id="input-First-Name" placeholder="First Name">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="input-LastName4">Last Name</label>
+							      <input type="text" class="form-control" id="input-Last-Name" placeholder="Last Name">
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="input-UserName4">Username</label>
+							      <input type="text" class="form-control" id="input-username" placeholder="Username">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="inputPassword4">Password</label>
+							      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="inputEmail4">Email</label>
+							      <input type="email" class="form-control" id="inputEmail4" placeholder="email@something.com">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="input-confirmPassword4">Confirm Password</label>
+							      <input type="password" class="form-control" id="inputConfirmPassword4" placeholder="Confirm-Password">
+							    </div>
+							  </div>
+							  <button type="button" id="update-ManagerInfo" class="btn btn-primary">Update</button>
+						
+	                         
+	                         
+                        
+                        </div>
+                    </div>
+                </div>
+            
+        </form>           
+    </div>
+</body>
+
+</html>

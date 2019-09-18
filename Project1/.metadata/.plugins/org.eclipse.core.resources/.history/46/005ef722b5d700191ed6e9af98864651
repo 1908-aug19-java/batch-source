@@ -1,0 +1,45 @@
+package com.revature.daos.tests;
+
+import static org.junit.Assert.assertEquals;
+
+import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.revature.daos.ManagerDAO;
+import com.revature.daos.methods.UserDAOMethods;
+import com.revature.model.User;
+
+public class UserDAOTest {
+	
+	static ManagerDAO udao = new UserDAOMethods();
+	static User u=new User(4,"User","User","user","user","456",10,300);
+	
+	@BeforeClass
+	public static void setUp() {
+		
+		System.out.println("Test Start");
+	}
+	@Test
+	public void testCreateUser() {
+		
+		assertEquals(1,udao.createUser(u));
+		
+	}
+	/**
+	 * 
+	 */
+	@AfterClass
+	public static void tearDown() {
+		
+		System.out.println("Test End");
+		udao.deleteUser(6);
+	}
+	
+	
+
+}

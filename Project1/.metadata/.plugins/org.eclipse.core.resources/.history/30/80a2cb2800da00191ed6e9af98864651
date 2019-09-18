@@ -1,0 +1,22 @@
+let token = sessionStorage.getItem("token");
+//console.log(token);
+
+if(!token){
+	console.log("non authorized");
+	window.location.href="http:/localhost:8080/Experiments/login"
+}else{
+	console.log("is authorized");
+	let tokenArr = token.split(":");
+	console.log(tokenArr);
+	if(tokenArr.length===2){
+		
+		let baseUrl = "http://localhost:8080/Experiments/api/users?id=";
+		sendAjaxGet(baseUrl+tokenArr[0],displayName)
+	}else{
+		
+		windows.locations.href="http://localhost:8080/AuthDemo/login";
+	}
+	
+	
+	
+}

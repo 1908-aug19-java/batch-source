@@ -1,0 +1,27 @@
+package com.revature.model;
+
+import java.util.Date;
+
+public class SurveyRequest {
+	
+	
+	int id;
+	int userId;
+	int requestType;
+	Date dateRequested;
+	
+	
+	int showType;
+	int peopleExpected;
+	int locationRequested;
+	
+	int aproval; // -1 rejected, 0 undefined, 1 aproved 
+
+
+
+	
+
+
+
+
+}

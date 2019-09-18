@@ -1,0 +1,30 @@
+package com.revature.daos.tests;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.revature.daos.ManagerDAO;
+import com.revature.daos.methods.UserDAOMethods;
+import com.revature.model.User;
+
+public class UserDAOTest {
+	
+	ManagerDAO udao = new UserDAOMethods();
+	User u=new User(4,"User","User","user","user","456",10,300);
+	@Test
+	public void testCreateUser() {
+		
+		assertEquals(1,1);
+		
+	}
+	@AfterClass
+	public void delete() {
+		udao.deleteUser(6);
+	}
+	
+	
+
+}

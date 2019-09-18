@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UserDAOTest" project="RentEventsApp" tests="6" started="6" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.daos.tests.UserDAOTest" time="2.264">
+    <testcase name="testGetUsers" classname="com.revature.daos.tests.UserDAOTest" time="0.913"/>
+    <testcase name="testUpdateInfo" classname="com.revature.daos.tests.UserDAOTest" time="0.203"/>
+    <testcase name="testCreateUser" classname="com.revature.daos.tests.UserDAOTest" time="0.205"/>
+    <testcase name="testGetByEmailAndPassword" classname="com.revature.daos.tests.UserDAOTest" time="0.263"/>
+    <testcase name="testGetUserById" classname="com.revature.daos.tests.UserDAOTest" time="0.289"/>
+    <testcase name="testGetByUserAndPassword" classname="com.revature.daos.tests.UserDAOTest" time="0.39"/>
+  </testsuite>
+</testrun>

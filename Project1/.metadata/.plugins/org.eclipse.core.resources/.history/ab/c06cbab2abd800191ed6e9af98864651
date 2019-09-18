@@ -1,0 +1,48 @@
+package com.revature.daos.tests;
+
+import java.util.List;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.revature.daos.SurveyRequestDAO;
+import com.revature.daos.methods.SurveyRequestDAOMethods;
+import com.revature.model.SurveyRequest;
+
+public class SurveyRequestDAOTest {
+	
+	static SurveyRequestDAO  srdao = new SurveyRequestDAOMethods();
+	
+	@BeforeClass
+	public static void setUp() {
+		
+		System.out.println("Test Start");
+	}
+	@Test 
+	public void testGetSR() {
+		
+		List<SurveyRequest> srs = srdao.getSurveyRequests();
+		for(SurveyRequest sr : srs ) {
+			System.out.println(sr);
+		}
+		
+	}
+	@Test 
+	public void testGetSRByUserId() {
+		
+		List<SurveyRequest> srs = srdao.getSurveyResquestsByUserId(3);
+		for(SurveyRequest sr : srs ) {
+			System.out.println(sr);
+		}
+		
+	}
+	
+	@AfterClass
+	public static void tearDown() {
+		
+		System.out.println("Test End");
+		
+		
+	}
+}

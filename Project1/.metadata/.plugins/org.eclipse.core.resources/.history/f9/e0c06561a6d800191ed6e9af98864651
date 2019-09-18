@@ -1,0 +1,40 @@
+package com.revature.daos.methods;
+
+import java.util.List;
+
+import com.revature.daos.SurveyRequestDAO;
+import com.revature.model.SurveyRequest;
+
+public class SurveyRequestDAOMethods implements SurveyRequestDAO {
+
+	@Override
+	public SurveyRequest getSurveyRequestById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<SurveyRequest> getSurveyRequests() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<SurveyRequest> getSurveyResquestsByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateSurveyRequest(SurveyRequest sr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int createSurveyRequest(SurveyRequest sr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

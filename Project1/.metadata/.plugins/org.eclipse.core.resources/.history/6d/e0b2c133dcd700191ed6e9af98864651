@@ -1,0 +1,55 @@
+package com.revature.daos.methods;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.daos.LocationDAO;
+import com.revature.model.Location;
+import com.revature.util.ConnectionDB;
+
+public class LocationDAOMethods implements LocationDAO{
+
+	@Override
+	public Location getLocationById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Location> getLocations() {
+		
+		String sql = "select * from eventLocation where eventLocationId=?";
+		List<Location> locations = new ArrayList<>();
+		try (Connection c = ConnectionDB.getConnection();
+				Statement s = c.createStatement();
+				ResultSet rs = s.executeQuery(sql);){
+			
+			while(rs.next()) {
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public int createLocation() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteLocation() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

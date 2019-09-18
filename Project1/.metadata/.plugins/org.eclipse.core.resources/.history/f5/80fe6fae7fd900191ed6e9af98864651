@@ -1,0 +1,11 @@
+package com.revature.services;
+
+import com.revature.daos.SurveyRequestDAO;
+import com.revature.daos.methods.SurveyRequestDAOMethods;
+
+public class SurveyRequestService {
+	
+	SurveyRequestDAO srdao = new SurveyRequestDAOMethods();
+	
+
+}

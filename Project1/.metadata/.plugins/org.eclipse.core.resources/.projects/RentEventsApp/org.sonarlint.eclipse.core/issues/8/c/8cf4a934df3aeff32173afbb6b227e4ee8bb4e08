@@ -1,0 +1,9 @@
+
+_squid:S1481"&Remove this unused "u" local variable.(№»ц®яяяяя8ЂФШЬТ-HаRMINORZ
+CODE_SMELL
+_squid:S1148/"#Use a logger to log this exception.(ЂЙФ…эяяяя8ЃзяЬТ-HшRMINORZVULNERABILITY
+jsquid:S1135."2Complete the task associated to this TODO comment.(ХМђ®юяяяя8ЃзяЬТ-HщRINFOZ
+CODE_SMELL
+vsquid:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(·¦Г…8ЃзяЬТ-HчRBLOCKERZBUG
+jsquid:S1135>"2Complete the task associated to this TODO comment.(» жћяяяяя8ЂФШЬТ-HЮRINFOZ
+CODE_SMELL

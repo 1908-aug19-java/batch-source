@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SurveyRequestDAOTest" project="RentEventsApp" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.daos.tests.SurveyRequestDAOTest" time="1.219">
+    <testcase name="testGetSR" classname="com.revature.daos.tests.SurveyRequestDAOTest" time="0.844"/>
+    <testcase name="testGetSRByUserId" classname="com.revature.daos.tests.SurveyRequestDAOTest" time="0.186"/>
+    <testcase name="testGetSRById" classname="com.revature.daos.tests.SurveyRequestDAOTest" time="0.189"/>
+  </testsuite>
+</testrun>

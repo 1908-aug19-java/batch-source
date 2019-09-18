@@ -1,0 +1,9 @@
+package com.revature.delegates;
+
+import com.revature.services.UserRequestService;
+
+public class UserRequestDelegate {
+	
+	UserRequestService  srs = new UserRequestService();
+
+}

@@ -1,0 +1,15 @@
+
+Xsquid:S11485"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿHëRMINORZVULNERABILITY
+`squid:S21152")Add password protection to this database.(ÿ•æúÿÿÿÿHñRBLOCKERZVULNERABILITY
+Xsquid:S1148-"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿHêRMINORZVULNERABILITY
+fsquid:S1118":Add a private constructor to hide the implicit public one.(Ô\HìRMAJORZ
+CODE_SMELL
+Usquid:S1125"(Remove the literal "true" boolean value.(‚ºÊÈHíRMINORZ
+CODE_SMELL
+Xsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿHéRMINORZVULNERABILITY
+csquid:S1135,"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿHğRINFOZ
+CODE_SMELL
+Zsquid:S4925*"-Remove this "Class.forName()", it is useless.(›‡ªœHïRMAJORZ
+CODE_SMELL
+_squid:S4925"-Remove this "Class.forName()", it is useless.(õ†¨ÄùÿÿÿÿHîRMAJORZ
+CODE_SMELL

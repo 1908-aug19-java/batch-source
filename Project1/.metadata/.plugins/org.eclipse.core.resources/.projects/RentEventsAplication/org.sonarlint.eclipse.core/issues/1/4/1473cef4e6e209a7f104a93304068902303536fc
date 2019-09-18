@@ -1,0 +1,18 @@
+
+nsquid:UselessImportCheck"0Remove this unused import 'java.io.IOException'.(ªº»ÚıÿÿÿÿHtRMINORZ
+CODE_SMELL
+isquid:UselessImportCheck"0Remove this unused import 'java.io.InputStream'.(¹»ºHuRMINORZ
+CODE_SMELL
+Wsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿHvRMINORZVULNERABILITY
+bsquid:S1135/"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿHwRINFOZ
+CODE_SMELL
+msquid:UselessImportCheck"4Remove this unused import 'java.io.FileInputStream'.(˜³ÉÓHxRMINORZ
+CODE_SMELL
+Wsquid:S11480"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿHyRMINORZVULNERABILITY
+esquid:S1118
+":Add a private constructor to hide the implicit public one.(Ô\HzRMAJORZ
+CODE_SMELL
+Tsquid:S1125"(Remove the literal "true" boolean value.(‚ºÊÈH{RMINORZ
+CODE_SMELL
+_squid:S21155")Add password protection to this database.(ÿ•æúÿÿÿÿH|RBLOCKERZVULNERABILITY
+Wsquid:S11488"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿH}RMINORZVULNERABILITY
