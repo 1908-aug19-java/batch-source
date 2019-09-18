@@ -173,6 +173,30 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return isManager;
 	}
 
+	@Override
+	public int changeUserPassword(int emp_id, String pass) {
+		// TODO Auto-generated method stub
+		int passKeysUpdated = 0;
+		
+		String sql = "update employees set password = ? where employee_id = ?";
+		
+		try(Connection c = ConnectionUtil.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setString(1, pass);
+			ps.setInt(2, emp_id);
+			
+			passKeysUpdated = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return passKeysUpdated;
+	}
+
 //	@Override
 //	public int createEmployee(Employee e) {
 //		// TODO Auto-generated method stub

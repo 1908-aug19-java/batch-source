@@ -61,12 +61,16 @@ public class LoginServlet extends HttpServlet {
 		
 		if(employee_id != 0 && isManager == false) {
 			
-			LOG.info("User logged in as employee");
+			LOG.info("User is an employee");
 			request.getRequestDispatcher("Views/employee.html").forward(request, response);
 		}else if(employee_id != 0 && isManager == true) {
+			
+			LOG.info("User logging in as manager");
+
 			request.getRequestDispatcher("Views/manager.html").forward(request, response);
 		}else {
-			LOG.info("User logged in as manager");
+			
+			LOG.info("Invalid Username or password or user doesn't exist");
 
 			response.sendRedirect("/Reimbursement/login");
 		}

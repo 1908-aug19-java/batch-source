@@ -14,6 +14,7 @@ public interface EmployeeDao {
 	public List<String> getUsernames();
 	public int login(String username, String password); 
 	public boolean checkIfManager(String username);
+	public int changeUserPassword(int emp_id, String pass);
 	
 	
 	

@@ -200,4 +200,13 @@
   	<url-pattern>/information</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>ChangePassWordServlet</servlet-name>
+  	<servlet-class>com.revature.servlets.UpdatePasswordServlet</servlet-class>	
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ChangePassWordServlet</servlet-name>
+  	<url-pattern>/change</url-pattern>
+  </servlet-mapping>
+   
 </web-app>

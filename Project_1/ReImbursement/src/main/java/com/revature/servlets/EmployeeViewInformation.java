@@ -8,10 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.revature.daos.EmployeeDao;
 import com.revature.daos.EmployeeDaoImpl;
 
 public class EmployeeViewInformation extends HttpServlet {
+	
+	public static Logger LOG = Logger.getLogger(EmployeeViewInformation.class.getName());
+
 
 	EmployeeDao ed = new EmployeeDaoImpl();
 	
@@ -38,9 +43,14 @@ public class EmployeeViewInformation extends HttpServlet {
 		
 		if(employee_id != 0 && isManager == false) {
 			
+			LOG.info("Going to employee information view");
+			
 			request.getRequestDispatcher("Views/information.html").forward(request, response);
 
 		}else if (employee_id != 0 && isManager == true) {
+			
+			LOG.info("Going to manager information view");
+
 			
 			request.getRequestDispatcher("Views/managerEdit.html").forward(request, response);
 

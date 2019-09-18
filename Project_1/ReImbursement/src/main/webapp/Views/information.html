@@ -87,10 +87,17 @@
                             </p> -->
                             <h5 class="card-title" id="title">Hi,</h5>
                             <p class="card-text" id="user-name">Username:</p>
-                            <p class="card-text" id="pass-word">Password:</p>
-                            <a href="#" class="btn btn-primary">Change Password</a>
+                            <p class="card-text" id="pass-word" hidden="true"></p>
                             
-                      
+                            <form action="change" method="POST">
+									   
+									    <div class="form-group">
+									        <label for="newPassWord">New Password</label>
+									        <input type="password" class="form-control" id="newPassWord" name="newPass" >
+									    </div>
+									   
+							  <button type="submit" class="btn btn-danger" id="change-btn">Submit</button>	    
+							</form>                       
                         </div>
                     </div>
                 </div>
@@ -98,6 +105,24 @@
         </div>
 
         <script>
+        
+        	/* let oldPass = document.getElementById("oldPassWord");
+        	let newPass1 = document.getElementById("newPassWord");
+        	let newPass2 = document.getElementById("confirmPass");
+        	let correctOldPass = document.getElementById("pass-word").innerHTML;
+        	console.log(correctOldPass);
+        	let submitBtn = document.getElementById("change-btn");
+         */
+        /* function check(){
+        	
+        	if (newPass1 != newPass2){
+        		console.log("New Passwords do not match")
+        	}else{
+        		console.log("All Good!");
+        		submitBtn.disabled = false;
+        	}
+        	
+        } */
             console.log('Hi from employee personal info');
 
             let requestUrl =
@@ -132,14 +157,7 @@
                 let userName = empls.user_name;
                 let passWord = empls.password;
 
-                // let credenArray = [userName, passWord];
-
-                // for (let i = 0; i < 2; i++) {
-                //     let cardText = document.createElement('p');
-                //     cardText.className = 'card-text';
-                //     cardText.innerText = credenArray[i];
-                //     cardBody.prepend(cardText);
-                // }
+              
 
                 document.getElementById('title').innerText += ' ' + firstName;
                 document.getElementById('user-name').innerText +=
@@ -147,9 +165,8 @@
                 document.getElementById('pass-word').innerText +=
                     ' ' + passWord;
 
-                // cardTitle.innerHTML = `Hi, ${firstName}`;
-                // cardBody.prepend(cardTitle);
             }
+            
 
             sendajaxGet(requestUrl, displayInfo);
         </script>
