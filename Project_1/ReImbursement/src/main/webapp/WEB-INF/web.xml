@@ -192,11 +192,11 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>ViewEmployeeInformation</servlet-name>
+  	<servlet-name>EmployeeViewInformation</servlet-name>
   	<servlet-class>com.revature.servlets.EmployeeViewInformation</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>ViewEmployeeInformation</servlet-name>
+  	<servlet-name>EmployeeViewInformation</servlet-name>
   	<url-pattern>/information</url-pattern>
   </servlet-mapping>
   

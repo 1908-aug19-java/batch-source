@@ -55,7 +55,7 @@ public class EmployeeViewReceipts extends HttpServlet {
 						
 			 username = (String) session.getAttribute("user_name");
 			 password = (String) session.getAttribute("password");
-			 request.getRequestDispatcher("/Views/employeeViewReceipts.html").forward(request, response);
+			 request.getRequestDispatcher("Views/employeeViewReceipts.html").forward(request, response);
 		}
 			
 	}
