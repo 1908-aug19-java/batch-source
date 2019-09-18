@@ -23,4 +23,6 @@ public interface UserAccountDAO {
 	void update(UserAccount userAccount);
 
 	void delete(UserAccount userAccount);
+	
+	Long getTotalRows(FilterPair[] pairs);
 }

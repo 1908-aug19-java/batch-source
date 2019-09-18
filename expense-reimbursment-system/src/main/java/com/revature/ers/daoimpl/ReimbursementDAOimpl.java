@@ -1,4 +1,4 @@
-package com.revature.ers.dao;
+package com.revature.ers.daoimpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import org.apache.log4j.Logger;
 
+import com.revature.ers.dao.ReimbursementDAO;
 import com.revature.ers.models.Reimbursement;
 import com.revature.ers.models.UserAccount;
 import com.revature.ers.security.DBCredentials;
@@ -90,7 +91,6 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 			}
 		}
 
-		LOGGER.info(query);
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass());
 				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
@@ -214,7 +214,6 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 			}
 		}
 		query.append("WHERE " + databaseColumns[0] + " = ?");
-		LOGGER.info(query);
 
 		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
 				DBCredentials.getPass()); PreparedStatement stmt = conn.prepareStatement(query.toString());) {
@@ -244,6 +243,30 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 		} catch (SQLException e) {
 			LOGGER.error(e);
 		}
+	}
+
+	@Override
+	public Long getTotalRows(FilterPair[] pairs) {
+		Long count = null;
+		StringBuilder query = new StringBuilder("Select Count(*) FROM reimbursements JOIN user_accounts e ON e.ua_id = user_accounts_id LEFT OUTER JOIN user_accounts m ON m.ua_id = manager_accounts_id");
+		for (int i = 0; i < pairs.length; i++) {
+			if (i == 0) {
+				query.append(" WHERE " + pairs[i].getKey() + "=" + "'" + pairs[i].getValue() + "'");
+			} else {
+				query.append(" AND " + pairs[i].getKey() + "=" + "'" + pairs[i].getValue() + "'");
+			}
+		}
+
+		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
+				DBCredentials.getPass());
+				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
+				ResultSet rs = stmt.executeQuery(query.toString());) {
+			rs.next();
+			count = rs.getLong(1);
+		} catch (SQLException e) {
+			LOGGER.error(e);
+		}
+		return count;
 	}
 
 }

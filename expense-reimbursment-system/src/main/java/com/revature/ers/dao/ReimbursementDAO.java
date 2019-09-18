@@ -19,4 +19,6 @@ public interface ReimbursementDAO {
 	void update(Reimbursement reimbursement);
 
 	void delete(Reimbursement reimbursement);
+	
+	Long getTotalRows(FilterPair[] pairs);
 }

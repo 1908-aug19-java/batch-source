@@ -1,4 +1,4 @@
-package com.revature.ers.dao;
+package com.revature.ers.daoimpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import org.apache.log4j.Logger;
 
+import com.revature.ers.dao.UserAccountDAO;
 import com.revature.ers.models.Authority;
 import com.revature.ers.models.UserAccount;
 import com.revature.ers.security.DBCredentials;
@@ -278,6 +279,30 @@ public class UserAccountDAOimpl implements UserAccountDAO {
 		} catch (SQLException e) {
 			LOGGER.error(e);
 		}
+	}
+	
+	@Override
+	public Long getTotalRows(FilterPair[] pairs) {
+		Long count = null;
+		StringBuilder query = new StringBuilder("Select Count(*) FROM user_accounts");
+		for (int i = 0; i < pairs.length; i++) {
+			if (i == 0) {
+				query.append(" WHERE " + pairs[i].getKey() + "=" + "'" + pairs[i].getValue() + "'");
+			} else {
+				query.append(" AND " + pairs[i].getKey() + "=" + "'" + pairs[i].getValue() + "'");
+			}
+		}
+
+		try (Connection conn = DriverManager.getConnection(DBCredentials.getUrl(), DBCredentials.getUser(),
+				DBCredentials.getPass());
+				Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_SENSITIVE);
+				ResultSet rs = stmt.executeQuery(query.toString());) {
+			rs.next();
+			count = rs.getLong(1);
+		} catch (SQLException e) {
+			LOGGER.error(e);
+		}
+		return count;
 	}
 
 }

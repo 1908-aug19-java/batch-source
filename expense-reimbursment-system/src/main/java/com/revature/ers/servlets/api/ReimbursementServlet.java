@@ -2,9 +2,7 @@ package com.revature.ers.servlets.api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.google.gson.Gson;
 import com.revature.ers.dao.ReimbursementDAO;
-import com.revature.ers.dao.ReimbursementDAOimpl;
 import com.revature.ers.dao.UserAccountDAO;
-import com.revature.ers.dao.UserAccountDAOimpl;
+import com.revature.ers.daoimpl.ReimbursementDAOimpl;
+import com.revature.ers.daoimpl.UserAccountDAOimpl;
 import com.revature.ers.models.Reimbursement;
 import com.revature.ers.models.UserAccount;
 import com.revature.ers.security.SecurityHandler;
+import com.revature.ers.services.ReimbursmentService;
+import com.revature.ers.servicesimpl.ReimbursementServiceImpl;
 import com.revature.ers.util.AuthorityEnum;
-import com.revature.ers.util.FilterPair;
 import com.revature.ers.util.StatusEnum;
 
 import io.jsonwebtoken.Claims;
@@ -38,8 +36,9 @@ public class ReimbursementServlet extends HttpServlet {
 	private static final Logger LOGGER = Logger.getLogger(ReimbursementServlet.class);
 	private static final UserAccountDAO userAccountDAO = new UserAccountDAOimpl();
 	private static final ReimbursementDAO ReimbursementDAO = new ReimbursementDAOimpl();
+	private static final ReimbursmentService REIMBURSMENT_SERVICE = new ReimbursementServiceImpl();
 	private static final long serialVersionUID = 1L;
-	private static final Gson GSON = new Gson();
+	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -61,44 +60,16 @@ public class ReimbursementServlet extends HttpServlet {
 		try {
 			if (securityHandler.isAuthorizedJWT(jwt, AuthorityEnum.EMPLOYEE.getName())
 					|| securityHandler.isAuthorizedJWT(jwt, AuthorityEnum.MANAGER.getName())) {
-				FilterPair idPair = new FilterPair("e.ua_id", request.getParameter("e_id"));
-				LOGGER.error(idPair);
-				FilterPair emailPair = new FilterPair("e.email", request.getParameter("email"));
-				FilterPair statusPair = new FilterPair("status", request.getParameter("status"));
-				FilterPair orderByPair = new FilterPair("ORDER BY", request.getParameter("ORDERBY"));
-				FilterPair limitPair = new FilterPair("LIMIT", request.getParameter("LIMIT"));
-				FilterPair offsetPair = new FilterPair("OFFSET", request.getParameter("OFFSET"));
-
-				FilterPair[] pairs = { idPair, emailPair, statusPair, orderByPair, limitPair, offsetPair };
-				pairs = Arrays.stream(pairs).filter(p -> p.getValue() != null && !"".equals(p.getValue()))
-						.toArray(FilterPair[]::new);
-
-				LOGGER.error(pairs);
-				List<Reimbursement> reimbursements = ReimbursementDAO.findByParams(pairs);
-				reimbursements.forEach(r->{
-					nullifyNPF( r.getEmployeeAccount());
-					nullifyNPF( r.getManagerAccount());
-				});
+				String json = REIMBURSMENT_SERVICE.getReimbursmentRequestJson(request);
 				PrintWriter out = response.getWriter();
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
-				String reimbursemntsJson = GSON.toJson(reimbursements);
-				//LOGGER.info(reimbursemntsJson);
-				out.print(reimbursemntsJson);
+				out.print(json);
 				out.flush();
 			}
 		} catch (Exception e) {
 			LOGGER.error(e);
 		}
-	}
-
-	//Nulls non pertienent fields
-	private void nullifyNPF(UserAccount ua) {
-		ua.setPassword(null);
-		ua.setActive(null);
-		ua.setBlocked(null);
-		ua.setFailedLogins(null);
-		ua.setImageUrl(null);
 	}
 	
 

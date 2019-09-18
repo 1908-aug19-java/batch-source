@@ -12,15 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.revature.ers.servlets.ApplicationServlet;
-
 /**
  * Servlet implementation class FrontControllerServlet
  */
 @WebFilter("/*")
 public class FrontControllerFilter extends HttpFilter {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOGGER = Logger.getLogger(ApplicationServlet.class);
+	private static final Logger LOGGER = Logger.getLogger(FrontControllerFilter.class);
 	private Dispatcher dispatcher = new Dispatcher();
 
 
@@ -39,7 +37,9 @@ public class FrontControllerFilter extends HttpFilter {
 	@Override
 	public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
+
 		LOGGER.info("FrontControllerFilter: running doFilter");
+		
 		String path = request.getRequestURI().substring(request.getContextPath().length());
 		if (path.startsWith("/static/")) {
 			filterChain.doFilter(request, response);
@@ -49,8 +49,6 @@ public class FrontControllerFilter extends HttpFilter {
 			} else {
 				dispatcher.dispatch(request, response);
 			}
-
-			//
 		}
 	}
 

@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.revature.ers.dao.UserAccountDAO;
-import com.revature.ers.dao.UserAccountDAOimpl;
+import com.revature.ers.daoimpl.UserAccountDAOimpl;
 import com.revature.ers.models.UserAccount;
 import com.revature.ers.security.SecurityHandler;
 import com.revature.ers.services.UserAccountService;
-import com.revature.ers.services.UserAccountServiceImpl;
+import com.revature.ers.servicesimpl.UserAccountServiceImpl;
 import com.revature.ers.util.FileManager;
 
 /**
@@ -71,6 +71,7 @@ public class LoginServlet extends HttpServlet {
 			String imageUri = userAccount.getImageUrl();
 			if(imageUri != null) {
 				imageUri = imageUri.substring(imageUri.indexOf(FileManager.staticPath));
+				LOGGER.info(imageUri);
 				try {
 					PrintWriter out = response.getWriter();
 					out.print(imageUri);

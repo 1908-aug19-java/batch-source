@@ -1,4 +1,4 @@
-package com.revature.ers.dao;
+package com.revature.ers.daoimpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import org.apache.log4j.Logger;
 
+import com.revature.ers.dao.AuthorityDAO;
 import com.revature.ers.models.Authority;
 import com.revature.ers.security.DBCredentials;
 
