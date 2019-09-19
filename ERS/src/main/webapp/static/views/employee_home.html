@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ERS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/styles/override.css">
+  </head>
+  <body>
+    <h1 class="jumbotron text-center">Employee</h1>
+    <nav class = "navbar navbar-dark bg-dark text-center">
+      <nav class = "col">
+       <a href="home"><button class="navbar-text btn home">Home</button></a>
+      </nav>
+      <nav class = "col">
+        <button class="navbar-text btn" id="nav-emp">Employees</button>
+      </nav>
+      <nav class = "col">
+        <button class="navbar-text btn" id ="nav-man">Managers</button>
+      </nav>
+      <!--  
+      <nav class = "col">
+        <button class="navbar-text btn" id= "nav-admin">Administrators</button>
+      </nav>
+      <nav class = "col">
+        <button class="navbar-text btn" id="nav-comp">Companies</button>
+      </nav>
+      -->
+      <nav class = "col">
+        <a href= "home"><button class="navbar-text btn" id="logout">Logout</button></a>
+      </nav>
+    </nav>
+    	<div class="container-fluid ">
+        <div class = "row">
+          <div class = "col">
+            <div class="row">
+              <div class="col">
+                <h3 class="text-center">Contact Information</h3>
+                <p  id="name"><strong>Name:</strong>&nbsp&nbsp</p>
+                <p  id="position"><strong>Position:</strong>&nbsp&nbsp</p>
+                <p  id = "email"><strong>Email:</strong>&nbsp&nbsp</p>
+                <p  id = "phone"><strong>Phone Number:</strong>&nbsp&nbsp</p>
+                <p  id = "address"><strong>Address:</strong>&nbsp&nbsp</p>
+                <button class="btn btn-primary text-center" id="edit-info">edit</button>
+                
+                <div id="hidden-edit-info" style="display: none">
+                	<div class="form-group">
+                		<label for="first-name">First Name:</label>
+                        <input type="text" class="form-control" name="first-name" id="edit-first-name">
+                	</div>
+                	<div class="form-group">
+                		<label for="last-name">Last Name:</label>
+                		<input type="text" class="form-control" name="last-name" id="edit-last-name">
+                	</div>
+                	<div class="form-group">
+                		<label for="address">Address:</label>
+                		<input type="text" class="form-control" name="address" id="edit-address">
+               	    </div>
+                	<div class="form-group">
+                		<label for="phone">Phone Number:</label>
+                		<input type="tel" class="form-control" name="phone" id="edit-phone">
+                	</div>
+                	<div class="form-group">
+                		<label for="position">Position:</label>
+                		<input type="text" class="form-control" name="position" id="edit-position">
+                    </div>
+                    <button type="submit" class="btn btn-success" id="submit-edit">Submit</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class = "col">
+            <h3 class="text-center">Request reimbursement</h3>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" min="0.01" step="0.01" class="form-control" id="amount">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date">
+            </div>
+            <div class="form-group">
+                <label for="reason">Reason:</label>
+                <input type="text" class="form-control" id="reason">
+            </div>
+            <button class = "btn btn-primary"id ="request-reimbursement">Request</button>
+          </div>
+          <div class = "col">
+            <div class="row">
+              <div class="col">
+                <h3 class="text-center">pending reimbursements</h3>
+                <table class = "table table-bordered" id = "pending-reimbursements">
+                	<tr>
+                		<th>Amount</th>
+                		<th>Date</th>
+                		<th>Reason</th>
+                		<th>Status</th>
+                	</tr>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h3 class="text-center">resolved reimbursements</h3>
+                <table class = "table table-bordered" id = "resolved-reimbursements">
+                	<tr>
+                		<th>Amount</th>
+                		<th>Date</th>
+                		<th>Reason</th>
+                		<th>Status</th>
+                	</tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+   <script src="static/scripts/employee_home.js"></script>
+  </body>
+</html>
