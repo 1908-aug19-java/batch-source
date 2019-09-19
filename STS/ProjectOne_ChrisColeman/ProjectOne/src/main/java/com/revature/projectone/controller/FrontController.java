@@ -48,7 +48,7 @@ public class FrontController extends DefaultServlet{
 			System.out.println("It's static.");
 			super.doPost(request, response);	
 		} else {
-			//process request with a request helper 
+			
 			rq.processPost(request, response);
 		}
 	}
