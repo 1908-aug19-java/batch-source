@@ -1,0 +1,366 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"mar",
+				"margin\tproperty"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"a",
+				"album"
+			],
+			[
+				"ti",
+				"title\tTag"
+			],
+			[
+				"Pr",
+				"Project"
+			],
+			[
+				"De",
+				"Delete"
+			],
+			[
+				"de",
+				"deadline"
+			],
+			[
+				"Pro",
+				"ProjectID"
+			],
+			[
+				"Stat",
+				"StateID"
+			],
+			[
+				"add",
+				"addProject"
+			],
+			[
+				"backgr",
+				"background-position\tproperty"
+			],
+			[
+				"is",
+				"is_logged_in"
+			],
+			[
+				"ex",
+				"exist"
+			],
+			[
+				"con",
+				"confirm"
+			],
+			[
+				"red",
+				"redirect"
+			],
+			[
+				"te",
+				"render_template"
+			],
+			[
+				"Sta",
+				"StateID"
+			],
+			[
+				"Re",
+				"Reviewed"
+			],
+			[
+				"Da",
+				"DateCompleted"
+			],
+			[
+				"Project",
+				"ProjectID"
+			],
+			[
+				"Pos",
+				"POST"
+			],
+			[
+				"Proj",
+				"ProjectID"
+			],
+			[
+				"im",
+				"importance"
+			],
+			[
+				"com",
+				"completed"
+			],
+			[
+				"rev",
+				"Reviewed"
+			],
+			[
+				"g",
+				"get"
+			],
+			[
+				"project",
+				"ProjectID"
+			],
+			[
+				"T",
+				"TotalState"
+			],
+			[
+				"D",
+				"Deadline"
+			],
+			[
+				"DateC",
+				"DateCreated"
+			],
+			[
+				"L",
+				"Logins"
+			],
+			[
+				"ce",
+				"Cell"
+			],
+			[
+				"F",
+				"FirstName"
+			],
+			[
+				"f",
+				"form"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"ba",
+				"background-color\tproperty"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/360安全浏览器下载/201902110072197.pdf",
+		"/C/Users/69591/Desktop/....txt",
+		"/C/Users/69591/Desktop/plank-filter-master/app/templates/index.html",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/routes.py",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/templates/index.html",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/static/api.js",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/templates/plank.html",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/__init__.py",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/templates/album.html",
+		"/C/Users/69591/plank-filter-master/app/templates/plank.html",
+		"/C/Users/69591/plank-filter-master/app/templates/index.html",
+		"/C/Users/69591/plank-filter-master/app/routes.py",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/static/apisss.js",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/templates/includes/navbar.html",
+		"/C/Users/69591/Desktop/plank-filter-master/app/templates/plank.html",
+		"/C/Users/69591/Desktop/plank-filter-master/app/routes.py",
+		"/C/Users/69591/Desktop/New folder/plank-filter-master/app/static/css/index.css",
+		"/C/Users/69591/Desktop/plank-filter-master/app/static/css/index.css",
+		"/C/Users/69591/Desktop/plank-filter-master/app/album.py",
+		"/C/Users/69591/Desktop/plank-filter-master/app/templates/album.html",
+		"/C/Users/69591/Desktop/plank-filter-master/app/templates/includes/navbar.html",
+		"/C/Users/69591/Desktop/plank-filter-master/app/templates/layout.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/addState.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/addProject.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/viewState.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/editProject.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/viewProject.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/editState.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/cs435.py",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/register.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/config.cfg",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/account.html",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/login.html",
+		"/C/Users/69591/Desktop/confirm_email/team5/tt.py",
+		"/C/Users/69591/Desktop/confirm_email/team5/email_confirm_withDB.py",
+		"/C/Users/69591/Desktop/confirm_email/templates/register.html",
+		"/C/Users/69591/Desktop/plank-filter-master/venv/lib/python3.6/site-packages/cycler.py",
+		"/C/Users/69591/Desktop/confirm_email/email_confirm_withDB.py",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/app.py",
+		"/C/Users/69591/Desktop/web/myproject/venv/app/templates/info.html",
+		"/C/Users/69591/Desktop/plank-filter-master/app/static/chat.js",
+		"/C/Sites/test_app/config/database.yml",
+		"/C/Users/69591/Project-Management/project-management/db/migrate/20181115002517_create_projects.rb",
+		"/C/Sites/test_app/app/controllers/projects_controller.rb",
+		"/C/Sites/test_app/config/routes.rb",
+		"/C/Sites/test_app/app/views/project/index.html.erb",
+		"/C/Sites/test_app/Gemfile",
+		"/C/Sites/test_app/app/controllers/project_controller.rb",
+		"/C/Sites/cs435/config/database.yml",
+		"/C/Sites/cs435/Gemfile",
+		"/C/Sites/project/app/views/layouts/application.html.erb",
+		"/C/Sites/project/app/views/projects/index.html.erb",
+		"/C/Sites/project/db/migrate/20181126213250_create_projects.rb",
+		"/C/Sites/project/app/models/project.rb",
+		"/C/Sites/project/app/controllers/projects_controller.rb",
+		"/C/Sites/project/config/routes.rb",
+		"/C/Sites/project/config/database.yml",
+		"/C/Sites/project/Gemfile"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Yin Yu Chen.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 238.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
