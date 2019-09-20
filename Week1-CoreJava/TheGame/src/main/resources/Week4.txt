@@ -1,0 +1,24 @@
+What is the difference between level one and level two caching strategies in Hibernate?
+What is the difference between get and load?
+Compare and contrast using native SQL, HQL, and a CriteriaQuery.
+What is the hibernate.cfg.xml? Explain its contents and the important tags included.
+What are the different Hibernate object states? 
+Describe the Servlet life cycle.
+What is Hibernate? What are the benefits and drawbacks of using it?
+How do I provide Hibernate mapping? What is some of the specific configuration I might use.
+Explain the flow of an HTTP request in your web container and application.
+What is the role of the web.xml? What tags would you find in it?
+What is REST? What are the constraints?
+Explain the difference between forwarding, including, and sending a redirect.
+Explain how you would process form input using a servlet.
+What are some methods of the HttpServletRequest and HttpServletResponse respectively?
+Explain the difference between eager and lazy fetching strategies.
+Explain the different inheritance strategies.
+Explain the different HTTP verbs.
+What is the difference between a get and post request?
+What is a named query? How can I create and use one?
+What is the servlet heirarchy?
+What is the servlet lifecycle?
+What is the difference between servlet config and servlet context
+What is the difference between update and merge?
+What is the difference between save and persist?

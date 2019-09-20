@@ -1,0 +1,779 @@
+Revature@DESKTOP-DLJ0ENS MINGW64 /
+$ mvn -v
+Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-24T14:41:47-04:00)
+Maven home: C:\Program Files\apache-maven-3.6.0
+Java version: 1.8.0_191, vendor: Oracle Corporation, runtime: C:\ProgramFiles\Java\jdk1.8.0_191\jre
+Default locale: en_US, platform encoding: Cp1252
+OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+
+Revature@DESKTOP-DLJ0ENS MINGW64 /
+$ cd ~/Documents/1908-aug19-java/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java (Carolyn_Rehm)
+$ ls
+MyClass.class  Week1-CoreJava/  Week4-Hibernate/
+MyClass.java   Week2-SQL/       Week4-Servlets/
+README.md      Week3-FrontEnd/  Week4-XML/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java (Carolyn_Rehm)
+$ cd Week4-Hibernate/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate (Carolyn_Rehm)
+$ ls
+HibernateDemo/  HibernateHbmDemo/  Servers/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate (Carolyn_Rehm)
+$ cd HibernateDemo/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ ls
+pom.xml  src/  target/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ ls src/
+main/  test/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ ls target/
+classes/  test-classes/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ cat pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.revature</groupId>
+  <artifactId>HibernateDemo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+        </properties>
+
+        <dependencies>
+                <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.2.5</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-core</artifactId>
+                        <version>5.3.7.Final</version>
+                </dependency>
+                <dependency>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                        <version>1.2.17</version>
+                </dependency>
+        </dependencies>
+
+
+</project>
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ code pom.xml
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ mvn clean package
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------------< com.revature:HibernateDemo >---------------------
+[INFO] Building HibernateDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ HibernateDemo ---
+[INFO] Deleting C:\Users\Revature\Documents\1908-aug19-java\Week4-Hibernate\HibernateDemo\target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ HibernateDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 2 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ HibernateDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 9 source files to C:\Users\Revature\Documents\1908-aug19-java\Week4-Hibernate\HibernateDemo\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ HibernateDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @HibernateDemo ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ HibernateDemo ---
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ HibernateDemo ---
+[INFO] Building jar: C:\Users\Revature\Documents\1908-aug19-java\Week4-Hibernate\HibernateDemo\target\HibernateDemo-0.0.1-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.856 s
+[INFO] Finished at: 2019-09-17T10:42:20-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ ls
+pom.xml  src/  target/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ ls target/
+classes/            HibernateDemo-0.0.1-SNAPSHOT.jar  maven-status/
+generated-sources/  maven-archiver/                   test-classes/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate/HibernateDemo (Carolyn_Rehm)
+$ cd ..
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Hibernate (Carolyn_Rehm)
+$ cd ../Week4-Servlets/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Servlets (Carolyn_Rehm)
+$ ls
+AuthDemo/  FrontControllerDemo/  Servers/  ServletDemo/  ServletIntro/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Servlets (Carolyn_Rehm)
+$ cd FrontControllerDemo/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Servlets/FrontControllerDemo (Carolyn_Rehm)
+$ ls
+pom.xml  src/  target/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Servlets/FrontControllerDemo (Carolyn_Rehm)
+$ cat pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>com.revature</groupId>
+        <artifactId>FrontControllerDemo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <packaging>war</packaging>
+
+        <build>
+                <finalName>FrontControllerDemo</finalName>
+        </build>
+
+        <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+        </properties>
+
+
+        <dependencies>
+                <dependency>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
+                        <version>2.5</version>
+                </dependency>
+
+                <dependency>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-databind</artifactId>
+                        <version>2.9.9.2</version>
+                </dependency>
+
+                <dependency>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-catalina</artifactId>
+                        <version>9.0.2</version>
+                </dependency>
+        </dependencies>
+
+</project>
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Servlets/FrontControllerDemo (Carolyn_Rehm)
+$ ls
+pom.xml  src/  target/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Servlets/FrontControllerDemo (Carolyn_Rehm)
+$ ls target/
+classes/  m2e-wtp/  test-classes/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Servlets/FrontControllerDemo (Carolyn_Rehm)
+$ mvn clean package
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------< com.revature:FrontControllerDemo >------------------
+[INFO] Building FrontControllerDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ FrontControllerDemo ---
+[INFO] Deleting C:\Users\Revature\Documents\1908-aug19-java\Week4-Servlets\FrontControllerDemo\target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ FrontControllerDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ FrontControllerDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 13 source files to C:\Users\Revature\Documents\1908-aug19-java\Week4-Servlets\FrontControllerDemo\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ FrontControllerDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ FrontControllerDemo ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ FrontControllerDemo ---
+[INFO]
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ FrontControllerDemo ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [FrontControllerDemo] in [C:\Users\Revature\Documents\1908-aug19-java\Week4-Servlets\FrontControllerDemo\target\FrontControllerDemo]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\Users\Revature\Documents\1908-aug19-java\Week4-Servlets\FrontControllerDemo\src\main\webapp]
+[INFO] Webapp assembled in [2338 msecs]
+[INFO] Building war: C:\Users\Revature\Documents\1908-aug19-java\Week4-Servlets\FrontControllerDemo\target\FrontControllerDemo.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.111 s
+[INFO] Finished at: 2019-09-17T10:46:07-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week4-Servlets/FrontControllerDemo (Carolyn_Rehm)
+$ cd ../../Week2-SQL/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL (Carolyn_Rehm)
+$ ls
+JDBCDemo/     Servers/          wednesday-demo.sql
+LoggingDemo/  tuesday-demo.sql  wednesday-function-demo.sql
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL (Carolyn_Rehm)
+$ cd JDBCDemo/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ cat pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>com.revature</groupId>
+        <artifactId>JDBCDemo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+
+        <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+        </properties>
+
+        <dependencies>
+
+                <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.2.5</version>
+                </dependency>
+
+                <dependency>
+                        <groupId>org.mockito</groupId>
+                        <artifactId>mockito-core</artifactId>
+                        <version>2.23.4</version>
+                        <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                        <version>4.12</version>
+                </dependency>
+
+                <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.199</version>
+                        <scope>test</scope>
+                </dependency>
+
+        </dependencies>
+
+</project>
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn clean test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ JDBCDemo ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 10 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ JDBCDemo ---
+[INFO] Surefire report directory: C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.revature.dao.impl.DepartmentDaoImplTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.266 sec
+Running com.revature.service.EmployeeServiceTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.514 sec
+
+Results :
+
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.850 s
+[INFO] Finished at: 2019-09-17T10:48:47-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn clean test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ JDBCDemo ---
+[INFO] Deleting C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 10 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ JDBCDemo ---
+[INFO] Surefire report directory: C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.revature.dao.impl.DepartmentDaoImplTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.296 sec
+Running com.revature.service.EmployeeServiceTest
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.483 sec <<< FAILURE!
+testUnsuccessfulCreation(com.revature.service.EmployeeServiceTest)  Time elapsed: 0.015 sec  <<< FAILURE!
+java.lang.AssertionError
+        at org.junit.Assert.fail(Assert.java:86)
+        at org.junit.Assert.assertTrue(Assert.java:41)
+        at org.junit.Assert.assertFalse(Assert.java:64)
+        at org.junit.Assert.assertFalse(Assert.java:74)
+        at com.revature.service.EmployeeServiceTest.testUnsuccessfulCreation(EmployeeServiceTest.java:64)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+        at org.mockito.internal.runners.DefaultInternalRunner$1.run(DefaultInternalRunner.java:79)
+        at org.mockito.internal.runners.DefaultInternalRunner.run(DefaultInternalRunner.java:85)
+        at org.mockito.internal.runners.StrictRunner.run(StrictRunner.java:39)
+        at org.mockito.junit.MockitoJUnitRunner.run(MockitoJUnitRunner.java:163)
+        at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+        at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+        at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+        at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+        at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+        at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+        at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+
+
+Results :
+
+Failed tests:   testUnsuccessfulCreation(com.revature.service.EmployeeServiceTest)
+
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.141 s
+[INFO] Finished at: 2019-09-17T10:51:07-04:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project JDBCDemo: There are test failures.
+[ERROR]
+[ERROR] Please refer to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\surefire-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn clean test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ JDBCDemo ---
+[INFO] Deleting C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 10 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ JDBCDemo ---
+[INFO] Surefire report directory: C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.revature.dao.impl.DepartmentDaoImplTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.268 sec
+Running com.revature.service.EmployeeServiceTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.5 sec
+
+Results :
+
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.921 s
+[INFO] Finished at: 2019-09-17T10:52:26-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn clean package
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ JDBCDemo ---
+[INFO] Deleting C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 10 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ JDBCDemo ---
+[INFO] Surefire report directory: C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.revature.dao.impl.DepartmentDaoImplTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.261 sec
+Running com.revature.service.EmployeeServiceTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.5 sec
+
+Results :
+
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ JDBCDemo ---
+[INFO] Building jar: C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\JDBCDemo-0.0.1-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.296 s
+[INFO] Finished at: 2019-09-17T10:53:00-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ ls target/
+classes/            generated-test-sources/      maven-archiver/  surefire-reports/
+generated-sources/  JDBCDemo-0.0.1-SNAPSHOT.jar  maven-status/    test-classes/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.047 s
+[INFO] Finished at: 2019-09-17T10:54:16-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.031 s
+[INFO] Finished at: 2019-09-17T10:54:34-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.123 s
+[INFO] Finished at: 2019-09-17T10:54:48-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.094 s
+[INFO] Finished at: 2019-09-17T10:55:12-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn clean compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ JDBCDemo ---
+[INFO] Deleting C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 10 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Revature/Documents/1908-aug19-java/Week2-SQL/JDBCDemo/src/main/java/com/revature/dao/impl/EmployeeDaoImpl.java:[28,25] cannot find symbol
+  symbol:   class Statementt
+  location: class com.revature.dao.impl.EmployeeDaoImpl
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.891 s
+[INFO] Finished at: 2019-09-17T10:55:32-04:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.1:compile (default-compile) on project JDBCDemo: Compilation failure
+[ERROR] /C:/Users/Revature/Documents/1908-aug19-java/Week2-SQL/JDBCDemo/src/main/java/com/revature/dao/impl/EmployeeDaoImpl.java:[28,25] cannot find symbol
+[ERROR]   symbol:   class Statementt
+[ERROR]   location: class com.revature.dao.impl.EmployeeDaoImpl
+[ERROR]
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn clean compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ JDBCDemo ---
+[INFO] Deleting C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 10 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.062 s
+[INFO] Finished at: 2019-09-17T10:56:52-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ ls target/
+classes/  generated-sources/  maven-status/
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ ls
+pom.xml  setup.sql  src/  target/  teardown.sql
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$ mvn clean install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< com.revature:JDBCDemo >------------------------
+[INFO] Building JDBCDemo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ JDBCDemo ---
+[INFO] Deleting C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 10 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ JDBCDemo ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ JDBCDemo ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ JDBCDemo ---
+[INFO] Surefire report directory: C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.revature.dao.impl.DepartmentDaoImplTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.287 sec
+Running com.revature.service.EmployeeServiceTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.515 sec
+
+Results :
+
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ JDBCDemo ---
+[INFO] Building jar: C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\JDBCDemo-0.0.1-SNAPSHOT.jar
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ JDBCDemo ---
+[INFO] Installing C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\target\JDBCDemo-0.0.1-SNAPSHOT.jar to C:\Users\Revature\.m2\repository\com\revature\JDBCDemo\0.0.1-SNAPSHOT\JDBCDemo-0.0.1-SNAPSHOT.jar
+[INFO] Installing C:\Users\Revature\Documents\1908-aug19-java\Week2-SQL\JDBCDemo\pom.xml to C:\Users\Revature\.m2\repository\com\revature\JDBCDemo\0.0.1-SNAPSHOT\JDBCDemo-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.030 s
+[INFO] Finished at: 2019-09-17T11:04:35-04:00
+[INFO] ------------------------------------------------------------------------
+
+Revature@DESKTOP-DLJ0ENS MINGW64 ~/Documents/1908-aug19-java/Week2-SQL/JDBCDemo (Carolyn_Rehm)
+$
