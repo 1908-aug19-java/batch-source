@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ADirectivesComponent implements OnInit {
 
+  colors: string[] = ['blue', 'red', 'green'];
+  formats: string[] = ['bold', 'italic', 'highlight']
+  selectedFormats: string[] = [];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  updateFormat(event){
+    this.selectedFormats = [];
+    let opts = event.target.options;
+    // console.log(opts)
+    for(let opt of opts){
+      if(opt.selected){
+        this.selectedFormats.push(opt.value);
+      }
+    }
+    console.log(this.selectedFormats);
   }
 
 }
