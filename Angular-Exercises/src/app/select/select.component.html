@@ -1,0 +1,72 @@
+<div class = "m-0 jumbotron jumbotron-fluid bg-light">
+    
+    <div class="text-center m-0 d-flex flex-column">
+    
+        <div>
+
+            <h1 class = "display-4 text-dark">Select</h1>
+
+        </div>
+
+        <form>
+            <div class="form-check form-check-inline">
+
+                <input [(ngModel)]="checked" (change)="show()" class="form-check-input" type="radio" name="inlineRadioOptions" id="animalRadio" value="animal">
+                <label class="form-check-label" for="animalRadio">Animals</label>
+
+            </div>
+
+            <div class="form-check form-check-inline">
+
+                <input [(ngModel)]="checked" (change)="show()" class="form-check-input" type="radio" name="inlineRadioOptions" id="colorRadio" value="color">
+                <label class="form-check-label" for="colorRadio">Colors</label>
+
+            </div>
+
+            <div class="form-check form-check-inline">
+
+                <input [(ngModel)]="checked" (change)="show()" class="form-check-input" type="radio" name="inlineRadioOptions" id="daysRadio" value="day">
+                <label class="form-check-label" for="dayRadio">Days</label>
+
+            </div>
+        </form>
+
+        <div *ngIf="checkedNum == 0">
+
+            <ul style="list-style: none;">
+
+                <li *ngFor="let animal of animals">
+                    {{animal}}
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div *ngIf="checkedNum == 1">
+
+            <ul style="list-style: none;">
+
+                <li *ngFor="let color of colors">
+                    {{color}}
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div *ngIf="checkedNum == 2">
+
+            <ul style="list-style: none;">
+
+                <li *ngFor="let day of days">
+                    {{day}}
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>

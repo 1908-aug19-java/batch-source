@@ -1,0 +1,22 @@
+<div class = "m-0 jumbotron jumbotron-fluid bg-light">
+    
+    <div class="text-center m-0 d-flex flex-column">
+    
+        <div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" [ngStyle] = "{'background-color': hover ? highlightColor : ''}">
+
+            <h1 class = "display-4 text-dark">Highlight</h1>
+
+        </div>
+
+        <form>
+            <div class="form-group">
+
+                <label for="highlight-color-selector">Mouseover Highlight Color</label>
+                <input [(ngModel)]="highlightColor" name="color-selector" id="highlight-color-selector" type="color" value="#ff0000" class="form-control col-2 offset-5">
+
+            </div>
+        </form>
+    
+    </div>
+
+</div>

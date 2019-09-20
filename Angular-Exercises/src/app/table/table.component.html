@@ -1,0 +1,43 @@
+<div class = "m-0 jumbotron jumbotron-fluid bg-light">
+    
+    <div class="text-center m-0 d-flex flex-column">
+    
+        <div>
+
+            <h1 class = "display-4 text-dark">Table</h1>
+
+        </div>
+
+        <table [ngClass]="{'table table-bordered': format}">
+
+            <tr>
+
+                <th *ngFor="let col of columns">
+
+                    {{col | titlecase}}
+
+                </th>
+
+            </tr>
+
+            <tr *ngFor="let person of people">
+
+                <td *ngFor="let col of columns">
+
+                    {{formats[col] ? (person[col] | date: 'longDate') : (person[col] | titlecase)}}
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <div>
+            
+            <button type="button" class="btn btn-secondary" (click)="onButtonClick()">{{toggleName}}</button>
+
+        </div>
+
+    </div>
+
+</div>

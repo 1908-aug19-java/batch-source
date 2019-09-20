@@ -1,0 +1,17 @@
+<div class = "m-0 jumbotron jumbotron-fluid landing-div bg-light">
+    
+    <div class="text-center m-0 d-flex flex-column">
+    
+        <div>
+
+            <h1 class="display-4 text-dark">Profile</h1>
+            <h4 *ngIf="show" class="lead text-dark">Name: {{user.name}}</h4>
+            <h4 *ngIf="show" class="lead text-dark">Email: {{user.email}}</h4>
+            <h4 *ngIf="show" class="lead text-dark">ID: {{user.id}}</h4>
+
+            <button type="button" class="btn btn-secondary" (click)="onButtonClick()">{{toggleName}}</button>
+
+        </div>
+    </div>
+
+</div>

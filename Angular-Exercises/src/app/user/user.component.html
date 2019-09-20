@@ -1,0 +1,37 @@
+<div class = "m-0 jumbotron jumbotron-fluid bg-light">
+    
+    <div class="text-center m-0 d-flex flex-column">
+    
+        <div>
+
+            <h1 class = "display-4 text-dark">Users</h1>
+
+        </div>
+
+        <table *ngIf='show' [ngClass]="{'table table-bordered': format}">
+
+            <tr>
+
+                <th *ngFor="let col of columns">
+
+                    {{col | titlecase}}
+
+                </th>
+
+            </tr>
+
+            <tr *ngFor="let user of observableUsers | async">
+
+                <td *ngFor="let col of columns">
+
+                    {{formats[col] ? (user[col]) : (user[col] | titlecase)}}
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
