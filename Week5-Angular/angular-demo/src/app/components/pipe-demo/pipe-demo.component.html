@@ -1,0 +1,18 @@
+<h2>Pipe Demo</h2>
+<div class="container">
+  <p>{{str}} =>  {{str | uppercase}} </p>
+  <p>{{num}} => {{num | currency:'EUR'}} </p>
+  <p>{{day}} =>  {{day | date:'MM/dd/yyyy' }} </p>
+
+
+  <h5>Pipes can be used with string interpolation + structural directives</h5>
+  <ol>
+    <li *ngFor='let str of strArr'>{{str | lowercase}}</li>
+  </ol>
+  <ol>
+    <li *ngFor='let product of products'>{{product | convertToSpace:'o'}}</li>
+  </ol>
+  <ol>
+    <li *ngFor='let product of products'>{{product | convertToSpace | titlecase}}</li>
+  </ol>
+</div>

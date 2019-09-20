@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="jumbotron">
+    <h2>All Posts</h2>
+    <p> Click the button to get all of our posts </p>
+    <button class="btn btn-info" (click)='getAllPosts()' >Get Posts!</button>
+  </div>
+
+  <table class="table table-hover" *ngIf='posts.length>0' >
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+    </tr>
+    <tr *ngFor='let post of posts' routerLink='/posts/{{post.id}}' >
+      <td> {{post.id}} </td>
+      <td> {{post.title}} </td>
+    </tr>
+  </table>
+</div>
+  

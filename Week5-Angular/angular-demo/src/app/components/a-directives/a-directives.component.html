@@ -2,13 +2,17 @@
 
 <div class="container">
 
+  <label>Enable Select</label>
+  <input type="checkbox" [(ngModel)]='isChecked' name='isChecked' >
+  <br><br>
+
   <label>Color Select:</label>
-  <select class="form-control" [(ngModel)]='selectedColor' name='selectedColor' >
+  <select class="form-control" [(ngModel)]='selectedColor' name='selectedColor' [disabled]='!isChecked'>
     <option *ngFor='let color of colors' [value]='color'>{{color}}</option>
   </select>
   <br>
   <label>Format Select:</label>
-  <select multiple class="form-control" (change)='updateFormat($event)' >
+  <select multiple class="form-control" (change)='updateFormat($event)' [disabled]='!isChecked' >
     <option *ngFor='let format of formats' [value]='format'> {{format}} </option>
   </select>
 
