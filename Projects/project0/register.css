@@ -1,0 +1,34 @@
+
+.h1{
+    position: relative;
+    text-align: center; /* required by some browsers */
+
+
+}
+.container
+{
+    
+    position: absolute;
+	top: 0px;
+	width: 88%;	
+	/* padding: 50px; */
+    /* margin: 0 0 35px 5px;  */
+    background: rgb(247, 247, 247);
+	border: 10px solid rgba(147, 184, 189,0.8);
+	box-shadow:	
+		0pt 2px 5px rgba(105, 108, 109,  0.7),	
+		0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+    /* border-radius: 5px; */
+    /* padding: 50px; */
+    /* margin: 20px; */
+}
+body
+{
+    text-align: center; /* required by some browsers */
+}
+ .container
+{
+    background-color: aqua;
+    margin-right: auto;
+    margin-left: auto;
+} 
