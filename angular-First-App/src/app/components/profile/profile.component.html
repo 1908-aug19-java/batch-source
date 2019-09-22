@@ -1,0 +1,14 @@
+<h4>Create a component that displays user information</h4>
+<h4>populated from a user object in its class</h4>
+ <h4> Create a button which toggles the visibility of this information.</h4>
+ <h4> Button text should also toggle between saying “hide” and “show”</h4>
+<HR>
+ <div class="container" id="profile" *ngIf="show">
+    <ul>
+      <li>1) Name :{{user.name}}</li>
+      <li>2)Username :{{user.username}}</li>
+      </ul>
+  </div>
+
+ <button class="btn btn-primary" (click)=" this.show = !this.show; Toggle()">{{display}}</button>
+ 

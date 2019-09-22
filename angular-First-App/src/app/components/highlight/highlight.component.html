@@ -1,0 +1,8 @@
+
+  <h3> Create a component which has some filler text<br>
+     the background of the text should change to the color of your choice when you hover over the text</h3>
+  <div (mouseover)="hover=true" (mouseleave)="hover=false">
+    <span [ngStyle]="{backgroundColor: hover==true  ? 'yellow' : 'white' }">Lorem ipsum dolor sit amet,<br>
+      quis nostrud exercitation ullamco laboris nisi ut aliquip </span>
+    </div>
+

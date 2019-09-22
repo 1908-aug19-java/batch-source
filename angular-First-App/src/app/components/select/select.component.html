@@ -1,0 +1,17 @@
+
+   <h4>Create a component with three radio buttons: one labeled “animals,” the next labeled “colors,” and the last labeled “days” </h4>  
+   <h4>When selected, a list (generated from arrays in the class) will be displayed containing a few animals, colors, or days respectively</h4>    
+
+   <input type="radio" (click)='animal()' name='isChecked'>Animals List<br>
+   <input type="radio"(click)='color()' name='isChecked'>Colors List<br>
+   <input type="radio" (click)='day()'name='isChecked'>Days List<br>
+  <hr>
+   <ul>
+     <li *ngFor='let str of selection'[value]='selection'>{{str}}</li>
+   </ul>
+  
+   
+       
+
+
+

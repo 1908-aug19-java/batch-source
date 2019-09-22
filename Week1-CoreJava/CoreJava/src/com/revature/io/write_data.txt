@@ -1,3 +1,0 @@
-Hello World again
-Hello World again
-Hello World from the file we wrote to with our FileReader and BufferedReader

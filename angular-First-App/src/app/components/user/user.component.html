@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>All Users</h2>
+    <p> Click the button to get all of  users  </p>
+    <button class="btn btn-info" (click)='getAllUsers()' >Get Users!</button>
+    <table class="table table-responsive" *ngIf='users.length>0' >
+        <tr>
+            <th>Id</th>
+            <th>name</th>
+            <th>username</th>
+            <th>email</th>
+            <th>Street Suite City</th>
+        </tr>
+          <tr *ngFor='let u of users' >
+            <td> {{u.id}} </td>
+            <td> {{u.name}} </td>
+            <td> {{u.username}} </td>
+            <td> {{u.email}} </td>
+            <td> {{u.address.street}} {{ u.address.suite}} {{u.address.city}}</td>
+        </tr>
+    </table>
+</div>
+   
+        
