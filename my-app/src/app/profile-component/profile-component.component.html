@@ -1,0 +1,20 @@
+<br><br><br><br>
+<div class="container"> 
+  <button (click)='hiddenOrShow()'  class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="profileInfo">{{buttonmesage}}</button>
+  <br><br>
+  <div class="row">
+    <div class="col">
+      <div class="collapse multi-collapse" id="profileInfo">
+        <div class="card card-body">
+          <tr>Id: {{andres_cabezas.id}}</tr>
+          <tr>Name: {{andres_cabezas.name}}</tr>
+          <tr>Last Name: {{andres_cabezas.lastName}}</tr>
+          <tr>em@il: {{andres_cabezas.email}}</tr>
+          <tr>userName: {{andres_cabezas.userName}}</tr>
+          <tr>telephoneNumber: {{andres_cabezas.telephoneNumber}}</tr>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>   

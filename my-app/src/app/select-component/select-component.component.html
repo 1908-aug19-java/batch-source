@@ -1,0 +1,22 @@
+<br><br><br><br>
+<div class="container">
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label (click)='selectList()' class="btn btn-secondary active">
+      <input  [(ngModel)]=animalState  type="radio"  name="options" id="option1" autocomplete="off" checked> Animals
+    </label>
+    <label (click)='selectList()' class="btn btn-secondary">
+      <input  [(ngModel)]=colorState type="radio"  name="options" id="option2" autocomplete="off"> Colors
+    </label>
+    <label (click)='selectList()' class="btn btn-secondary">
+      <input  [(ngModel)]=daysState type="radio"  name="o ptions" id="option3" autocomplete="off"> Days
+    </label>
+      
+      
+    
+    
+
+  </div>
+  <ul>
+      <li *ngFor='let item of l'>#{{item.id}} {{item.name}}</li>
+    </ul>
+</div>
