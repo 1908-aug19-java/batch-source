@@ -1,0 +1,7 @@
+2019-09-24 16:00:58 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Tue Sep 24 16:00:58 EDT 2019]; root of context hierarchy
+2019-09-24 16:00:58 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-09-24 16:00:58 INFO  root:35 - add Was executed, 3.0 + 4.0 = 7.0
+2019-09-24 16:00:58 INFO  root:35 - subtract Was executed, 4.0 - 2.0 = 2.0
+2019-09-24 16:00:58 INFO  root:35 - multiply Was executed, 5.0 * 7.0 = 35.0
+2019-09-24 16:00:58 INFO  root:35 - divide Was executed, 12.0 / 6.0 = 2.0
+2019-09-24 16:00:58 ERROR root:40 - divide threw an exception: java.lang.IllegalArgumentException: Can not divide by 0
