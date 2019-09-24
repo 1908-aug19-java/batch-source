@@ -1,0 +1,54 @@
+2019-09-24 14:20:09 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Tue Sep 24 14:20:09 EDT 2019]; root of context hierarchy
+2019-09-24 14:20:09 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-09-24 14:20:10 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:20:10 INFO  root:19 - void com.revature.beans.Bear.setFull(boolean) executed successfully
+2019-09-24 14:20:10 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:20:10 ERROR root:24 - void com.revature.beans.Bear.bearHibernates() threw an exception: java.lang.RuntimeException: bears hibernate in the winter!
+2019-09-24 14:21:52 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Tue Sep 24 14:21:52 EDT 2019]; root of context hierarchy
+2019-09-24 14:21:52 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-09-24 14:21:53 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:21:53 INFO  root:19 - void com.revature.beans.Bear.setFull(boolean) executed successfully
+2019-09-24 14:21:53 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:21:53 ERROR root:24 - void com.revature.beans.Bear.bearHibernates() threw an exception: java.lang.RuntimeException: bears hibernate in the winter!
+2019-09-24 14:24:08 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Tue Sep 24 14:24:08 EDT 2019]; root of context hierarchy
+2019-09-24 14:24:08 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-09-24 14:24:08 INFO  root:34 - setter called (setFull)
+2019-09-24 14:24:08 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:24:08 INFO  root:19 - void com.revature.beans.Bear.setFull(boolean) executed successfully
+2019-09-24 14:24:08 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:24:08 ERROR root:24 - void com.revature.beans.Bear.bearHibernates() threw an exception: java.lang.RuntimeException: bears hibernate in the winter!
+2019-09-24 14:35:42 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Tue Sep 24 14:35:42 EDT 2019]; root of context hierarchy
+2019-09-24 14:35:42 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-09-24 14:35:43 INFO  root:34 - setter called (setFull)
+2019-09-24 14:35:43 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:35:43 INFO  root:19 - void com.revature.beans.Bear.setFull(boolean) executed successfully
+2019-09-24 14:35:43 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:35:43 INFO  root:19 - void com.revature.beans.Bear.bearHibernates() executed successfully
+2019-09-24 14:35:43 INFO  root:19 - String com.revature.beans.Bear.toString() executed successfully
+2019-09-24 14:36:06 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Tue Sep 24 14:36:06 EDT 2019]; root of context hierarchy
+2019-09-24 14:36:06 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-09-24 14:36:07 INFO  root:34 - setter called (setFull)
+2019-09-24 14:36:07 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:36:07 INFO  root:19 - void com.revature.beans.Bear.setFull(boolean) executed successfully
+2019-09-24 14:36:07 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:36:07 INFO  root:19 - void com.revature.beans.Bear.bearHibernates() executed successfully
+2019-09-24 14:36:07 INFO  root:19 - String com.revature.beans.Bear.toString() executed successfully
+2019-09-24 14:42:59 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Tue Sep 24 14:42:59 EDT 2019]; root of context hierarchy
+2019-09-24 14:42:59 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-09-24 14:43:00 INFO  root:34 - setter called (setFull)
+2019-09-24 14:43:00 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:43:00 INFO  root:19 - void com.revature.beans.Bear.setFull(boolean) executed successfully
+2019-09-24 14:43:00 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:43:00 INFO  root:19 - void com.revature.beans.Bear.bearHibernates() executed successfully
+2019-09-24 14:43:00 INFO  root:19 - String com.revature.beans.Bear.toString() executed successfully
+2019-09-24 14:43:00 INFO  root:19 - String com.revature.beans.Bear.toString() executed successfully
+2019-09-24 14:43:29 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Tue Sep 24 14:43:29 EDT 2019]; root of context hierarchy
+2019-09-24 14:43:30 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-09-24 14:43:30 INFO  root:34 - setter called (setFull)
+2019-09-24 14:43:30 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:43:30 INFO  root:19 - void com.revature.beans.Bear.setFull(boolean) executed successfully
+2019-09-24 14:43:30 INFO  root:29 - bear attempted to hibernate
+2019-09-24 14:43:30 INFO  root:19 - void com.revature.beans.Bear.bearHibernates() executed successfully
+2019-09-24 14:43:30 INFO  root:19 - String com.revature.beans.Bear.toString() executed successfully
+2019-09-24 14:43:30 INFO  root:19 - void com.revature.beans.Bear.wakeBear() executed successfully
+2019-09-24 14:43:30 INFO  root:19 - String com.revature.beans.Bear.toString() executed successfully
