@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -14,11 +17,20 @@ public class House implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotNull
 	private Integer propertyId;
+	
+	@Positive
 	private int numOfBedrooms;
+	
+	@Positive
 	private int numOfBaths;
+	
 	private String street;
+	
+	@Size(min=2,max=2)
 	private String state;
+	
 	private String city;
 	
 

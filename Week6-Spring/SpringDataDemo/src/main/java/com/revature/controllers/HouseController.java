@@ -2,6 +2,8 @@ package com.revature.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,13 +42,13 @@ public class HouseController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<House> addHouse(@RequestBody House house){
+	public ResponseEntity<House> addHouse(@Valid @RequestBody House house){
 		houseService.addHouse(house);
 		return new ResponseEntity<House>(house, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")
-	public House updateHouse(@PathVariable("id")Integer id, @RequestBody House house) {
+	public House updateHouse(@PathVariable("id")Integer id, @Valid @RequestBody House house) {
 		house.setPropertyId(id);
 		return houseService.updateHouse(house);
 	}
