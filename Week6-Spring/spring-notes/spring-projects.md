@@ -11,9 +11,9 @@
 ### Benefits and Features of Spring Boot
 - embedded Tomcat server
 - provided 'starter' dependencies
-- necessary pre-configuration 
+- necessary pre-configuration found in application.properties
     - no xml configuration for additional config
-- Spring Boot Actuator
+- Spring Boot Actuator - provides endpoints for helpful metrics and project information
 - Spring Boot Development tools
 
 #### Running a Spring Boot Application
