@@ -1,0 +1,19 @@
+<div>
+  <form>
+    <label>Book</label>
+    <input [(ngModel)]="book.title" name="book.title" class="form-control">
+    <label>Author</label>
+    <input [(ngModel)]="book.author" name="book.author" class="form-control">
+    <label>Format</label>
+    <select [(ngModel)]="book.format" name="book.format" class="form-control">
+      <option value="EBOOK" selected="true" >E-Book</option>
+      <option value="PAPERBACK">Paperback</option>
+    </select>
+    <br>
+    <button (click)="sendBook()" class="btn btn-info">Add Book</button>
+
+    <span *ngIf='displayCreationError'>Boo bad</span>
+    <span *ngIf='displayCreationSuccess'>Yay success!</span>
+
+  </form>
+</div>

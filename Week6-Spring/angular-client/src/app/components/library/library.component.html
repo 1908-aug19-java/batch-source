@@ -1,0 +1,13 @@
+<table class="table table-striped" *ngIf='books.length>0'>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Format</th>
+  </tr>
+  <tr *ngFor="let book of books">
+    <td>{{book.title}}</td>
+    <td>{{book.author}}</td>
+    <td>{{book.format | titlecase}}</td>
+  </tr>
+</table>
+<span *ngIf='dataError'>Issue getting books</span>

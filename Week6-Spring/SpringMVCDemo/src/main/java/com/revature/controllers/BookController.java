@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.revature.models.BookFormat;
 import com.revature.services.BookService;
 
 @Controller
+@CrossOrigin
 public class BookController {
 	
 	@Autowired
@@ -69,7 +71,7 @@ public class BookController {
 	@ResponseBody
 	public ResponseEntity<String> addBook(@RequestBody Book book) {
 		bookService.create(book);
-		return new ResponseEntity<>("created a book", HttpStatus.CREATED);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	

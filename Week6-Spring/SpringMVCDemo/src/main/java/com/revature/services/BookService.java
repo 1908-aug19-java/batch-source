@@ -34,6 +34,8 @@ public class BookService {
 	}
 	
 	public void create(Book b) {
+		int maxId = books.stream().mapToInt((book)->book.getId()).max().getAsInt();
+		b.setId(++maxId);
 		books.add(b);
 	}
 	
