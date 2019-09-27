@@ -1,0 +1,33 @@
+What is Spring? What is a module? What is a project? Examples of each?
+What is the inversion of control principle? Why is it referred to as the "Hollywood Principle"?
+What is dependency injection? Which types of dependency injection does Spring support?
+What is the spring container?
+What are some differences between a BeanFactory and an ApplicationContext? Concrete implementations of each?
+What is a Spring Bean? How can I configure a class to be a Spring Bean? (describe 3 ways)
+What are the different stereotype annotations?
+What is the Spring Bean life cycle?
+What are the different scopes of a Spring bean? What is the default?
+What are the different ways I can wire together dependencies?
+What is AOP? What are some use cases for it?
+What is the difference between a join point and a point cut?
+What kinds of advice can we use with Spring AOP?
+How are proxies used to accomplish AOP?
+What is Aspect-J?
+What is Spring MVC? What are some annotations used with it?
+How can we handle exceptions in Spring MVC?
+Explain the flow of a request and response in Spring MVC?
+Explain how Spring MVC embodies the front controller pattern.
+What is Spring ORM? What are the benefits of using it?
+What are the required beans that need to be configured for Spring ORM?
+What is the use of the @Transactional annotation? What does the propagation parameter designate? What are the values it can hold?
+What is Spring Boot? What are the benefits?
+What is meant by "convention over configuration?"
+What annotations are provided by the @SpringBootApplication annotation?
+What is the Spring Boot actuator?
+What is Spring Data JPA? How can we take advantage of its functionality?
+What is JSR 303? How do we use Spring's implementation of it?
+What is SOA? What are its benefits?
+What is REST? What are the constraints of REST?
+What does it mean for an application to be stateless?
+What is HATEOAS?
+How would you expose a REST service using Spring? How would you consume one?
