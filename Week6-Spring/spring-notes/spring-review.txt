@@ -31,3 +31,17 @@ What is REST? What are the constraints of REST?
 What does it mean for an application to be stateless?
 What is HATEOAS?
 How would you expose a REST service using Spring? How would you consume one?
+
+----------------------------------------------------------------------------
+Best Practices:
+
+What are some best practices to follow when working with a monolith architecture?
+What are some best practices to follow when working with a microservice architecture?
+What's the difference between a tier and a layer?
+What is the importance of monitoring and logging?
+What is serverless computing? Give an example use case.
+What are some things you should take into consideration when architecting an application?
+What are some security considerations you should make when designing or managing an application?
+Explain a few of the OWASP top 10 security risks.
+What are some best practices you should follow when using git?
+What are some development best practices?
